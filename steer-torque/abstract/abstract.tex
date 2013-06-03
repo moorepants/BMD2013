@@ -11,43 +11,45 @@
 
 \maketitle
 
-Applying forces to the handlebars of motorcycles and bicycles which cause
-rotation of the front frame about the steer axis provide the most authority of
-any other input for control of the vehicles. It is also clear that haptic
-feedback is near essential for a human to balance a bicycle, i.e. with only
-position control of the handlebars the rider cannot maintain balance. Thus is
-it critical to understand the steer torque to understand botht he open loop and
-closed loop dynamics of the bicycle/motorcycle-rider system.
+Applying forces to the handlebars of motorcycles and bicycles which result in a
+net torque between the front frame and the rear frame (and rider) about the
+steer axis provide the most authority of any other input for control of the
+lateral dynamics of the vehicles. It is also clear that haptic feedback is very
+important and maybe essential for a human to balance a bicycle or motorcycle.
+Thus is it critical to understand how the steer torque plays a role in both the
+open loop and closed loop dynamics of the bicycle/motorcycle-rider system.
 
-The first portion of the paper will be devoted to a detailed review of steer
-torque measurements. The earliest measurements of steer torque were done on a
-motorcycle by \cite{Wilson-Jones1951}, followed by \cite{Kondo1955}. There have
-since various measurements of steer torque, mostly on motorcycles and a few on
-bicycles.
+The first portion of the paper will be devoted to a review of steer torque
+measurements and modeling results. For example, the earliest measurements of
+steer torque were done on a motorcycle by \cite{Wilson-Jones1951} with a manual
+scale. There have since various sensors designed to measure steer torque that
+have various degrees of range and accuracy.
 
-The applied steer torque need to control a motorcycle is much greater in
-magnitude for that of a bicycle. 0-50 Nm for motorcycles and 0-10 Nm for
-similar manuevers on bicycles. Furthermore the rider can easily apply moments
-other than steer torque to the handlebars of up to 200 Nm. The sensor design
-must designed such that these other moments do not corrupt the much lower
-magintued steer torque measurements which are desired.
+The applied steer torque needed to control a motorcycle is generally much
+greater in magnitude for that of a bicycle. For similar manuevers motorcycles
+may require up to 50 Nm while bicycles require up to 10 Nm. Furthermore, the
+rider can easily apply forces and moments to the handlebars which are up 20
+times larger in magnitude than the steer torque. The sensors must me designed
+such that these other forces do not corrupt the much lower magintued steer
+torque measurements.
 
-There are three main designs for measuring steer torque: forces at the
-hand-handlebar interface, torque transducers on the steer axis, beam
-transducers.
+There are several types of designs for measuring steer torque: force
+transducers at the hand-handlebar interface, torque transducers on or in the
+steer tube, and variations of secondary handlebars connected through
+transducers. The merits of each type of design is discussed in the paper.
 
 We show that careful attention must be made to any steer torque sensors which
-measure the strains at points between the hands and the contact point.
+measure the strain at points between the hands and the front wheel contact point.
 Depending on the location along the steer axis that the measurement is made,
-the interial effects of front frame and handlebars between the sensor and teh
-rider's hands must be accounted for. For bicycles this is very important
+the interial effects of front frame and handlebars between the sensor and the
+rider's hands must be accounted for. For bicycles, this is very important
 because the torques due to the inerital effects can be a high percentage of the
 actual applied torque. No previous steer torqe measurements seem to take this
 into account.
 
 \begin{figure}
   \centering
-  \includegraphics{steer-torque-components.pdf}
+  \includegraphics[width=5.0in]{steer-torque-components.pdf}
   \caption{This is a plot of the steer torque components for run \#700. The top
   plot shows the additive viscous and Coulomb friction. The total bearing
   friction during the run is less 0.3 Nm. The second plot shows the torque the
@@ -61,8 +63,10 @@ into account.
 
 Finally, we will show the steer torque measurement sensor designed for an
 instrumented bicycle which attempts to take into account many of the flaws of
-previous measurements and we show results for very accurate torque measurements
-in various bicycle manuevers.
+previous measurements. We include experimental results measuring headset
+bearing friction and we show results for very accurate torque measurements in
+various bicycle manuevers giving qualitative look at typical steer torque
+measurements.
 
 This paper is based on work supported by the National Science Foundation under
 Grant No 0928339.
