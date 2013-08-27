@@ -19,46 +19,184 @@ first principles, i.e. Newton's laws and various other atomic fundamental
 models of nature, e.g. friction, springs, etc. The first principle approach has
 guided much of modern engineering throughout history but today's dynamical
 experiments are capable of delivering a staggering amount of both kinematic and
-kinetic data. This large amount lends itself to data driven modeling
-approaches that can potentially provide more predictive models than the
-traditional buidling blocks of dynamical models. These data driven models can
-also give insight into the defencies of first principles models.
+kinetic data from complex dynamical systems. This large amount lends itself to
+data driven modeling approaches that can potentially provide more predictive
+models than the traditional buidling blocks of dynamical models. These data
+driven models can also give insight into the defencies of first principles
+models. Here we explore the bicycle-rider system and discuss both traditional
+models and data drive models.
 
-Bicycles and the bicycle-rider system have been modeled by a variety of models
-and today's studies typically rely on the benchmarked Whipple model, with or
-without the additional of tire models, for analtyical studies of teh system.
-The Whipple bicycle model is regarded as a highly predictive model of the
-bicycle-rider system and is constructed from first principles, yet very little
-experimental data proves that the Whipple model is in fact a robust model for
-the open loop dynamics of the bicycle-rider system. There are also a variety of
-popular motorcycle models (Sharp, Cosalter) that may be a good predictor of the
-system dynamics, but no one has attempted to verify that for a bicycle-rider
-system. The author is only aware of two significant experimental attempts at
-validating the model. The most cited, Kooijman, shows that the Whipple model is
-predictive of a \bold{riderless} bicycle in a gymnasium and on a treadmill for
-speeds in its stable speed range, 4-6 m/s. Cain shows that the Whipple model
-reduced to a linear steady turn can predict the kinematics, but is not so good
-at predicting the rider's input torque.
+Bicycles and the bicycle-rider system have been modeled by a variety of models,
+both simple \cite{Karnopp or Timoshenko} and complex \cite{Sharp}. Many of today's
+studies rely on the benchmarked Whipple model, with or without the additional
+of tire models, for analtyical studies of the system and simulation
+comparisons. The Whipple bicycle model is regarded as a highly predictive model
+of the bicycle-rider system and is constructed from first principles, yet very
+little experimental data proves that the Whipple model is in fact a robust
+model for the open loop dynamics of the bicycle-rider system. There are also a
+variety of popular motorcycle models (Sharp, Cosalter) that may be a good
+predictor of the system dynamics, but no one has attempted to verify that for a
+bicycle-rider system. The author is only aware of two significant experimental
+attempts at validating the model. The most cited, Kooijman, shows that the
+Whipple model is predictive of a \bold{riderless} bicycle in a gymnasium and on
+a treadmill for speeds in its stable speed range, 4-6 m/s. Cain shows that the
+Whipple model reduced to a linear steady turn can predict the kinematics, but
+is not so good at predicting the rider's input torque.
 
 It is worth noting that Eaton, James, \ldots, worked to identify models of
-motrocycles with varying degrees of results.
+motrocycles with varying degrees of results. Talk more about these.
 
-Two remedy this, we have collected a large set of time history data from an
-instrumented bicycle which includes the most important kinematic and kinetic
-variables describing the bicycle-rider motion from three different riders on
-the same bicycle for a variety of maneuvers and speeds. These experiments
-generated about 1.7 million time samples from each of about 30 sensors
-collected at 200 hertz (representing about 2.4 hours of real time).
+Two remedy this, we have collected a large set of mostly time history data from
+an instrumented bicycle which includes some of the most important kinematic and
+kinetic variables describing the bicycle-rider motion from three different
+riders on the same bicycle for a variety of maneuvers and speeds. These
+experiments generated about 1.7 million time samples from each of about 30
+sensors collected at 200 hertz (representing about 2.4 hours of real time).
 
 \section{Experimental Design}
 
-The instrumented bicycle was designed so that the riders were not able to move
-their legs or torso relative to the rear frame of the bicycle, to ensure that
-the assumption of rider rigidity of the Whipple bicycle model was as close to
-valid as possible.
+\subsection{Instrumented Bicycle}
+We developed an instrumented bicycle that had a unique combination of sensors
+for dynamic measurements that are known to be important indicators for the
+bicycle-rider system motion. The bicycle's primary design criteria were as
+follows:
+
+\begin{itemize}
+  \item It should be sized for our intended riders: average adult males.
+  \item The rider's biomechanical movement, including pedaling, should be
+    restricted as much as possible so that the Whipple model's rigid rider
+    assumption is more probable.
+  \item It should accurately measure the rider's applied steering torque.
+  \item It should accurately measure the fundamental kinematics of the bicycle:
+    three dimensional rates and orientations of the bicycle rear frame, front
+    frame, and wheels.
+  \item It should accurately measure an applied lateral disturbance force to
+    the bicycle frame.
+  \item Experiments could be performed on open road or on a treadmill.
+\end{itemize}
+
+With these criteria in mind we constructed a bicycle with an electric
+propulsion system and rigid rider harness and an assortment of sensors. The
+rear frame 3D angular rates and a 3D point acceleration were measured with a
+VectorNav VN-100 interial measurement unit, the rear frame roll angle was
+measured with a rotary potentiometer mounted to a small lightweight trailer,
+the steer angle was measured with a rotary potentiometer, the axial torque in
+the steer tube by a Futek Torque Sensor, the lateral perturbation force by a
+load cell, the angular rate about the steer axis of the front frame by a rate
+gyro, and the rear wheel angular rate by a dc generator.
+
+% Labeled photo of the bicycle
+
+\subsection{Experiments}
+I only focus on the Balance and Track Straight Line maneuvers with and without
+disturbances in the following analyses and they will be referred to as Heading
+Tracking and Lateral Deviation Tracking in the text (as opposed to the labels
+in the database).
+
+Heading Tracking
+    The rider was instructed to simply balance the bicycle and keep a
+    relatively constant heading while focusing their vision at a point
+    in the far distance.
+Lateral Deviation Tracking
+    The rider was instructed to focus on a straight line that was marked
+    on the ground and to attempt to keep the front wheel on the line.
+
+Both tasks were performed with and without the application of a manually
+applied lateral perturbation force just below the seat. The forces were
+applied randomly in direction and time.
 
 \section{Data}
 
+The experimental data was collected on seven different days. The first few days
+were mostly trials to test the equipment, procedures and different maneuvers.
+The data from the trial days is valid data and we ended up using it in our
+analysis. The tires were pumped to 100 psi at the start of each day.
+
+February 4 2011 Runs 103-109
+   These were the first trials on the treadmill for preliminary testing. Only
+   Jason rode. We performed lateral deviation tracking with disturbances. The
+   bike fell over, broke and we had to cut it short.
+February 28, 2011 Run 115-170
+   These were the first trials in the pavilion. Jason was the only rider. We
+   tried lane changes (115-139), lateral deviation tracking with disturbances
+   (140-157), and a mixture of heading tracking and lateral deviation tracking
+   with no disturbances (158-170). I noted that the slip clutch backlash seemed
+   to be larger than the previous day with a guess of about 1 degree.
+March 9, 2011 Runs 180-204
+   This was the second go at the treadmill, still just testing things. Jason
+   was the only rider. We did heading and lateral deviation tracking with
+   disturbances and some lane changes. The lane changes were 0.25 m wide left
+   and right maneuvers back and forth among two lines on the treadmill at 2 m
+   long segments. Countdown markers to give an idea when the lane change
+   started were necessary due to the rider's limited preview distance. We did
+   the highest speed during any subsequent trials at 9 m/s. The 9 m/s runs
+   generated a large amount of noise in the lateral force channel. The treadmill
+   elevation was set at 0.1% upwards incline (because it was stuck).
+August 30, 2011 Runs 235-291
+   Jason and Luke rode and performed heading and lateral deviation tasks with
+   and without perturbations at three speeds on the treadmill.
+September 6, 2011 Runs 295-318
+   Charlie performed heading and lateral deviation tasks with and without
+   perturbations on the treadmill.
+September 9, 2011 Runs 325-536
+   Luke, Charlie and Jason performed heading and lateral deviation tracking
+   tasks on the Pavilion floor with and without perturbations. Most of Luke and
+   Charlie's runs were corrupt due to the time synchronization issues.
+September 21, 2011 Runs 538-706
+   Luke and Charlie repeated the runs from September 9th. And we added a couple
+   of blind runs for each of them.
+
+The meta data and raw time history data for each run and all sensor calibration
+data were stored in individual Matlab mat files on the data acquisition
+computer using the `BicycleDAQ <https://github.com/moorepants/BicycleDAQ>`_
+software. The run files and calibration files are automatically numbered in
+sequence with a five digit number; one sequence for runs and one for
+calibrations. These mat files were then parsed and merged into a uniform,
+organized, and complete single HDF5 database that could be accessed by a number
+of programs and languages for fast data queries. I made use of `PyTables
+<http://www.pytables.org>`_ for writing and reading from the database. The
+software `BicycleDataProcessor
+<http://github.com/moorepants/BicycleDataProcessor>`_ was designed as an
+interface to the data in the database. In particular, it is able to load the
+raw data from individual runs, process it, and present it for easy manipulation
+and viewing.
+
+The database is initially structured with three top-level tables and nodes
+containing the time histories of the sensors for each run. The run table has a
+row for each run and the columns store each piece of meta data, including the
+corruption coding described below. The signal table has a row for each raw and
+processed signal type and the classification information for each. The
+calibration table has a row for each calibration which provides information
+about the sensor and the data collected in the calibration.
+
+We recorded a large set of meta data for each run to help with parsing during
+analyses. We also video recorded all of the runs (minus a few video mishaps).
+I coded each run based on the notes, data quality, and viewing the video for
+potential or definite corrupted data with the following five codes.
+
+Corrupt
+   If the data is completely unusable due to time synchronization issues or
+   others then this is set to true.
+Warning
+   Runs with a warning flag are questionable and potentially not usable.
+Knee
+   The rider's knees would sometimes de-clip from the frame during a
+   perturbation. This potentially invalidates the rigid rider assumption. An
+   array of 15 boolean values, one for each perturbation in the run, are stored
+   for each run and each true value in the array represents an individual
+   perturbation where a knee disengaged with the bicycle.
+Handlebar
+   On the treadmill the bicycle handlebars occasionally contacted the side
+   railings. Each perturbation during the run in which this happened was
+   recorded.
+Trailer
+   On the treadmill the roll trailer occasionally contacted the side of the
+   treadmill. Each perturbation during the run which this happened was
+   recorded.
+
+We ultimately collected 600+ runs that were potentially usable for analysis.
+:ref:`Figure 11.4<figDataBarPlots>` gives a breakdown of the runs by rider,
+environment, maneuvers, and speed bins.
 \section{Analyses}
 
 - data processing
@@ -71,8 +209,6 @@ valid as possible.
 \section{Acknowledgements}
 
 This paper is based on work supported by the National Science Foundation under
-Grant No 0928339.
-
-Karl Astrom
+Grant No 0928339. Karl Astrom gave me the ideas for the canonical form.
 
 \end{document}
