@@ -675,7 +675,7 @@ coefficients with
 I selected data for three riders on the same bicycle, performing two
 maneuvers, in two different environments. I opted to compute the best fit model across series
 of runs to benefit from the large dataset and to take into account variation across riders. 
-This leaves these four scenarios:
+This leaves these four scenarios with a total of 12 different models:
 
 \begin{itemize}
   \item
@@ -688,27 +688,23 @@ This leaves these four scenarios:
     Each rider in each environment, six data sets
 \end{itemize}
 
-A total of 12 different models can be derived from this perspective.
 
 \subsubsection{All riders in both environments}
 
 This section details the example results for one subset of data. Here I
 make the assumption that the best fit model doesn't vary much across
-riders or environments. The assumption that the passive model of the
-bicycle and rider are similar with respect to rider can be justified by
-recognizing that the Whipple model predicts little difference in the
-dynamics with respect to the three bicycle/rider combinations. On the
-other hand, I have little reason to believe the environments are the
-same except that both floors are made of a rubber like material. I
+riders or environments. This assumption can be justified by
+recognizing the Whipple model predicts little difference in
+dynamics with respect to the three bicycle/rider combinations. I
 calculated the best fit over 374 runs giving about 142 minutes of data
 sampled at 200 Hz, $N=1720647$.
 
 The eigenvalues as a function of speed of the identified model can be
-compared to those of the Whipple and arm models, see Section
-secRiderArms in Chapter Extensions.
+compared to those of the Whipple and arm models (see Section
+secRiderArms in Chapter Extensions).
 Figure 11.11\textless{}figAARloc\textgreater{} shows the root locus of
 the three models. The oscillatory weave mode exists in all three models,
-with it always being stable in the arm model but being unstable at lower
+stable at all speeds in the arm model but unstable at lower
 speeds in the other two models. The identified model's oscillatory weave
 mode is unstable over most of the shown speed range. Above 3 m/s or so,
 the Whipple model's oscillatory weave mode diverges from the identified
@@ -814,26 +810,22 @@ $H_{\delta F}$ have the largest relative variance among the models
 $C_{1\delta\delta}$, and $K_{2\delta\delta}$ are the most consistent
 among the models (\textless{} 18\%) with the remaining coefficients
 falling somewhere in between. This is odd because these data sets are
-not independent of one another where some are subsets of the others but
-once again the identification procedure does not explicitly account for
-process noise and the coefficient estimates reflect this. A sensitivity
-study for each coefficient with respect to the various physical
-parameters could help reveal which parameters less likely fit into the
-Whipple model mold.
+not independent of one another; however, the identification procedure 
+does not explicitly account for process noise. A sensitivity
+study for each physical parameter coefficient could reveal which parameters
+are less likely fit into the Whipple model.
 
-It is interesting to note that $C_{1 \delta \phi}$ deviates quite
+It is interesting to note $C_{1 \delta \phi}$ deviates quite
 significantly from the Whipple model prediction. This term depends on
 the wheel radii, wheel rotational inertia, wheelbase, steer axis tilt,
-and trail. All of these but trail are easily measured so it is tempting
-to solve for trail given $C_{1 \delta \phi}$ and the other measured
-parameters described in \cite{Meijaard2007}.
+and trail. 
 
 \[c = -\frac{w(C_{1 \delta \phi} + S_F \operatorname{cos}\lambda)}{S_T
 \operatorname{cos}\lambda}\]
 
 The results for each data subset are given in Table
-11.6\textless{}tabIdentifiedTrail\textgreater{}. On average the values
-are extremely unrealistic when compared to the measured geometric trail
+11.6\textless{}tabIdentifiedTrail\textgreater{}. On average, the values
+are unrealistic compared to the measured geometric trail
 of $c=0.0599$ meters. This may imply that including the effects of
 pneumatic trail would not be enough to improve the predictive
 capabilities of the Whipple model. It also points to the potentially
@@ -845,10 +837,8 @@ assumptions.
 
 The measurement errors, model structure and order dictate how well the
 models can predict the input-output behavior of each run or even each
-perturbation. The ideal goal is to select one or a small set of models
-that do a good job at predicting the measured behavior for each run. The
-previous section's state space methods have already shown that the
-Whipple and arm models may not provide adequate predictions.
+perturbation. The previous section's state space methods have already 
+shown that the Whipple and arm models may not provide adequate predictions.
 
 Figures 11.17\textless{}figCompBode2p0\textgreater{},
 11.18\textless{}figCompBode5p5\textgreater{}, and
@@ -857,8 +847,8 @@ roll angle frequency response for three speeds: 2 m/s, 5.5 m/s and 9.0
 m/s for each of the models in Tables
 11.3\textless{}tabIdMCKOne\textgreater{},
 11.4\textless{}tabIdMCKTwo\textgreater{}, and
-11.5\textless{}tabIdMCKThree\textgreater{}. At the lowest speed, all of
-the models have a similar frequency response, especially in the
+11.5\textless{}tabIdMCKThree\textgreater{}. At the lowest speed, all models 
+have a similar frequency response particularly , especially in the
 frequency band between about 1 an 20 rad/s. At 5.5 m/s the models are
 similar at a higher bandwidth, 4 to 30 rad/s, and at 9.0 m/s even
 higher, 10 to 50 rad/s. Notice that the frequency band where the models
