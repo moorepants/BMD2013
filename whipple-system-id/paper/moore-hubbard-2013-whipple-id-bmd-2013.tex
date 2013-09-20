@@ -1040,43 +1040,42 @@ improve the predictive ability.
 
 \subsection{Canonical identification}
 
-The canonical realization Section secCanonicalId, is a good method for
-identifying a model using data from multiple runs. It relies on quality
-measurements of the coordinates, rates, and accelerations. We relied on
-numerical differentiation of the rates to get the accelerations instead of
-direct measurements. Furthermore, differentiation of the measured angles do not
-exactly reproduce the measured rates because they were measured from different
+The canonical realization Section secCanonicalId, % is this a code?
+is a good method for identifying a model using data from multiple runs, as it relies 
+on quality measurements of the coordinates, rates, and accelerations. Rather than 
+direct measurements, we relied on numerical differentiation of the rates to get the accelerations. 
+Furthermore, differentiation of the measured angles do not exactly reproduce the 
+measured rates because they were measured from different
 sensors. Using a sensor fusion algortm could The noise in the measurements and
 whether the measurements are accurately the derivatives of one another have
-bearing on the results.
+bearing on the results.%sentense does not make sense. 
 
 It is possible to identify all of the entries in the canonical matrices, but it
 is likely some of those are easily predicted from first principles so we fixed
-them to the Whipple model predictions if that is the case. This leaves the roll
-equation mostly known and the steer equation mostly unknown and the results
-reflect better fits with respect to steer than roll as a result.
+them to the Whipple model predictions if that is the case. %whoa what? fix
+This leaves the roll equation mostly known and the steer equation mostly unknown and the results
+reflect better fits with respect to steer than roll as a result. %fix
 
 This formulation does not explicitly account for process noise, so it may be be
-susceptible to similar accuracy errors as the state space formulation is. The
-advantage in this method is the ability to use large sets of data for the
+susceptible to similar accuracy errors as the state space formulation is. %fix or delete
+The advantage in this method is the ability to use large sets of data for the
 calculations. It is extremely surprising that a model from a small subset of
 the data is better at predicting all of the runs on an individual basis.
 
 \subsection{Input comparison}
 
-The input prediction comparisons do not predict the roll torque well at all. It
-seems that the roll torque equation magnifies the noise in the coordinate,
-rate, and acceleration measurements such that the resulting noise in the roll
+The input prediction comparisons do not predict the roll torque well. The roll torque equation magnifies the noise in the coordinate,
+rate and acceleration measurements such that the resulting noise in the roll
 torque is equivalent in magnitude to the roll perturbations. But the roll
 perturbations do seem to clearly be present in the predictions. This results in
 difficultly comparing the quality of the resulting models with respect to the
 roll equation. This also points to the potential deficiencies in the Whipple
 roll torque equation and these large magnitude roll torques may also be due to
-inaccurate modeling of the tire dynamics.
+inaccurate modeling of the tire dynamics. %this may be written better...
 
 \subsection{Output comparison}
 
-The output comparison (simulations) give more reasonable results because
+The output comparisons (simulations) give more reasonable results because
 all four outputs generally fit well across runs given the measured
 inputs. It is surprising that the ranking of model prediction ability is
 different for the input comparisons than the output comparisons, but the
