@@ -16,14 +16,10 @@ under manual control}
 
 \section{Introduction}
 
-Traditionally, dynamicists develop models of the bicycle-rider system from
-first principles, i.e. Newton's laws and various other atomic fundamental
-models of nature, e.g. friction, springs, etc. The first principle approach has
-guided much of modern engineering throughout history but today's dynamical
-experiments are capable of delivering a staggering amount of both kinematic and
-kinetic data from complex dynamical systems. This large amount of data lends
+Today's dynamical experiments are capable of delivering a staggering amount of both kinematic and
+kinetic data from complex dynamical systems. Such large amount of data lends
 itself to data driven modeling approaches that can potentially provide more
-predictive models than the traditional buidling blocks of dynamical models.
+predictive models than the traditional buidling blocks of dynamical models using first principles.
 These data driven models can also give insight into the defecencies of first
 principles models. Here we explore the bicycle-rider system and discuss both
 traditional models and data driven models.
@@ -31,7 +27,7 @@ traditional models and data driven models.
 Bicycles and the bicycle-rider system have been modeled by a variety of models,
 both simple \cite{Timoshenko1948} and complex \cite{Sharp1971}. Many of
 today's studies rely on the benchmarked Whipple model, with or without the
-additional of tire models, for analytical studies of the system and simulation
+addition of tire models, for analytical studies of the system and simulation
 comparisons. The Whipple bicycle model is regarded as a highly predictive model
 of the bicycle-rider system and is constructed from first principles, yet very
 little experimental data proves that the Whipple model is in fact a robust
@@ -46,13 +42,14 @@ that the Whipple model reduced to a linear steady turn can predict the
 kinematics, but is not so good at predicting the rider's input torque.
 
 It is worth noting that Eaton, James, \ldots, worked to identify models of
-motorcycles with varying degrees of results. Talk more about these.
+motorcycles with varying degrees of results. Talk more about these. %DELETE????
 
-Two remedy this, we have collected a large set of mostly time history data from
+Two remedy this,%remedy what? shoudl say like "remedy this issue of the Whipple model not being proven in real life
+we have collected a large set of mostly time history data from
 an instrumented bicycle which includes some of the most important kinematic and
 kinetic variables describing the bicycle-rider motion from three different
-riders on the same bicycle for a variety of maneuvers and speeds. These
-experiments generated about 1.7 million time samples from each of about 30
+riders on the same bicycle for a variety of maneuvers and speeds. %sentence way too long, also doesn't really make sense.
+These experiments generated about 1.7 million time samples from each of about 30
 sensors collected at 200 hertz (representing about 2.4 hours of real time).
 
 \section{Experimental Design}
@@ -65,11 +62,12 @@ follows:
 
 \begin{itemize}
   \item It should be sized for our intended riders: average adult males in
-    Davis California.
+    Davis California. %delete probably, not really relevant or good to include
   \item The rider's biomechanical movement, including pedaling, should be
     restricted as much as possible so that the Whipple model's rigid rider
     assumption is more probable.
-  \item It should accurately measure the fundamental kinematics of the bicycle:
+  \item It %the bicycle or bike instrumentation
+  should accurately measure the fundamental kinematics of the bicycle:
     three dimensional rates and orientations of the bicycle rear frame, front
     frame, and wheels.
   \item It should accurately measure the rider's applied steering torque.
@@ -97,8 +95,9 @@ a dc generator.
 %\end{figure}
 
 \subsection{Experiments}
-We recorded data from a variety of experiments \cite{Moore2012} but the
-analysis herein focuses on the two maneuvers which we call \emph{Heading
+We recorded data from a variety of experiments \cite{Moore2012} but %delete
+
+the analysis herein focuses on the two maneuvers which we call \emph{Heading
 Tracking} and \emph{Lateral Deviation Tracking}. Our definitions of these are:
 
 \begin{description}
@@ -110,6 +109,7 @@ Tracking} and \emph{Lateral Deviation Tracking}. Our definitions of these are:
     The rider was instructed to focus on a straight line that was marked on the
     ground and to attempt to keep the front wheel on the line.
 \end{description}
+%you could technically just make these part of the above paragraph and that would save you line space.
 
 Both tasks were performed with and without the application of a manually
 applied lateral perturbation forces just below the seat. The forces were
@@ -121,16 +121,18 @@ performed on both a 1 meter wide treadmill and an open gymnasium floor. See
 
 The physical parameters (geometry, mass, center of mass, and moments of
 inertia) of both the bicycle and the rider were estimated using the methods in
-\cite{Moore2012} and \cite{Yeadon1990}, respectively. The bicycle was measured
-to get accurate estimates of the parameters used in the benchmark bicycle. The
+\cite{Moore2012} and \cite{Yeadon1990}, respectively %respective to what? bicycle and rider? or the different physical parameters?
+. The bicycle was measured
+to get accurate estimates of the parameters used in the benchmark bicycle. %weird sentence. reduce "bicycle" to one time if you can
+The
 combined inertial properties of the bicycle rear frame and the rider were
 computed with standard methods. Two open source software packages, yeadon
 \cite{Dembia2011} and BicycleParameters \cite{Moore2011} manage and process the
-data physical parameter data.
+data physical parameter data. %watch tense
 
 % TODO: Add a table of the whipple model parameters for the three riders
 
-Before each day of testing data was collected for the system's sensors for
+Before each day of testing, data was collected for the system's sensors for
 calibration purposes. Then for each trial a set of meta data and raw time
 series were collected from the bicycle's onboard DAQ system. This data was
 stored in a HDF5 database for easy querying and retrieval in the data analysis
@@ -151,19 +153,18 @@ defined by the Whipple model coordinates:
 Before identification computations we subtracted the means over time of the
 signals that were generally symmetric about zero. For some of the pavilion
 runs, this may have actually introduced a small bias, as the short duration
-runs with unbalanced perturbations may not have zero mean.
+runs with unbalanced perturbations may not have zero mean. This was repeated 
+for all the signals except the lateral force.
 
- Once again, the mean was
-subtracted from all the signals except the lateral force.
- For
-the following analysis, all of the signals were filtered with a second order
+For the following analysis%what analysis?
+, all of the signals were filtered with a second order
 low pass Butterworth filter at 15 Hz. 
 
 % TODO: example plot of the signals
 
 The experimental data was collected on seven different days and amounted to
-about 600 individual trials with three different riders that were potentially
-usable for analysis. We used X of the runs for the following analysis.
+about 600 individual trials with three different riders. We used X of the 
+runs for the following analysis.
 
 \section{System Identification}
 
@@ -225,26 +226,24 @@ repeatable and accurate estimates of the parameters. I have had good success
 with finding models that predict the data but little success with explicit and
 accurate parameter identification in the following analyses. There is great
 room for improvement in the parameter identification if the noise issues are
-better managed.
+better managed. %this paragraph can be truncated. Either put some of this in the intro, or delte a lot of it.
 
 \section{Structured Black Box State Space Identification}
 
 The open loop dynamics of the bicycle-rider system can be described using many
-models, see \cite{Astrom2005}, \cite{Limebeer2006}, and \cite{Meijaard2007} for
-good overviews. The benchmarked Whipple bicycle model \cite{Meijaard2007}
-provides a somewhat minimalistic model in a manageable analytic framework which
-is capable of describing the essential dynamics such as speed dependent
-stability, steer and roll coupling, and non-minimum phase behavior. I use this
-model as the standard base model to work with, as the fidelity of simpler
-models are generally not adequate for accurate prediction.
+models \cite{Astrom2005}, \cite{Limebeer2006}, and \cite{Meijaard2007} ). The 
+benchmarked Whipple bicycle model \cite{Meijaard2007}
+provides a minimalistic standard base model in a manageable analytic framework capable
+of describing the essential dynamics such as speed dependent
+stability, steer and roll coupling, and non-minimum phase behavior. 
 
 The non-linear Whipple model is a 4th order system with roll angle, steer
 angle, roll rate, and steer rate selected as the independent states and with
-roll and steer torques as the generalized forces and system inputs. We neglect
-the roll torque input and in its place extend the model to include a lateral
+roll and steer torques as the generalized forces and system inputs. In place 
+of the roll torque input, the model is extended to include a lateral
 force acting at a point on the frame to provide a new input, accurately
-modelling imposed lateral perturbations (see \cite{Moore2012} for details of
-the extension). We also examine a second candidate model which adds the
+modelling imposed lateral perturbations (see \cite{Moore2012} for details). 
+We also examine a second candidate model which adds the
 inertial effects of the rider's arms to the Whipple model, also described in
 \cite{Moore2012}. This model was designed to more accurately account for the
 fact that the riders were free to move their arms with the front frame of the
@@ -377,7 +376,7 @@ parameters is between 10 and 14. When the $\mathbf{K}$ matrix is added the
 number of unknown parameters increases by 16 and the global minimum becomes
 more difficult to find and I was rarely able, if ever, to find the global
 minimum for the general problem, even when reducing the number of outputs to
-one.
+one.%too casual, make more consise.
 
 Figures blank through blank show typical examples of the input and output data
 for a single run with both steer torque and lateral force as inputs. The plot
@@ -464,9 +463,8 @@ graphs reveal several important things:
 
 %\includegraphics{figures/systemidentification/b-matrix-box-plot.*}
 
-Figure 11.10\textless{}figStateSpaceBode\textgreater{} gives another
-view of the resulting data. It is a frequency response plot at the mean
-speed for a set of runs. The blue lines give the mean and one standard
+Figure 11.10\textless{}figStateSpaceBode\textgreater{} is a frequency 
+response plot at the mean speed for a set of runs. The blue lines give the mean and one standard
 deviation bounds of the magnitude and phase of the system transfer
 function $\frac{\phi}{T_\delta}(s)$ for the set of runs. Even though the
 spread in the identified parameters seems high in Figures
@@ -490,18 +488,14 @@ of the overall identified model quality.
 
 % TODO : latex doesn't deal with unicode in karl's name
 
-The results from the state space identification left much to be desired.
-Ideally a linear model that was a function of speed with respect to all or
-various subsets of the experiments would be obtained but identifying from
-individual trials was limiting. We turned to identifying the system
-identification with respect to the second order form of the equations of
+We obtained the system identification with respect to the second order form of the equations of
 motion, an idea proposed to us by Karl Åström. This would allow one to use both
 simple least squares for the solution and the ability to compute models from
-large sets of runs. This section deals with this approach.
+large sets of runs. 
 
 \subsection{Model structure}
 
-The identification of the linear dynamics of the bicycle can be formulated with
+Identification of bicycle linear dynamics can be formulated with
 respect to the augmented benchmark canonical form realized in
 \cite{Meijaard2007}, Equation \ref{eq:canonical}. If the time varying
 quantities in the equations are all measured at each time step, the
@@ -538,8 +532,8 @@ A simple analytic identification problem can be formulated from the canonical
 form. If we have good measurements of $q$, their first and second derivatives,
 forward speed $v$, and the inputs $T_\delta$ and $F$, the entries in
 $\mathbf{M}$, $\mathbf{C}_1$, $\mathbf{K}_0$, $\mathbf{K}_2$, and $H$ can be
-identified by forming two simple linear regressions, i.e. one for each equation
-in the canonical form.
+identified by forming two simple linear regressions (one for each equation
+in the canonical form).
 
 The roll and steer equations each can be put into a simple linear form:
 
@@ -679,14 +673,9 @@ coefficients with
 \subsection{Results}
 
 I selected data for three riders on the same bicycle, performing two
-maneuvers, in two different environments. There is little reason to
-believe the dynamics of the passive system should vary much with respect
-to different maneuvers, but there is potentially variation across riders
-due to the differences in their inertial properties and there may be
-variation across environments because of the differences in the wheel to
-floor interaction. I opted to compute the best fit model across series
-of runs to benefit from the large dataset. This leaves these four
-scenarios:
+maneuvers, in two different environments. I opted to compute the best fit model across series
+of runs to benefit from the large dataset and to take into account variation across riders. 
+This leaves these four scenarios with a total of 12 different models:
 
 \begin{itemize}
   \item
@@ -699,27 +688,23 @@ scenarios:
     Each rider in each environment, six data sets
 \end{itemize}
 
-A total of 12 different models can be derived from this perspective.
 
 \subsubsection{All riders in both environments}
 
 This section details the example results for one subset of data. Here I
 make the assumption that the best fit model doesn't vary much across
-riders or environments. The assumption that the passive model of the
-bicycle and rider are similar with respect to rider can be justified by
-recognizing that the Whipple model predicts little difference in the
-dynamics with respect to the three bicycle/rider combinations. On the
-other hand, I have little reason to believe the environments are the
-same except that both floors are made of a rubber like material. I
+riders or environments. This assumption can be justified by
+recognizing the Whipple model predicts little difference in
+dynamics with respect to the three bicycle/rider combinations. I
 calculated the best fit over 374 runs giving about 142 minutes of data
 sampled at 200 Hz, $N=1720647$.
 
 The eigenvalues as a function of speed of the identified model can be
-compared to those of the Whipple and arm models, see Section
-secRiderArms in Chapter Extensions.
+compared to those of the Whipple and arm models (see Section
+secRiderArms in Chapter Extensions).
 Figure 11.11\textless{}figAARloc\textgreater{} shows the root locus of
 the three models. The oscillatory weave mode exists in all three models,
-with it always being stable in the arm model but being unstable at lower
+stable at all speeds in the arm model but unstable at lower
 speeds in the other two models. The identified model's oscillatory weave
 mode is unstable over most of the shown speed range. Above 3 m/s or so,
 the Whipple model's oscillatory weave mode diverges from the identified
@@ -825,26 +810,22 @@ $H_{\delta F}$ have the largest relative variance among the models
 $C_{1\delta\delta}$, and $K_{2\delta\delta}$ are the most consistent
 among the models (\textless{} 18\%) with the remaining coefficients
 falling somewhere in between. This is odd because these data sets are
-not independent of one another where some are subsets of the others but
-once again the identification procedure does not explicitly account for
-process noise and the coefficient estimates reflect this. A sensitivity
-study for each coefficient with respect to the various physical
-parameters could help reveal which parameters less likely fit into the
-Whipple model mold.
+not independent of one another; however, the identification procedure 
+does not explicitly account for process noise. A sensitivity
+study for each physical parameter coefficient could reveal which parameters
+are less likely fit into the Whipple model.
 
-It is interesting to note that $C_{1 \delta \phi}$ deviates quite
+It is interesting to note $C_{1 \delta \phi}$ deviates quite
 significantly from the Whipple model prediction. This term depends on
 the wheel radii, wheel rotational inertia, wheelbase, steer axis tilt,
-and trail. All of these but trail are easily measured so it is tempting
-to solve for trail given $C_{1 \delta \phi}$ and the other measured
-parameters described in \cite{Meijaard2007}.
+and trail. 
 
 \[c = -\frac{w(C_{1 \delta \phi} + S_F \operatorname{cos}\lambda)}{S_T
 \operatorname{cos}\lambda}\]
 
 The results for each data subset are given in Table
-11.6\textless{}tabIdentifiedTrail\textgreater{}. On average the values
-are extremely unrealistic when compared to the measured geometric trail
+11.6\textless{}tabIdentifiedTrail\textgreater{}. On average, the values
+are unrealistic compared to the measured geometric trail
 of $c=0.0599$ meters. This may imply that including the effects of
 pneumatic trail would not be enough to improve the predictive
 capabilities of the Whipple model. It also points to the potentially
@@ -856,10 +837,8 @@ assumptions.
 
 The measurement errors, model structure and order dictate how well the
 models can predict the input-output behavior of each run or even each
-perturbation. The ideal goal is to select one or a small set of models
-that do a good job at predicting the measured behavior for each run. The
-previous section's state space methods have already shown that the
-Whipple and arm models may not provide adequate predictions.
+perturbation. The previous section's state space methods have already 
+shown that the Whipple and arm models may not provide adequate predictions.
 
 Figures 11.17\textless{}figCompBode2p0\textgreater{},
 11.18\textless{}figCompBode5p5\textgreater{}, and
@@ -868,8 +847,8 @@ roll angle frequency response for three speeds: 2 m/s, 5.5 m/s and 9.0
 m/s for each of the models in Tables
 11.3\textless{}tabIdMCKOne\textgreater{},
 11.4\textless{}tabIdMCKTwo\textgreater{}, and
-11.5\textless{}tabIdMCKThree\textgreater{}. At the lowest speed, all of
-the models have a similar frequency response, especially in the
+11.5\textless{}tabIdMCKThree\textgreater{}. At the lowest speed, all models 
+have a similar frequency response particularly , especially in the
 frequency band between about 1 an 20 rad/s. At 5.5 m/s the models are
 similar at a higher bandwidth, 4 to 30 rad/s, and at 9.0 m/s even
 higher, 10 to 50 rad/s. Notice that the frequency band where the models
