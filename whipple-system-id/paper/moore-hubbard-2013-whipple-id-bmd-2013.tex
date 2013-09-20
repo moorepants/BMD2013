@@ -1076,11 +1076,10 @@ inaccurate modeling of the tire dynamics. %this may be written better...
 \subsection{Output comparison}
 
 The output comparisons (simulations) give more reasonable results because
-all four outputs generally fit well across runs given the measured
-inputs. It is surprising that the ranking of model prediction ability is
+all four outputs generally fit well across runs. It is surprising that the ranking of model prediction ability is
 different for the input comparisons than the output comparisons, but the
 fact that the model identified from Luke's pavilion runs is the best
-from both comparisons, at least gives credence to its further adoption.
+from both comparisons, at least gives credence to its further adoption. %err....fix? OR can this whole section go?
 The first principles models are dead last in the ranking and the model
 identified from Jason's pavilion runs is surprisingly poor due to poor
 roll angle prediction.
@@ -1090,46 +1089,41 @@ roll angle prediction.
 The input comparisons show that the Whipple model is relatively
 reasonable at predicting the data but the output comparisons make it out
 to be much poorer. The Whipple model is clearly the worst at explaining
-the variance in the steer angle, roll rate, and steer rate outputs and
-is second to worst in roll angle. Also contrary to the Whipple model
+variance in the steer angle, roll rate, and steer rate outputs and
+is second to worst in roll angle. Also, contrary to the Whipple model
 predictions, the weave mode of all identified models is unstable until
-at least 8-9 m/s or so. The caster mode is also typically much faster in
-the identified models. This implies that the real system does not
-benefit from open loop stability at all during most normal speed
+at least 8-9 m/s. The caster mode is also typically much faster in
+the identified models, implying the real system does not
+benefit from open loop stability during most normal speed
 bicycling and that the rider is always responsible for stabilizing the
-vehicle. This may explain why none of the riders ever felt comfortable
-enough to try hands-free riding while strapped into the harness.
+vehicle. 
 
 \subsection{Arm model}
 
 We had hypothesized that the arm model would better predict the measured
 motion because it more accurately modeled the fact that we allowed the
 rider full use of his arms to control the steering and that the arms
-effectively added to the front frame inertia. This was validated with
-respect to the output simulation comparisons. They predict that the arm
-model is much better than the Whipple model for most of the output
-variables. But this is in contrast to the input comparison predictions
-which were the opposite, with the Whipple being much better than the arm
-model. More work is needed to verify which model is better and why the
+effectively added to the front frame inertia. The output simulation 
+comparisons validated this hypothesis as they predict the arm
+model is much better than the Whipple model for most output
+variables. This is in contrast to the input comparison predictions, which states the Whipple
+to be much better than the arm model. More work is needed to verify which model is better and why the
 results differ at all.
 
 \subsection{Rider biomechanics may mot be modeled}
 
-The models identified from Charlie's runs are different than those of Jason and
-Luke. The models from Charlie's runs do not predict the runs very well, even
-including the subset of Charlie's data. I'm not sure if the rider's arm
-stiffness can affect these results or how much the different riders can effect
-this if we are only searching for the passive bicycle-rider model. The other
-potential explanation is that there are too many outliers in Charlie's runs.
-This could have something to do with the runs that had time synchronization
+The models identified from Charlie's runs differ to those of Jason and
+Luke and do not predict the runs very well, even when including the subset 
+of Charlie's data. I'm not sure whether the rider's arm
+stiffness or difference in riders could have effected
+this if we are only searching for the passive bicycle-rider model. There also 
+could have been too many outliers in Charlie's runs, related to those that had time synchronization
 issues.
 
 \subsection{Predicting derivatives}
 
-The roll angle is more poorly predicted than the other variables. The
-steer angle and steer rate are better predicted than the roll angle and
-roll rate. In the output comparisons I enforce that the roll rate is the
-derivative of the roll and the same for the steer variables. The poorer
+The steer angle and steer rate are better predicted than the roll angle and
+roll rate.  The poorer
 prediction of roll angle is probably due to noise and error in the
 independent measurements of these variables. I toyed with complementary
 filters to try to combine the angle and rate measurements in a way that
@@ -1150,7 +1144,7 @@ identifying the controller for all the runs in the following section of
 this Chapter. I could use the individual bicycle identifications for
 each run, but using a model derived from a set of runs has the advantage
 that it will be less affected by the lack of identifying the process
-noise explicitly.
+noise explicitly. %there is some repetitiaon in this paragraph, try and fix
 
 Suggestions for improving the results.
 
