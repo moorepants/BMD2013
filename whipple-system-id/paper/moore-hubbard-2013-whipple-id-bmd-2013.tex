@@ -132,7 +132,7 @@ data physical parameter data. %watch tense
 
 % TODO: Add a table of the whipple model parameters for the three riders
 
-Before each day of testing data was collected for the system's sensors for
+Before each day of testing, data was collected for the system's sensors for
 calibration purposes. Then for each trial a set of meta data and raw time
 series were collected from the bicycle's onboard DAQ system. This data was
 stored in a HDF5 database for easy querying and retrieval in the data analysis
@@ -153,19 +153,18 @@ defined by the Whipple model coordinates:
 Before identification computations we subtracted the means over time of the
 signals that were generally symmetric about zero. For some of the pavilion
 runs, this may have actually introduced a small bias, as the short duration
-runs with unbalanced perturbations may not have zero mean.
+runs with unbalanced perturbations may not have zero mean. This was repeated 
+for all the signals except the lateral force.
 
- Once again, the mean was
-subtracted from all the signals except the lateral force.
- For
-the following analysis, all of the signals were filtered with a second order
+For the following analysis%what analysis?
+, all of the signals were filtered with a second order
 low pass Butterworth filter at 15 Hz. 
 
 % TODO: example plot of the signals
 
 The experimental data was collected on seven different days and amounted to
-about 600 individual trials with three different riders that were potentially
-usable for analysis. We used X of the runs for the following analysis.
+about 600 individual trials with three different riders. We used X of the 
+runs for the following analysis.
 
 \section{System Identification}
 
@@ -227,18 +226,16 @@ repeatable and accurate estimates of the parameters. I have had good success
 with finding models that predict the data but little success with explicit and
 accurate parameter identification in the following analyses. There is great
 room for improvement in the parameter identification if the noise issues are
-better managed.
+better managed. %this paragraph can be truncated. Either put some of this in the intro, or delte a lot of it.
 
 \section{Structured Black Box State Space Identification}
 
 The open loop dynamics of the bicycle-rider system can be described using many
-models, see \cite{Astrom2005}, \cite{Limebeer2006}, and \cite{Meijaard2007} for
-good overviews. The benchmarked Whipple bicycle model \cite{Meijaard2007}
-provides a somewhat minimalistic model in a manageable analytic framework which
-is capable of describing the essential dynamics such as speed dependent
-stability, steer and roll coupling, and non-minimum phase behavior. I use this
-model as the standard base model to work with, as the fidelity of simpler
-models are generally not adequate for accurate prediction.
+models \cite{Astrom2005}, \cite{Limebeer2006}, and \cite{Meijaard2007} ). The 
+benchmarked Whipple bicycle model \cite{Meijaard2007}
+provides a minimalistic standard base model in a manageable analytic framework capable
+of describing the essential dynamics such as speed dependent
+stability, steer and roll coupling, and non-minimum phase behavior. 
 
 The non-linear Whipple model is a 4th order system with roll angle, steer
 angle, roll rate, and steer rate selected as the independent states and with
