@@ -463,9 +463,8 @@ graphs reveal several important things:
 
 %\includegraphics{figures/systemidentification/b-matrix-box-plot.*}
 
-Figure 11.10\textless{}figStateSpaceBode\textgreater{} gives another
-view of the resulting data. It is a frequency response plot at the mean
-speed for a set of runs. The blue lines give the mean and one standard
+Figure 11.10\textless{}figStateSpaceBode\textgreater{} is a frequency 
+response plot at the mean speed for a set of runs. The blue lines give the mean and one standard
 deviation bounds of the magnitude and phase of the system transfer
 function $\frac{\phi}{T_\delta}(s)$ for the set of runs. Even though the
 spread in the identified parameters seems high in Figures
@@ -489,18 +488,14 @@ of the overall identified model quality.
 
 % TODO : latex doesn't deal with unicode in karl's name
 
-The results from the state space identification left much to be desired.
-Ideally a linear model that was a function of speed with respect to all or
-various subsets of the experiments would be obtained but identifying from
-individual trials was limiting. We turned to identifying the system
-identification with respect to the second order form of the equations of
+We obtained the system identification with respect to the second order form of the equations of
 motion, an idea proposed to us by Karl Åström. This would allow one to use both
 simple least squares for the solution and the ability to compute models from
-large sets of runs. This section deals with this approach.
+large sets of runs. 
 
 \subsection{Model structure}
 
-The identification of the linear dynamics of the bicycle can be formulated with
+Identification of bicycle linear dynamics can be formulated with
 respect to the augmented benchmark canonical form realized in
 \cite{Meijaard2007}, Equation \ref{eq:canonical}. If the time varying
 quantities in the equations are all measured at each time step, the
@@ -537,8 +532,8 @@ A simple analytic identification problem can be formulated from the canonical
 form. If we have good measurements of $q$, their first and second derivatives,
 forward speed $v$, and the inputs $T_\delta$ and $F$, the entries in
 $\mathbf{M}$, $\mathbf{C}_1$, $\mathbf{K}_0$, $\mathbf{K}_2$, and $H$ can be
-identified by forming two simple linear regressions, i.e. one for each equation
-in the canonical form.
+identified by forming two simple linear regressions (one for each equation
+in the canonical form).
 
 The roll and steer equations each can be put into a simple linear form:
 
@@ -678,14 +673,9 @@ coefficients with
 \subsection{Results}
 
 I selected data for three riders on the same bicycle, performing two
-maneuvers, in two different environments. There is little reason to
-believe the dynamics of the passive system should vary much with respect
-to different maneuvers, but there is potentially variation across riders
-due to the differences in their inertial properties and there may be
-variation across environments because of the differences in the wheel to
-floor interaction. I opted to compute the best fit model across series
-of runs to benefit from the large dataset. This leaves these four
-scenarios:
+maneuvers, in two different environments. I opted to compute the best fit model across series
+of runs to benefit from the large dataset and to take into account variation across riders. 
+This leaves these four scenarios:
 
 \begin{itemize}
   \item
