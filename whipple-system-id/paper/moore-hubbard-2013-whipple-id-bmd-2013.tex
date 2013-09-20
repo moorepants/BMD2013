@@ -14,78 +14,112 @@ manual control}
 
 \section{Introduction}
 
-Today's dynamical experiments are capable of delivering a staggering amount of both kinematic and
-kinetic data from complex dynamical systems. Such large amount of data lends
-itself to data driven modeling approaches that can potentially provide more
-predictive models than the traditional buidling blocks of dynamical models using first principles.
-These data driven models can also give insight into the defecencies of first
-principles models. Here we explore the bicycle-rider system and discuss both
-traditional models and data driven models.
+Today's dynamical experiments are capable of delivering a staggering amount of
+both kinematic and kinetic data from complex dynamical systems. Such large
+amount of data lends itself to data driven modeling approaches that can
+potentially provide more predictive models than the traditional building blocks
+of dynamical models using first principles. These data driven models can also
+give insight into the deficiencies of first principles models. Here we explore
+the bicycle-rider system and discuss both traditional models and data driven
+models.
 
-Bicycles and the bicycle-rider system have been modeled by a variety of models,
-both simple \cite{Timoshenko1948} and complex \cite{Sharp1971}. Many of
-today's studies rely on the benchmarked Whipple model, with or without the
-addition of tire models, for analytical studies of the system and simulation
-comparisons. The Whipple bicycle model is regarded as a highly predictive model
-of the bicycle-rider system and is constructed from first principles, yet very
-little experimental data proves that the Whipple model is in fact a robust
-model for the open loop dynamics of the bicycle-rider system. There are also a
-variety of popular motorcycle models (Sharp, Cosalter) that may be a good
-predictor of the system dynamics, but no one has attempted to verify that for a
-bicycle-rider system. The author is only aware of two significant experimental
-attempts at validating the model. The most cited, Kooijman, shows that the
-Whipple model is predictive of a riderless bicycle in a gymnasium and on
-a treadmill for speeds in its predicted stable speed range, 4-6 m/s. Cain shows
-that the Whipple model reduced to a linear steady turn can predict the
-kinematics, but is not so good at predicting the rider's input torque.
+The bicycle/motorcycle-rider system has been described with a variety of
+models, both simple \cite{Timoshenko1948} and complex \cite{Sharp1971}. Many
+studies of bicycles rely on the benchmarked Whipple model \cite{Meijaard2007},
+with or without the addition of tire models, for analytical studies of the
+system and simulation comparisons. The Whipple bicycle model is regarded as a
+highly predictive model of the bicycle-rider system and is constructed from
+first principles, yet very little experimental data proves that the Whipple
+model is in fact robust at predicting the open loop dynamics of the
+bicycle-rider system. The benchmarked Whipple bicycle model \cite{Meijaard2007}
+provides a minimalistic standard base model in a manageable analytic framework
+capable of describing the essential dynamics such as speed dependent stability,
+steer and roll coupling, and non-minimum phase behavior.
 
-It is worth noting that Eaton, James, \ldots, worked to identify models of
-motorcycles with varying degrees of results. Talk more about these. %DELETE????
+We are only aware of two significant experimental attempts at validating the
+Whipple model with data generated from bicycle experiments. The most cited,
+\cite{Kooijman2006}, shows that the Whipple model is predictive of a
+\emph{riderless} bicycle in a gymnasium and on a treadmill for speeds in its
+predicted stable speed range, 4-6 m/s. \cite{Cain2011} shows that the Whipple
+model reduced to a linear steady turn can predict the kinematics, but is not so
+good at predicting the rider's input torque.
 
-Two remedy this,%remedy what? shoudl say like "remedy this issue of the Whipple model not being proven in real life
-we have collected a large set of mostly time history data from
-an instrumented bicycle which includes some of the most important kinematic and
+It is also worth noting that \cite{Eaton1973} and \cite{James2002,James2005}
+have identified the open loop dynamics of the motorcycle-rider system. Eaton
+used frequency domain identification techniques to identify the dynamics. James
+showed that identified ARX models with lower order than typical first
+principles models can predict the measured motion, but does not find very good
+agreement with his first principles models.
+
+% TODO : Figure out if Eaton id'd under manual control or not, he may have
+% done both
+
+In an attempt to validate the Whipple model, we have collected a large set of
+mostly time history data from an instrumented bicycle ridden under manual
+control. The measurements include some of the most important kinematic and
 kinetic variables describing the bicycle-rider motion from three different
-riders on the same bicycle for a variety of maneuvers and speeds. %sentence way too long, also doesn't really make sense.
-These experiments generated about 1.7 million time samples from each of about 30
-sensors collected at 200 hertz (representing about 2.4 hours of real time).
+riders on the same bicycle for a variety of maneuvers and speeds. These
+experiments generated approximately 1.7 million time samples from each of about
+30 sensors sampled at 200 hertz (representing about 2.4 hours of real time).
 
+Our overarching goal was to identify the manual control system employed the
+rider, but the schemes we used for control identification relied on an accurate
+plant model \cite{Moore2012}. So, we ended up using a solution similar to
+\cite{Eaton1973} and identified the plant, i.e. the open loop bicycle and rider
+dynamics, first followed by an identification of the control system. We
+considered the plant to include the passive, open loop, model of the bicycle
+combined with the rider's biomechanics and the controller to be some makeup of
+the human brain which takes sensory inputs, has time delays, and sends outputs
+for muscular control.
+
+Our preliminary attempts at identifying the controller with the Whipple model
+as the system plant showed that the plant always under-predicted the steer
+torque needed for a given measured trajectory. This ultimately resulted in
+erroneous estimations of the controller parameters.
+
+As pointed out by many, in particular the motorcycle researchers, there is very
+good reason to question some of assumptions in the Whipple model. The main
+questionable assumption being knife-edge no side-slip wheels, especially when
+under a rider's weight. And secondly, the rider's biomechanics have much more
+influence and coupling to the bicycle than the motorcycle, which must be
+accounted for.
 \section{Experimental Design}
 
 \subsection{Instrumented Bicycle}
+
 We developed an instrumented bicycle that had a unique combination of sensors
-for dynamic measurements that are known to be important indicators for the
+for dynamic measurements that are known to be important indicators of the
 bicycle-rider system motion. The bicycle's primary design criteria were as
 follows:
 
 \begin{itemize}
-  \item It should be sized for our intended riders: average adult males in
-    Davis California. %delete probably, not really relevant or good to include
+  \item The bicycle should be sized for our intended riders.
   \item The rider's biomechanical movement, including pedaling, should be
     restricted as much as possible so that the Whipple model's rigid rider
     assumption is more probable.
-  \item It %the bicycle or bike instrumentation
-  should accurately measure the fundamental kinematics of the bicycle:
-    three dimensional rates and orientations of the bicycle rear frame, front
-    frame, and wheels.
-  \item It should accurately measure the rider's applied steering torque.
-  \item It should accurately measure an applied lateral disturbance force to
-    the bicycle frame.
-  \item Experiments could be performed on open road or on a treadmill.
+  \item The instrumentation should accurately measure the fundamental
+    kinematics of the bicycle: three dimensional rates and orientations of the
+    bicycle rear frame, front frame, and wheels.
+  \item The instrumentation should accurately measure the rider's applied
+    steering torque.
+  \item The instrumentation should accurately measure an applied lateral
+    disturbance force to the bicycle frame.
+  \item The experiments could be performed on open road or on a treadmill.
 \end{itemize}
 
 With these criteria in mind we constructed a bicycle with an electric
 propulsion system and rigid rider harness and an assortment of sensors. The
-rear frame 3D angular rates and a 3D point acceleration were measured with a
-VectorNav VN-100 interial measurement unit, the rear frame roll angle was
-measured with a rotary potentiometer mounted to a small lightweight trailer,
-the steer angle was measured with a rotary potentiometer, the axial torque in
-the steer tube by a Futek 150 in-lb (±17 Nm) TFF350 torque sensro, the lateral
-perturbation force by a load cell 100 lb force load cell (Interface SSM-100),
-the angular rate about the steer axis of the front frame by a rate gyro Single
-axis rate gyro (Silicon Sensing CRS03-04S), and the rear wheel angular rate by
-a dc generator.
+rear frame three dimensional angular rates and a three dimensional point
+acceleration were measured with a VectorNav VN-100 inertial measurement unit,
+the rear frame roll angle was measured with a rotary potentiometer mounted to a
+small lightweight trailer, the steer angle was measured with a rotary
+potentiometer, the axial torque in the steer tube by a Futek 150 in-lb (±17 Nm)
+TFF350 torque sensor, the lateral perturbation force by a load cell 100 lb
+force load cell (Interface SSM-100), the angular rate about the steer axis of
+the front frame by a rate gyro Single axis rate gyro (Silicon Sensing
+CRS03-04S), and the rear wheel angular rate by a DC generator.
 
+% TODO : make figure of bicycle
 %\begin{figure}
   %\includegraphics[width=5in]{figures/instrumented-bicycle.pdf}
   %\caption{The instrumented bicycle with on of the rider's seated in the
@@ -93,41 +127,32 @@ a dc generator.
 %\end{figure}
 
 \subsection{Experiments}
-We recorded data from a variety of experiments \cite{Moore2012} but %delete
 
-the analysis herein focuses on the two maneuvers which we call \emph{Heading
-Tracking} and \emph{Lateral Deviation Tracking}. Our definitions of these are:
-
-\begin{description}
-  \item[Heading Tracking]
-    The rider was instructed to simply balance the bicycle and keep a
-    relatively constant heading while focusing their vision at a point in the
-    far distance.
-  \item[Lateral Deviation Tracking]
-    The rider was instructed to focus on a straight line that was marked on the
-    ground and to attempt to keep the front wheel on the line.
-\end{description}
-%you could technically just make these part of the above paragraph and that would save you line space.
+The analysis herein focuses on the two maneuvers which we call \emph{Heading
+Tracking} and \emph{Lateral Deviation Tracking}. During heading tracking the
+rider was instructed to simply balance the bicycle and keep a relatively
+constant heading while focusing their vision at a point in the far distance.
+During lateral deviation tracking the rider was instructed to focus on a
+straight line that was marked on the ground and to attempt to keep the front
+wheel on the line.
 
 Both tasks were performed with and without the application of a manually
 applied lateral perturbation forces just below the seat. The forces were
 applied randomly in direction and time during the trials. Each maneuver was
 performed on both a 1 meter wide treadmill and an open gymnasium floor. See
-\cite{Moore2012} for more details.
+\cite{Moore2012} for the full details.
 
 \section{Data}
 \label{sec:data}
 
 The physical parameters (geometry, mass, center of mass, and moments of
 inertia) of both the bicycle and the rider were estimated using the methods in
-\cite{Moore2012} and \cite{Yeadon1990}, respectively %respective to what? bicycle and rider? or the different physical parameters?
-. The bicycle was measured
-to get accurate estimates of the parameters used in the benchmark bicycle. %weird sentence. reduce "bicycle" to one time if you can
-The
-combined inertial properties of the bicycle rear frame and the rider were
-computed with standard methods. Two open source software packages, yeadon
-\cite{Dembia2011} and BicycleParameters \cite{Moore2011} manage and process the
-data physical parameter data. %watch tense
+\cite{Moore2012} and \cite{Yeadon1990}. The bicycle was measured to get
+accurate estimates of the parameters used in the benchmark model,
+\cite{Meijaard2007}. The combined inertial properties of the bicycle rear frame
+and the rider were computed with standard methods. Two open source software
+packages, yeadon \cite{Dembia2011} and BicycleParameters \cite{Moore2011}
+manage and process the data physical parameter data. %watch tense
 
 % TODO: Add a table of the whipple model parameters for the three riders
 
@@ -169,342 +194,52 @@ The experimental data was collected on seven different days and amounted to
 about 600 individual trials with three different riders. We used X of the 
 runs for the following analysis.
 
-\section{System Identification}
-
-- data processing
-- state space form
-- canonical form
-
-The overarching goal in the research project which this work was a part of was
-to identify the manual control system employed the rider, but the schemes we
-used for that identification relied on an accurate plant model
-\cite{Moore2012}. We ended up approaching this in a similar fashion to
-\cite{Eaton1973} and attempted to identify the plant, i.e. the open loop
-bicycle and rider dynamics, first followed by an identification of the control
-system. The question arises as to what the plant and controller consist of. In
-this case, we consider the plant to include the passive or open loop model of
-the bicycle combined with the rider's biomechanics and the controller to be
-some makeup of the human brain which takes sensory inputs, has time delays, and
-sends outputs for muscular control.
-
-This two part process was not originally thought to be needed and we started
-with the identification of the control system assuming the Whipple model would
-be adequate for the open loop dynamics. But my preliminary attempts at
-identifying the controller with the Whipple model in place showed that the
-plant always under-predicted the steer torque needed for a given measured
-trajectory. This lead me into the exploration of the validity of the Whipple
-model.
-
-There is actually very little experimental validation of the open loop dynamics
-of the bicycle, with \cite{Kooijman2006} being one of the better studies. But
-his study was limited to a riderless bicycle in a narrow speed range where the
-bicycle was stable. Taking the validity of first principles models like this
-for granted can potentially lead to inaccurate conclusions. In our case, it
-resulted in erroneous early estimations of the controller parameters. As
-pointed out by many, in particular the motorcycle researchers, there is very
-good reason to question some of assumptions in the various first principles
-models. The main questionable assumption being knife-edge no side-slip wheels,
-especially when under a rider's weight.  And secondly, the rider's biomechanics
-have much more influence and coupling to the bicycle than the motorcycle, which
-must be accounted for.
-
-Before I proceed, it is important to emphasize the difference in identifying a
-model that best predicts the data and identifying physical parameters in a
-model structure that cause the predictions to best fit the measured data. In
-the first case, it is somewhat easy to fit a model to input and output data. By
-increasing the order of the model and thus the number of free parameters one
-can theoretically fit every data point. This is most evident in the
-over-fitting of a linear trend with that of a higher order polynomial. It still
-often takes human intuition and reasoning to limit the order of the system to
-something that represents the true relationships between the variables. But
-even in this case, the individual meaning of the resulting identified
-parameters of a black box system may have little apparent connection to the
-known first principles laws we are familiar with and trust. In dynamics, we
-often want to know how well our first principles models predict the measured
-motion and secondly we'd like the ability to identify parameters, particularly
-ones we are uncertain of in the first principles models, from the measured
-data. Accurately identifying model parameters is much more difficult task,
-because noises, both process and measurement, have to be accounted for to get
-repeatable and accurate estimates of the parameters. I have had good success
-with finding models that predict the data but little success with explicit and
-accurate parameter identification in the following analyses. There is great
-room for improvement in the parameter identification if the noise issues are
-better managed. %this paragraph can be truncated. Either put some of this in the intro, or delte a lot of it.
-
-
-The open loop dynamics of the bicycle-rider system can be described using many
-models \cite{Astrom2005}, \cite{Limebeer2006}, and \cite{Meijaard2007} ). The 
-benchmarked Whipple bicycle model \cite{Meijaard2007}
-provides a minimalistic standard base model in a manageable analytic framework capable
-of describing the essential dynamics such as speed dependent
-stability, steer and roll coupling, and non-minimum phase behavior. 
+\section{Identification}
+\label{sec:identification}
 
 The non-linear Whipple model is a 4th order system with roll angle, steer
 angle, roll rate, and steer rate selected as the independent states and with
-roll and steer torques as the generalized forces and system inputs. In place 
-of the roll torque input, the model is extended to include a lateral
-force acting at a point on the frame to provide a new input, accurately
-modelling imposed lateral perturbations (see \cite{Moore2012} for details). 
-We also examine a second candidate model which adds the
-inertial effects of the rider's arms to the Whipple model, also described in
-\cite{Moore2012}. This model was designed to more accurately account for the
-fact that the riders were free to move their arms with the front frame of the
-bicycle. This model is similar in fashion to the upright rider in
-\cite{Schwab2010a}, but with slightly different joint definitions. Constraints
-are chosen so that no additional degrees of freedom are added, keeping the
-system both tractable and comparable to the benchmarked Whipple model.
+roll and steer torques as the generalized forces and system inputs. In place of
+the roll torque input, the model is extended to include a lateral force acting
+at a point on the frame to provide a new input, accurately modelling imposed
+lateral perturbations (see \cite{Moore2012} for details).  We also examine a
+second candidate model which adds the inertial effects of the rider's arms to
+the Whipple model, also described in \cite{Moore2012}. This model was designed
+to more accurately account for the fact that the riders were free to move their
+arms with the front frame of the bicycle. This model is similar in fashion to
+the upright rider in \cite{Schwab2010a}, but with slightly different joint
+definitions. Constraints are chosen so that no additional degrees of freedom
+are added, keeping the system both tractable and comparable to the benchmarked
+Whipple model.
 
-We then make the basic assumptions that the model is (1) linear, (2) is fourth
-order, and (3) we can measure the states and inputs directly while the system
-is under closed loop control by the rider. We then employ the direct
-identification approach to identify the plant.
+For the identification procedure we make the assumptions that the model is (1)
+linear, (2) is fourth order, and (3) we can measure the states and inputs
+directly while the system is under closed loop control by the rider. We then
+employ the \emph{direct identification} approach to identify the plant.
 
 During all of the experiments there are at least two measured external
 (exogenous) inputs: the steer torque and the lateral force. Both inputs are
 generated manually, the first from the rider and the second from the person
-applying the pulsive perturbation. The outputs can be any subset of the
-measured kinematical variables or combinations thereof, we selected the roll
-and steer angles and rates. The problem can then be formulated as follows:
-given the inputs and outputs of the system and some system structure, what
-model parameters give the best prediction of the output given the measured
+applying the pulsive perturbation. From the set of measured outputs we selected
+the roll and steer angles and rates. The problem can then be formulated as
+follows: given the inputs and outputs of the system and some system structure,
+what model parameters give the best prediction of the output given the measured
 input? This a classic system identification problem.
-<<<<<<< Updated upstream
-
-The ideal linear Whipple model can be generally be described with the following
-continuous state space description:
-
-\begin{align}
-  \dot{x}(t) & =
-  \mathbf{F}x(t) + \mathbf{G}u(t)\\
-  \begin{bmatrix}
-    \dot{\phi} \\
-    \dot{\delta} \\
-    \ddot{\phi} \\
-    \ddot{\delta}
-  \end{bmatrix}
-  & =
-  \begin{bmatrix}
-    0 & 0 & 1 & 0\\
-    0 & 0 & 0 & 1\\
-    a_{\ddot{\phi}\phi} & a_{\ddot{\phi}\delta} &
-    a_{\ddot{\phi}\dot{\phi}} & a_{\ddot{\phi}\dot{\delta}}\\
-    a_{\ddot{\delta}\phi} & a_{\ddot{\delta}\delta} &
-    a_{\ddot{\delta}\dot{\phi}} & a_{\ddot{\delta}\dot{\delta}}
-  \end{bmatrix}
-  \begin{bmatrix}
-    \phi \\
-    \delta \\
-    \dot{\phi} \\
-    \dot{\delta}
-  \end{bmatrix}
-  +
-  \begin{bmatrix}
-    0 & 0 \\
-    0 & 0\\
-    b_{\ddot{\phi}T_\delta} & b_{\ddot{\phi}F_{c_l}}\\
-    b_{\ddot{\delta}T_\delta} & b_{\ddot{\delta}F_{c_l}}
-  \end{bmatrix}
-  \begin{bmatrix}
-    T_\delta\\
-    F
-  \end{bmatrix}\\
-  \eta(t) & = \mathbf{H}x(t)\\
-\end{align}
-
-where $\eta(t)$ are the outputs and $\mathbf{H}$ is the identity matrix.
-
-Assuming that this model structure can adequately capture the dynamics
-of interest of the bicycle-rider system, our goal is to accurately
-identify the unknown parameters $\theta$ which are made up of the
-unspecified entries in the $\mathbf{F}$ and $\mathbf{G}$ matrices.
-
-This continuous model can be discretized and written in the directly
-parameterized innovations form with some assumptions about the relationship
-between the process and measurement noise \cite{Ljung1999}.
-
-\begin{align}
-  \hat{x}(kT + T, \theta) & =
-    \mathbf{A}(\theta)\hat{x}(kT) + \mathbf{B}(\theta)u(kT) + \mathbf{K}(\theta)e(kT)\\
-  y(kT) & = \mathbf{C}(\theta)\hat{x}(kT) + e(kT)
-\end{align}
-
-where $\mathbf{K}$ is the Kalman gain matrix. $\mathbf{K}$ is a function of
-$\mathbf{A}(\theta)$, $\mathbf{C}(\theta)$ and the covariance and cross
-covariance of the process and measurement noises, but it can also be directly
-parameterized and the unknown entries of K lumped into $\theta$. This form
-allows one to identify the unknown entries, $\theta$ of the four matrices,
-$\mathbf{F}$, $\mathbf{G}$, $\mathbf{H}$, and $\mathbf{K}$.
-
-A one step ahead predictor can be formulated and then a non-linear cost
-function for use with the prediction error method \cite{Ljung1999} such that
-the minimum of the cost function returns the estimated parameters,
-$\hat{\theta}$.
-
-In general, the minimization problem is not trivial and may be susceptible to
-many of the issues associated with non-linear optimization including local
-minima. The number of unknown parameters in the $\mathbf{K}$ matrix is a
-function of the number of states and the number of outputs, in our case in
-$\mathbf{R}^{4\times4}$ which more than doubles the number of unknowns present
-in the $\mathbf{F}$ and $\mathbf{G}$ matrices. It is thus critical to reduce
-the number of unknown parameters to have a higher chance of finding the global
-minimum of the cost function. The accuracy of the individual parameter
-identification depends heavily on the ability to estimate the $\mathbf{K}$
-matrix along with the other parameters. If $\mathbf{K}$ is assumed to be zero
-(i.e. no process noise) then the model structure becomes an output error form.
-The length of $\theta$ is signficantly reduced but the uncertaintities in the
-estimated $\theta$ grow.
-
-We made use of the 2010a Matlab System Identification Toolbox for the
-identification of the parameters $\theta$. We identified $\theta$ for each
-trial indivdually. In particular, a structured \verb|idss| object was built
-with the initial guesses of the unknown parameters based on the physical
-parameter measurements and estimations and the initial guesses for the initial
-conditions and the Kalman gain matrix being equal to zero. We assumed no
-process noise due to all of the attempts at identifying the Kalman gain matrix
-being plagued by local minima.
-
-% TODO : Cite the source code BicycleSystemID and clean it up!
-
-\subsection{Results}
-
-% TODO : move this section to the discussion section?
-
-It turns out that finding a model that meets the criterion is not too difficult
-when the output error form is considered ($\mathbf{K}=0$). This model may be
-able to explain the variance in the data well, but the parameter estimation is
-potentially poor because the parameters in the state and input matrices are
-adjusted such that the results fit both the true trajectories \emph{and} the
-noise. Global minima in the search routine are quickly found when the number of
-parameters is between 10 and 14. When the $\mathbf{K}$ matrix is added the
-number of unknown parameters increases by 16 and the global minimum becomes
-more difficult to find and I was rarely able, if ever, to find the global
-minimum for the general problem, even when reducing the number of outputs to
-one.%too casual, make more consise.
-
-Figures blank through blank show typical examples of the input and output data
-for a single run with both steer torque and lateral force as inputs. The plot
-compares the simulation response of the input to the measured response. Notice
-that the identified model predicts the trajectory extremely well. Similar
-results are found for the majority of the runs. The Whipple model predicts the
-trajectory directions but the magnitudes are large, meaning that for a given
-trajectory, the Whipple model requires less torque than that which was
-measured. The Whipple model with the arm inertial effects does a better job
-than the basic Whipple model, but still has some magnitude differences with
-respect to the identified model. It also has a harder time predicting the roll
-angle than both the identified model and the Whipple model.
-
-%\includegraphics{figures/systemidentification/example-fit.*}
-
-The identified models are almost always unstable due to the high weave critical
-speed and, even though the measured inputs stabilize the true system, they will
-not necessarily stabilize the models. This poses an issue when gauging the
-model quality by the percent variance of the output data explained by the model
-(VAF variance accounted for [by the model]). A model that blows up during the
-simulation may not necessarily be a bad model, but it will return a very small
-percent variance and lose its ability to be compared by that criterion.
-\cite{Biral2003} and \cite{Teerhuis2010} both are able to run feed-forward
-simulations of their motorcycle models with the measured steering torque. They
-both are dealing with high speed motorcycles which typically only have a
-slightly unstable capsize mode. \cite{Teerhuis2010} uses a controller to
-compensate the torque for unbounded errors so that the simulation doesn't blow
-up. The method I use here is to choose short duration portions of the runs for
-simulation and search for the best set of initial conditions to keep the model
-stable during the duration. This generally works but there are ultimately some
-incomparable runs due to this issue.
-
-We use this structured state space output error identification procedure
-for a collection of experiments ($n=368$) over a range of speeds between
-about 1 and 9 m/s. Figures 11.8\textless{}figACoefficients\textgreater{}
-and 11.9\textless{}figBCoefficients\textgreater{} plot the identified
-coefficients of the dynamical equations of motion (i.e. the bottom two
-rows of the $\mathbf{F}$ and $\mathbf{G}$ matrices) as a function of
-speed for all of the experiments using box plots. Both the Whipple
-(green) and arm (red) model predictions are superimposed for comparison.
-
-The first notable thing is that the coefficients seem to generally have
-large variance, especially as the speed increases. Secondly, the roll
-acceleration, $\ddot{\phi}$, equation seems to be better predicted by
-the two models and the data has less spread at the lower speeds, barring
-the $\dot{\phi}$ coefficient which has large spread and no apparent
-relationship with speed for both equations. The roll equation also seems
-to have less spread in the experimental data. For example, the
-$a_{\ddot{\phi}\delta}$ coefficient appears to be very tight and the
-first principles models predict it very well. The constant, linear, and
-quadratic trends in the coefficients are somewhat visible in the data
-but the variance in the coefficients clouds it. This variability in the
-coefficient predictions depends on many things including data quality,
-the ability to identify a process noise model, speed being constant
-during the run, choice of unknown coefficients, and more. With all of
-these improved, detailed regression models may be able to reveal the
-true trends. Nonetheless, these
-graphs reveal several important things:
-
-\begin{itemize}
-  \item
-    The identified models predict the data well with most having mean
-    predicted variance of the four outputs above 70\% (but this is tightly
-    coupled to run duration, i.e. longer runs have more room for model
-    error).
-  \item
-    Some of the coefficients are well predicted by the Whipple model and
-    can be fixed from first principles calculations, notably:
-    $a_{\ddot{\phi}\phi}$, $a_{\ddot{\phi}\delta}$ and
-    $b_{\ddot{\delta}T_\delta}$ and maybe even $a_{\ddot{\delta}\delta}$.
-  \item
-    The roll rate coefficients are highly variable with poor prediction by
-    the models. Deficiencies in the first principles models are likely.
-  \item
-    Either the higher speed runs are outliers, or the behavior of the
-    system changes more rapidly with speeds above 5 m/s or so.
-  \item
-    Some coefficients spread around zero giving inconsistent signs and
-    others give opposite signs from those the first principles models
-    expect.
-\end{itemize}
-
-%\includegraphics{figures/systemidentification/a-matrix-box-plot.*}
-
-%\includegraphics{figures/systemidentification/b-matrix-box-plot.*}
-
-Figure 11.10\textless{}figStateSpaceBode\textgreater{} is a frequency 
-response plot at the mean speed for a set of runs. The blue lines give the mean and one standard
-deviation bounds of the magnitude and phase of the system transfer
-function $\frac{\phi}{T_\delta}(s)$ for the set of runs. Even though the
-spread in the identified parameters seems high in Figures
-11.8\textless{}figACoefficients\textgreater{} and
-11.9\textless{}figACoefficients\textgreater{}, the Bode plot shows that
-the identified system frequency response is not as variable, especially
-in magnitude. It is also apparent that the experimental magnitude mean
-has a -5 to -10 dB offset across the frequency range shown with respect
-to the Whipple model, although the Whipple model does fall within one
-standard deviation of the mean. This correlates with the amplitude
-differences in the trajectories shown in
-Figure 11.7\textless{}figExampleFit\textgreater{}. Notice that the arm
-model has little to no offset between 2 and 10 rad/s, thus the better
-amplitude matching. The frequency response may give a better indication
-of the overall identified model quality.
-
-%\includegraphics{figures/systemidentification/state-space-bode.*}
-
-=======
->>>>>>> Stashed changes
-\section{Canonical Identification}
-\label{sec:canonical-identification}
 
 % TODO : latex doesn't deal with unicode in karl's name
 
-We obtained the system identification with respect to the second order form of the equations of
-motion, an idea proposed to us by Karl Åström. This would allow one to use both
-simple least squares for the solution and the ability to compute models from
-large sets of runs. 
+We then made use of the  second order form of the equations of motion, an idea
+proposed to us by Karl Åström. This allows one to use both simple linear least
+squares to find the solution and the ability to compute models from large sets
+of runs.
 
 \subsection{Model structure}
 
-Identification of bicycle linear dynamics can be formulated with
-respect to the augmented benchmark canonical form realized in
-\cite{Meijaard2007}, Equation \ref{eq:canonical}. If the time varying
-quantities in the equations are all measured at each time step, the
-coefficients of the linear equations can be estimated given enough time steps.
+Identification of the bicycle-rider equations of motion can be formulated with
+respect to an augmented benchmark canonical form based on \cite{Meijaard2007},
+shown in Equation \ref{eq:canonical}. If the time varying quantities in the
+equations are all measured at each time step, the coefficients of the linear
+equations can be estimated given enough time steps.
 
 \begin{equation}
   \mathbf{M} \ddot{q} + v \mathbf{C}_1 \dot{q} + [g \mathbf{K}_0 + v^2
@@ -673,12 +408,11 @@ coefficients with
 
 \subsection{Results}
 
-<<<<<<< Updated upstream
-I selected data for three riders on the same bicycle, performing two
-maneuvers, in two different environments. I opted to compute the best fit model across series
-of runs to benefit from the large dataset and to take into account variation across riders. 
-This leaves these four scenarios with a total of 12 different models:
-=======
+I selected data for three riders on the same bicycle, performing two maneuvers,
+in two different environments. I opted to compute the best fit model across
+series of runs to benefit from the large dataset and to take into account
+variation across riders.
+
 From our larger pool of data, we selected data for three riders on the same
 bicycle, performing two maneuvers, in two different environments. There is
 little reason to believe the dynamics of the open loop system should vary much
@@ -687,8 +421,7 @@ riders due to the differences in their inertial and musculoskeletal properties
 and there may be variation across environments because of the differences in
 the wheel to floor interaction. We opted to compute the best fit model across
 series of runs to benefit from the large dataset. This leaves these four
-scenarios for groups of runs:
->>>>>>> Stashed changes
+scenarios with a total of 12 different models:
 
 \begin{itemize}
   \item
