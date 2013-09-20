@@ -1,12 +1,10 @@
 \documentclass[a4paper]{article}
 
 \usepackage{amsmath}
+\usepackage{a4wide}
 
-%\usepackage[citestyle=authoryear]{biblatex}
-%\addbibresource{references.bib}
-
-\title{Identification of the open loop dynamics of a bicycle-rider system
-under manual control}
+\title{Identification of the open loop dynamics of a bicycle-rider system under
+manual control}
 \author{Jason K. Moore and Mont Hubbard}
 \date{\today}
 
@@ -118,6 +116,7 @@ performed on both a 1 meter wide treadmill and an open gymnasium floor. See
 \cite{Moore2012} for more details.
 
 \section{Data}
+\label{sec:data}
 
 The physical parameters (geometry, mass, center of mass, and moments of
 inertia) of both the bicycle and the rider were estimated using the methods in
@@ -159,6 +158,10 @@ for all the signals except the lateral force.
 For the following analysis%what analysis?
 , all of the signals were filtered with a second order
 low pass Butterworth filter at 15 Hz. 
+
+The signals were measured and processed as described in Section \ref{sec:data}
+with the addition that the roll and steer accelerations were estimated by
+numerically differentiating the roll and steer rate signals.
 
 % TODO: example plot of the signals
 
@@ -228,7 +231,6 @@ accurate parameter identification in the following analyses. There is great
 room for improvement in the parameter identification if the noise issues are
 better managed. %this paragraph can be truncated. Either put some of this in the intro, or delte a lot of it.
 
-\section{Structured Black Box State Space Identification}
 
 The open loop dynamics of the bicycle-rider system can be described using many
 models \cite{Astrom2005}, \cite{Limebeer2006}, and \cite{Meijaard2007} ). The 
@@ -266,6 +268,7 @@ and steer angles and rates. The problem can then be formulated as follows:
 given the inputs and outputs of the system and some system structure, what
 model parameters give the best prediction of the output given the measured
 input? This a classic system identification problem.
+<<<<<<< Updated upstream
 
 The ideal linear Whipple model can be generally be described with the following
 continuous state space description:
@@ -483,6 +486,8 @@ of the overall identified model quality.
 
 %\includegraphics{figures/systemidentification/state-space-bode.*}
 
+=======
+>>>>>>> Stashed changes
 \section{Canonical Identification}
 \label{sec:canonical-identification}
 
@@ -518,13 +523,7 @@ varying parameter because the measured longitudinal acceleration is negligible.
 The augmented form extends the equations in \cite{Meijaar2007} to properly
 account for the lateral perturbation force, $F$, which was the actual input we
 delivered during the experiments. The force was applied just below the seat so
-most of the contribution from $F$ is in the roll equations.
-
-\subsection{Data Preprocessing}
-
-The signals were measured and processed as described in Section \ref{sec:} with
-the addition that the roll and steer accelerations were estimated by
-numerically differentiating the roll and steer rate signals.
+most of the contribution from $F$ is in the roll equation.
 
 \subsection{Identification}
 
@@ -572,17 +571,19 @@ respect to the error.
   \label{eq:theta-covariance}
 \end{equation}
 
-where $d$ is the degrees of freedom and $N$ is the number of something.
+where $d$ is the degrees of freedom and $N$ is the number of total time steps.
 
-Equations \ref{eq:theta-estimate}, \dots \ref{eq:theta-covariance} can be
+Equations \ref{eq:theta-estimate} to \ref{eq:theta-covariance} can be
 solved for each run individually, a portion of a run, or a set of runs.
-Secondly, all of the parameters in the canonical matrices need not be
-estimated. The analytical formulation of the Whipple model bicycle model
+
+Also, all of the parameters in the canonical matrices need not be estimated.
+The analytical formulation of the Whipple model bicycle model
 \cite{Meijaard2007} gives a good idea of which entries in the matrices we may
 be more certain about from our physical parameters measurements. We fixed the
-parameters if it is a function of trail, front assembly moments and products of
-inertia, or equal to zero. Because the true trail is difficult to measure, the
-inertia of the front frame play a large roll in the steer dynamics.
+parameters if it was a function of trail, front assembly moments and products
+of inertia, or equal to zero. This is because the true trail is difficult to
+measure, the inertia of the front frame plays a large roll in the steer
+dynamics.
 
 For the roll equation this leaves $M_{\phi\delta}$, $C_{1\phi\delta}$,
 and $K_{0\phi\delta}$ as free parameters, and for the steer equation
@@ -672,10 +673,22 @@ coefficients with
 
 \subsection{Results}
 
+<<<<<<< Updated upstream
 I selected data for three riders on the same bicycle, performing two
 maneuvers, in two different environments. I opted to compute the best fit model across series
 of runs to benefit from the large dataset and to take into account variation across riders. 
 This leaves these four scenarios with a total of 12 different models:
+=======
+From our larger pool of data, we selected data for three riders on the same
+bicycle, performing two maneuvers, in two different environments. There is
+little reason to believe the dynamics of the open loop system should vary much
+with respect to different maneuvers, but there is potential variation across
+riders due to the differences in their inertial and musculoskeletal properties
+and there may be variation across environments because of the differences in
+the wheel to floor interaction. We opted to compute the best fit model across
+series of runs to benefit from the large dataset. This leaves these four
+scenarios for groups of runs:
+>>>>>>> Stashed changes
 
 \begin{itemize}
   \item
@@ -688,7 +701,6 @@ This leaves these four scenarios with a total of 12 different models:
     Each rider in each environment, six data sets
 \end{itemize}
 
-
 \subsubsection{All riders in both environments}
 
 This section details the example results for one subset of data. Here I
@@ -697,7 +709,7 @@ riders or environments. This assumption can be justified by
 recognizing the Whipple model predicts little difference in
 dynamics with respect to the three bicycle/rider combinations. I
 calculated the best fit over 374 runs giving about 142 minutes of data
-sampled at 200 Hz, $N=1720647$.
+sampled at 200 Hz where $N=1720647$.
 
 The eigenvalues as a function of speed of the identified model can be
 compared to those of the Whipple and arm models (see Section
