@@ -863,14 +863,13 @@ general candidate model for this bicycle.
 %\includegraphics{figures/systemidentification/compare-id-bode-9p0.*}
 
 The predictive capability and quality of a given model can be quantified
-by an assortment of criterion and methods. Two criteria I've made use of two
-criterion to judge the quality of these models with respect to given
-data. The first is to simulate the system given the measured inputs.
-This method works well when the open loop system is stable, but if it is
+by an assortment of criteria and methods. Two criteria used to judge 
+the quality of these models with respect to given data are (1) simulate 
+the system given the measured inputs. This method works well when the open loop system is stable, but if it is
 unstable as so in the case of this bicycle, it may be difficult to
 simulate. Searching for initial conditions that give rise to a stable
 model for the duration of the run or simulating by weighting the future
-error less may relieve the instability issues. Another option is to see
+error less may relieve the instability issues. (2) See
 how well the inputs are predicted given the measured outputs. The
 canonical form of the equations lend themselves to this and only two
 inputs per run need be checked.
@@ -893,7 +892,7 @@ roll torque and the steer torque
 I compute the VAF for each of the 374 runs used in the canonical
 identification outlined in Equation eqVAF using each of the 12
 identified models and both the Whipple and Arm models. This percentage
-can be used as a criterion with which to judge the ability of one model
+can be used as a criterion to judge the ability of one model
 versus another to predict the measurement. I then take the median of the
 VAF over each of the 12 sets of runs, Tables
 11.7\textless{}tabMeanVAFRoll\textgreater{} and
@@ -922,17 +921,17 @@ disturbances in much of
 Table 11.7\textless{}tabMeanVAFRoll\textgreater{}. We fixed six of the
 nine parameters in the roll equation to those of the Whipple model and
 fixed three of the nine parameters in the steer equation. These extra
-degrees of freedom can partially explain why the steer predictions are
+degrees of freedom explain why the steer predictions are
 better than the roll predictions. The model for the roll torque is more
-susceptible to the noise in the rate and angle measurements and has
-consequences of +/- 50 Nm variation in the predicted roll torques. These
+susceptible to noise in rate and angle measurements with variation of
++/- 50 Nm in the predicted roll torques. These
 are unfortunately comparable in magnitude to the measured roll torques
-due to the lateral perturbations. But Table
-11.7\textless{}tabMeanVAFRoll\textgreater{} can still be used to gage
-which models are better with reference to each other. The values in
+due to lateral perturbations. But Table
+11.7\textless{}tabMeanVAFRoll\textgreater{} can still be used to gauge
+which models are better with reference to each other. Values in
 Table 11.7\textless{}tabMeanVAFRoll\textgreater{} are only generated
-from the runs with disturbances, as a relative measure of quality to
-zero is hard to make.
+from runs with disturbances, as a relative measure of quality to
+zero is difficult to make.
 
 Tables 11.7\textless{}tabMeanVAFRoll\textgreater{} and
 11.8\textless{}tabMeanVAFSteer\textgreater{} reveal:
@@ -960,7 +959,8 @@ Tables 11.7\textless{}tabMeanVAFRoll\textgreater{} and
 It may seem odd that a model identified from the subset of runs of one
 rider in one environment is the best at predicting the runs on a
 individual basis, but the uncertainty and error in both the data and the
-model structures don't dictate that this can't be. Keep in mind that all
+model structures don't dictate that this can't be. %holy crap long ass sentence
+Keep in mind that all
 of the frequency responses of all 12 models shown in Figures
 11.17\textless{}figCompBode2p0\textgreater{},
 11.18\textless{}figCompBode5p5\textgreater{}, and
