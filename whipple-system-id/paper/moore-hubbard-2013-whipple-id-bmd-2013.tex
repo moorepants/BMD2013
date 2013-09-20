@@ -960,8 +960,7 @@ It may seem odd that a model identified from the subset of runs of one
 rider in one environment is the best at predicting the runs on a
 individual basis, but the uncertainty and error in both the data and the
 model structures don't dictate that this can't be. %holy crap long ass sentence
-Keep in mind that all
-of the frequency responses of all 12 models shown in Figures
+keep in mind that the frequency responses of all 12 models shown in Figures
 11.17\textless{}figCompBode2p0\textgreater{},
 11.18\textless{}figCompBode5p5\textgreater{}, and
 11.19\textless{}figCompBode9p0\textgreater{} are probably bounded in the
@@ -985,7 +984,7 @@ simulations. Table 11.9\textless{}tabMedianVAFOutputs\textgreater{}
 presents the median percent variance accounted for across all runs for
 each model and each output. The best model seems to be the one generated
 from the data with Luke on the Pavilion Floor once again, but these
-results differ from the previous otherwise.
+results differ from the previous otherwise. %can you make this paragraph more consice?
 
 \begin{itemize}
   \item
@@ -1024,17 +1023,15 @@ model.
 
 We have shown that a fourth order linear model is adequate for describing the
 motion of the bicycle under manual control in a speed range from approximately
-1.5 m/s to 9 m/s. The fact that higher order models may not be necessary for
-predicting the bicycle-rider dynamics is an important finding.  Many
-researchers develop models from first principles which have orders much greater
+1.5 m/s to 9 m/s. Results from this study show that a higher order models may not be necessary for
+predicting the bicycle-rider dynamics. This is an important finding, as many
+researchers develop models using first principles which have orders much greater
 than 4, with degrees of freedom associated with tire slip, frame flexibilities,
-and rider biomechanics. These findings suggest that these more complex models
-may be overkill for many prediction purposes. But, the results subsequently
+and rider biomechanics, which may be overkill for many prediction purposes. But, results 
 also reveal that fourth order archetypal first principles models are not
-predictive enough to fully describe the dynamics. The deficiencies in the
-archetypal models are most likely due to un-modeled effects, with the
-knife-edge, no side-slip wheel contact assumptions being the most probable
-candidate. Un-modeled rider biomechanics such as passive arm stiffness and
+predictive enough to fully describe the dynamics. These deficiencies are most 
+likely due to un-modeled effects, with knife-edge, no side-slip wheel contact 
+assumptions being the most probable candidate. Un-modeled rider biomechanics such as passive arm stiffness and
 damping and head motion may play a role too. It is likely that something as
 simple as a ``static'' tire scrub torque is needed to improve the fidelity of
 the Whipple first principles derivations, but that doesn't preclude that the
@@ -1043,8 +1040,8 @@ improve the predictive ability.
 
 \subsection{Canonical identification}
 
-The canonical realization, Section secCanonicalId, is a good method for
-identifying a model from data from multiple runs. It relies on quality
+The canonical realization Section secCanonicalId, is a good method for
+identifying a model using data from multiple runs. It relies on quality
 measurements of the coordinates, rates, and accelerations. We relied on
 numerical differentiation of the rates to get the accelerations instead of
 direct measurements. Furthermore, differentiation of the measured angles do not
