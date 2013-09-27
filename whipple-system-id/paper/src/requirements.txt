@@ -1,0 +1,24 @@
+-e git+git@github.com:moorepants/AutolevToolKit.git@4332bf6709a554c75b8bc73fb390db83a9ac9fef#egg=AutolevToolKit-dev
+-e git+git@github.com:moorepants/BicycleDataProcessor.git@cf37d7633b2e64a3d02d63a43ab193ec736796bc#egg=BicycleDataProcessor-dev
+-e git+git@github.com:moorepants/BicycleParameters.git@526b7314e42c161a4f60a9bf2718ff3dbad89007#egg=BicycleParameters-dev
+-e git+git@github.com:moorepants/CanonicalBicycleID.git@d0eaf45a279d52173a46934faeee30585d88ae43#egg=CanonicalBicycleID-dev
+Cython==0.19.1
+-e git+git@github.com:moorepants/DynamicistToolKit.git@78892454c4783698ae20fa619330d97cc5661135#egg=DynamicistToolKit-dev
+PyYAML==3.10
+argparse==1.2.1
+ipython==1.1.0
+matplotlib==1.3.0
+nose==1.3.0
+numexpr==1.4.2
+numpy==1.7.1
+pandas==0.12.0
+pyparsing==2.0.1
+python-dateutil==2.1
+pytz==2013d
+scipy==0.12.0
+six==1.4.1
+tables==2.4.0
+tornado==3.1.1
+uncertainties==1.9.1
+wsgiref==0.1.2
+-e git+git@github.com:fitze/yeadon.git@8db10fbc1704711464ab08d8ee02d8821b9cc4e2#egg=yeadon-dev
