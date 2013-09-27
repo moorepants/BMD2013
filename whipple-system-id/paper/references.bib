@@ -1,0 +1,231 @@
+@phdthesis{
+    Eaton1973,
+    author = "Eaton, David J.",
+    bibpr = "private-bibtex-keys#Eaton1973",
+    school = "University of Michigan",
+    title = "Man-Machine Dynamics in the Stabilization of Single-Track Vehicles",
+    timestamp = "2009.10.30",
+    review = {He does a nice review of the current work. He chooses Sharp's model as the most definitive motorcycle model and works with it. He shows the classic compensatory manual control system. He then shows the crossover model citing that a suprising amount of experimental data supports the model. He cites Weir as good manual control work and talks about how van Lunteren and Stassen's simulator may not be very realistic. He says that the van Lunteren and Stassen work was based on the Whipple model which hadn't be verified against experiment and points out the steer angle and lean angle inputs not being torques. He cites a bicycle simulator by Hattori in Japan, which I haven't heard of. He does two experiment sets: transient response of the uncontrolled motorcycle and roll stablization of the controlled motorcycle Figure 1.1 shows that for speeds below 30 mph the tire slip models do not vary much from a model without tireslip. He shows Sharp's simple tire relaxation forumla. He points out that stability may not always be desireable for the rider. "For motorcycles, steering-torque control is more likely than position control, due to the greatly increase instability of the capsize mode whne the steering degree of freedom is omitted." He and Weir independentely substantiated Sharp's model. Eaton's roots were identical to Sharps. He uses five bodies: engine, rear wheel, rear frame and rider, front frame and front wheel. he linearizes about the upright (except for coulomb headtube friction). Point contact wheels but he includes tire forces and moments due to slip and inclination. Figure's 2.1-2.3 show nice comparisons of the root loci with respect to speed for different tire models. He concludes that 1) path-curvature effects primarily influence the wobble mode, 2) tire moments have an importnat influence on the cpaise mode and 3) the weave mode is influenced by the choice of a tire model only when speeds are below 20 mph. Insturmented motorcycle: The rider's upper body was rigidified with a brace. He did hands-off experiments with the brace!! He used a third wheel to measure roll angle. Yaw rate was measured with gyro. Roll angle and steer angle were measured with potentiometers. They used a chased car with the measurement equipment, including strip charts. Uncontrolled experiments: He excited steering by the rider applying an impulsive tap to the handlebars. He excited roll by hanging weights on the motorcycle and then dropping one of the weights to apply a gravity based roll torque. He found that the weights didn't change the resultin gveritcal loads on the tires and coudl be neglected. He used the rate gyro to measure roll rate in the hand controlled experiments. He found it difficult to independently excite the motorcycle modes of motion with high speed wobble being the easiest to excite and capsize and weave being difficult. He did a combo excitation too: drop the weight and apply steer torque impulse to correct the fall. He compares simulation results for the combo excitation claiming to clearly see the wobble mode (except in roll angle), not seeing weave (due to high damping) and clearly seeing capsize at the two top speed runs. Figures 3.2-3.5 show ok agreement, with the higher 42 mph run showing most agreement. He did many tests, with little variablity. Wobble predicting decreased with speed. He sees constant damping and freq of the wobble mode with respect to speed. Other uncontrolled experiments: 1. The test vehicle seemed to be unstable at all speeds. 2. No low freq weave coudl be excited. He observed natural steer into the fall but it wasn't fast enough for enough correction. 3. Instability became less severe as speed increased. He found no evidence that any of his tire models were any better than his #1 model (lateral slip and inclination forces and aligning moments from slip angles). He goes through several hypotheses about why the the model doesn't match his experiments well, focusing on more complicated tire models and their effects at lower speeds. he concludes that he needs a better tire model at low speeds. Chapter 4: man-machine system He focues on the roll stablization inner loop. Feedback roll angle and control based on roll angle error. He eliminates body lean control as an option to simplify things. He does note that low speed and difficult manuevers may require body lean. He calculates the transfer functions from steer torque to roll for the open loop motorcycle at 15, 30 and 45 mph based on his measured parameters. Figure 4.2 shows the bode plots of each. The 30 and 45 Bode plots are almost the same and the 15 is very different. (15 mph is stable). The rider can control frequencies less than 10 rad/s. The 15 mph is dominated by weave and capsize, while the higher speeds are dominated by capsize alone. 15 is aproximated by 3rd order and the 30, 45 are approximated by a first order transfer function. This leads to a simple form of the human operator for the 30, 45 mph speeds: a simple gain and time delay. He focues on 30 mph for remaining analysis. He measured steer torque with a torque bar and the rider could only use one hand. He set up his strain gages and bar design to be primarily senstive to the applied steer torque. The roll angle sensor was not always reliable. He filtered all signals with a first order filter with break freqency of 5 rad/s. He identifies the controlled element with two methods: cross-spectral and impulse response methods. The impulse response method is finite impulse response using linear regression. he notes that the remnant is an issue and makes use of the Wingrove Edwards method to reduce the error in estimating the rider. There is a time delay where the autocorrelation function of the remnant is minimized. This time delay can be leveraged to remove much of the error in identifying the human controller. * you can use a Pade approximation to time delay to linearize the model in identification * Chapter 6: Roll stablization experiments These are basically the same as Eaton1973a, which I've alread reviewed. He sees 3 to 5 time larger steer angles at 15 mph than 30+ mph, but steer torques increase with speed. Roll angles and rates were nearly speed independent. He found a dominant frequency between 1.5 and 5.0 rad/s. He says that the motorcycle equations of motion are good predictors now, but the conclusions from Chapter 3 seemed like they were more mediocre. He shows much better matches of the controlled element (the motorcycle) during these experiments (he's looking at smalle bandwidth). his fit is worse for the 15 mph runs, mainly for 1-2 rad/s. He found that his roll angle measurement was better to work with than the roll rate (this was a limited of his id procedure). It looks like he decides to fix the time delay even though it was more variable: 0.14-0.21. He found the average for most days to be around 0.3, so he forced it to be 3.0 for the day and rider that didn't fit that. He had to fix the delat because any combination of the delay and lead equalization terms woudl give food fits (i.e. a flat spot in the linear regression??). He shows good matches to the crossover model for all speeds. Pg 134: A gain and time delay describe the rider block for higher speeds! "If the rider wishes to change the roll angle, he applies a steering torque to the handlebars of opposite sign to the direction of desired change." -- countersteering Conclusions: 1. Sharp's model is good for weave and capsize prediction except at low speeds. 2. The model doesn't describe wobble below 35 mph. A better tire model may be needed. 3. No real stable speed range was found. 4. His various tire models didn't improve fit results. 5. Tire overturning moments and aligning torques cancel each other. 6. Viscous steering dampers are prefered to Coulomb because the latter destablizes roll. 1. The rider remnant excitation provides enough to identify the controlled element (no other external forces are needed) 2. The time shift method can be used to identify the rider control block. 3. The rider can be modeled as a simple gain and time delay for high speed runs. Th time delay was consistently 0.3 seconds. 4. The rider can be described as a gain on rate control with lead equalization for 15 mph runs. 5. The crossover model was valid for this data. 6. The rider remnant is large and white. 7. Phase margins: 30-50 degrees, gain margins: 4-11 db for the rider transfer function. A dominant frequency was between 1.5 to 5.0 rad/s. 8. Body lean control was not necessary to control the motorcycle in normal riding. It may be more of a style thing if folks use it. Appendices A tire model. He measures the inertia with the rider on the bike in the brace. Roll inertia was measured by setting the bike on knife edge and osciallating it under springs. Yaw inertia was measured by suspending the bike from thr front and rear on strings and osciallating. The product of inertia was found the same a yaw but with the motorcycle tipped up. A torional pendulum was used for the wheels and fork. Engine inertia and mass was from manufacturer. He estimates the coloumb friction in the steering head with a break-away torque method (i.e. static friction), but says it was negligible. For some of the roll stabilization trials at 15 and 30 mph, he finds 30 in-lb (3.4 Nm) to be the maximum steer torque. He shows the tire mounted in a tire tester. He measured all the tire forces and moments.},
+    bib = "bibtex-keys#Eaton1973",
+    webpdf = "references-folder/Eaton1973.pdf",
+    file = "Eaton1973.pdf:Eaton1973.pdf:PDF",
+    year = "1973",
+    owner = "moorepants"
+}
+
+@article{
+    Sharp1971,
+    author = "Sharp, Robin S.",
+    number = "5",
+    webpdf = "references-folder/Sharp1971.pdf",
+    doc-delivery-number = "K5001",
+    file = "Sharp1971.pdf:Sharp1971.pdf:PDF",
+    year = "1971",
+    owner = "Luke",
+    bibpr = "private-bibtex-keys#Sharp1971",
+    title = "Stability and Control of Motorcycles",
+    review = {JKM Shows the classic eigenvalue plot, probably one of the earlier ones. He reports steady turn steering torques from -25 n-m to 2.35 n-m. These are all for the either 10 deg of roll angle or 10 deg of steer angle and 30 different parameter sets for speeds of 10 ft/s to 160 ft/s. DLP -- Sharp presents numerical results for 30 different variations of his standard motorcycle model. His model is similar to the Meijaard model in that it includes knife-edged wheels and a rigidly attached rider, but it differs by including a tire model which allows for lateral side-slip (and also encompasses the relaxation length of the tire), a rotating engine flywheel, and a steering damper. He also presents steady turning steer torques for some of the 30 variations of the standard model, for various speeds, at what he calls Q=10 degrees, presumable this refers to the steer angle, but I'm not completely sure on this because Q isn't the symbol he uses for steer angle, roll angle, and it isn't mentioned in the discussion or in the list of notation.\\ He refers to two different types of control: fixed and free. By free control, I presume what he means is uncontrolled, and he makes the statement that "In the case of the motorcycle, the free control behaviour would appear to be relatively much more important, since the very small steer angles normally employed would make fixed control difficult, ...". I'm not clear on what he means by fixed control, but from Figure 8 and his discussion of it on page 324, it would seem that he is fixing the steer angle at zero and looking at the stability of the system under this condition.\\ Table 1 presents the capsize mode damping coefficients, Tables 2 and 3 presents the weave and wobble mode damping coefficients and circular frequencies. I'm a bit confused about presenting damping coefficient instead of damping ratio. It seems like he would also need to mention the mass term or the stiffness term in order to be able to calculate the damping ratio, further, I'm not exactly clear on exactly which equations this damping coefficient would be arising from, he doesn't state this information explicitly. It is also a bit confusing because a number of these damping coeffiencients in his tables are negative, not sure what this means, since typically the damping coefficient is positive. One interesting thing he points out that the wobble mode is 'almost independent of forward speed', which is in sharp contrast with the other modes. His tire model includes a relaxation length of 0.8ft, and this figure was obtained from the work of Labarre and Mills experimentally measurement of a 2.25" section, 12.5" diameter tire. This model of a the tire side forces essentially assumes that the tire side forces lag the steady state force predicted by a the sideslip model through a first order delay. We should read the 1991 paper by Sharp and Pacejka to further understand what sort of tire model we may want to include in our bike models.},
+    pages = "316--329",
+    type = "Article",
+    timestamp = "2009.03.01",
+    journal = "Journal of Mechanical Engineering Science",
+    bib = "bibtex-keys#Sharp1971",
+    volume = "13",
+    address = "Northgate Avenue, Bury St. Edmunds IP32 6BW, Suffolk, England",
+    times-cited = "85",
+    publisher = "PROFESSIONAL ENGINEERING PUBLISHING LTD",
+    language = "English",
+    number-of-cited-references = "14",
+    issn = "0022-2542",
+    subject-category = "Engineering, Mechanical"
+}
+
+@article{
+    James2002,
+    author = "James, Stephen R.",
+    bibpr = "private-bibtex-keys#James2002",
+    doi = "10.1076/vesd.38.1.1.3520",
+    title = "Lateral dynamics of an offroad motorcycle by system identification",
+    timestamp = "2009.11.03",
+    journal = "Vehicle System Dynamics",
+    bib = "bibtex-keys#James2002",
+    number = "1",
+    month = "July",
+    volume = "38",
+    webpdf = "references-folder/James2002.pdf",
+    file = "James2002.pdf:James2002.pdf:PDF",
+    year = "2002",
+    owner = "moorepants",
+    pages = "1--22",
+    review = {He says Aoki1979 did experiments, measured steer torque and did some basic system id. He uses the manually controlled input signal for system identification of the underlying vehicle model. He notes that special perturbations are not needed. He develops a motorcycle model using Lagrange's method and cites similartiy to Sharp's work. He does this symbolically with Maple. His model is 10th order. He measured some tire properties, but describes very little about it. He shows comparisons to several other numerical motorcycle models and then talk about model reduction. He can reduce the models to 6 ro 7th order when it is stable and get similar response up to 12hz. He instrumented an off-road motorcycle to measure: - Forward speed with a magnetic pickup on the wheel - Steering torque by mounting a light weight extra handlebar set coaxilaly with the steer axis which was connected to the handlebars via a tangential load cell (probably similar to Cheng2003) - Yaw and roll rates with rate gyros - Lateral acceleration with mems accelerometers (didn't use do to noise from engine) - Steering angle with potentiometer. His experiments were primarily on asphalt but a few were done on a flat dirt track too. He basically just road the motorcycle and applied "random" perturbations to the extra handlebars for a steer torque input to the motorcycle. Speeds were from 2 m/s to 19 m/s. He shows the power spectral density of the steer torque signal for the asphaly runs which start to taper off around 10 hz or so. The weave frequency has ten times the amplitude as the wobble frequency. He says steering torque was correlated to yaw rate at a 0.1-0.2 second delay and points to the fact that the rider had to keep the motorcycl from running off of the single lane track. He says that since there is output to input feedback he couldn't use non-parametric models, models with output error and models fit with subspace methods. He cites Ljung's book for explanation. This is new to me. He uses black box ARX models for his fits for SIMO. He mentions that assesing goodness of fit with residuals was confounded by unsuitable time scaling and model instability at low speeds. There is something about the frequency of the data being high enough for the system id to pick up the both weave and wobble modes. Figure four shows identified weave mode poles for the experiments in comparison to the ones predicted by his motorcycle model. He show confidence intervals around the identified poles, but the model results doesn't seem to match the id results. He does claim that this figure shows the prediction of instability below 5 m/s. There are differences in the dirt experiment and the asphaly experiments. He tried various combinations of outputs in the id process, but found roll rate to be critical for identifying weave. Figure five shows some eigenvector phasor plots for the weave mode at three different speeds. The choice of visualization is pretty poor, but it looks like there is only decent agreement in the yaw phasor. He says they agree well but gives no numbers as to how well. Figure six shows the wobble eigenvalue comparions, which look pretty bad, but he says the it was robust?? I don't see how. He shows steer torque to yaw rate ratios as a function of speed for steady turns and compares it to other models. Yet the other models are not the same motorcycle parameters. Figure 8 shows Bode plots for various speeds and compares his experimental results with his model. The agreement doesn't look as bad in this view. He fit lower order models (6 and 7th) to the experimental data even though his first principles models were of higher order. He measured some of the physical properties of his motorcycle but it wasn't very thorough, leaving some parameters as estimates.}
+}
+
+@book{
+    Timoshenko1948,
+    author = "Timoshenko, S. and Young, D. H",
+    bibpr = "private-bibtex-keys#Timoshenko1948",
+    publisher = "McGraw-Hill",
+    title = "Advanced dynamics",
+    timestamp = "2009.09.23",
+    address = "New York",
+    bib = "bibtex-keys#Timoshenko1948",
+    year = "1948",
+    owner = "moorepants"
+}
+
+@manual{
+    Dembia2011,
+    author = "Dembia, Christopher",
+    note = "http://pypi.python.org/pypi/yeadon/",
+    timestamp = "2012.03.06",
+    year = "2011",
+    url = "http://pypi.python.org/pypi/yeadon/",
+    title = "Yeadon: A Python Library For Human Inertia Estimation"
+}
+
+@article{
+    James2005,
+    author = "James, Stephen R",
+    bibpr = "private-bibtex-keys#James2005",
+    doi = "10.1080/00423110412331289862",
+    title = "Lateral dynamics of motorcycles towing single-wheeled trailers",
+    url = "http://www.informaworld.com/10.1080/00423110412331289862",
+    timestamp = "2009.11.18",
+    journal = "Vehicle System Dynamics: International Journal of Vehicle Mechanics and Mobility",
+    bib = "bibtex-keys#James2005",
+    number = "8",
+    abstract = "A motorcycle towing a single-wheel trailer may provide useful transport for light cargo on narrow tracks and off-road use, particularly in rural areas of developing countries. Four designs of such trailers are described. Linear models are derived for the lateral dynamics of an off-road motorcycle towing this type of trailer straight ahead at constant speed. The trailers were tested behind an instrumented motorcycle. Linear autoregressive models were fitted to the experimental data using system identification techniques. Analytical and experimentally derived models largely agreed on frequency, damping and shape of the weave, wobble and trailer sway normal modes. The trailers made the motorcycleÂs steering heavier but the analytical models did not predict this. The location of the articulation axes between the motorcycle and the trailer were found to be critical for stability. The best trailer design handled well with loads up to 200 kg and speeds up to 70 km/h.",
+    volume = "43",
+    webpdf = "references-folder/James2005.pdf",
+    file = "James2005.pdf:James2005.pdf:PDF",
+    year = "2005",
+    owner = "moorepants",
+    pages = "581--599"
+}
+
+@article{
+    Moore2011,
+    author = "Moore, Jason K. and Kooijman, J. D. G. and Schwab, A. L. and Hubbard, Mont",
+    bibpr = "private-bibtex-keys#Moore2011",
+    publisher = "Springer Netherlands",
+    doi = "10.1007/s11044-010-9225-8",
+    keyword = "Engineering",
+    title = "Rider motion identification during normal bicycling by means of principal component analysis",
+    url = "http://dx.doi.org/10.1007/s11044-010-9225-8",
+    journal = "Multibody System Dynamics",
+    issn = "1384-5640",
+    bib = "bibtex-keys#Moore2011",
+    abstract = "Recent observations of a bicyclist riding through town and on a treadmill show that the rider uses the upper body very little when performing normal maneuvers and that the bicyclist may, in fact, primarily use steering input for control. The observations also revealed that other motions such as lateral movement of the knees were used in low speed stabilization. In order to validate the hypothesis that there is little upper body motion during casual cycling, an in-depth motion capture analysis was performed on the bicycle and rider system. We used motion capture technology to record the motion of three similar young adult male riders riding two different city bicycles on a treadmill. Each rider rode each bicycle while performing stability trials at speeds ranging from 2 km/h to 30 km/h: stabilizing while pedaling normally, stabilizing without pedaling, line tracking while pedaling, and stabilizing with no-hands. These tasks were chosen with the intent of examining differences in the kinematics at various speeds, the effects of pedaling on the system, upper body control motions and the differences in tracking and stabilization. Principal component analysis was used to transform the data into a manageable set organized by the variance associated with the principal components. In this paper, these principal components were used to characterize various distinct kinematic motions that occur during stabilization with and without pedaling. These motions were grouped on the basis of correlation and conclusions were drawn about which motions are candidates for stabilization-related control actions.",
+    volume = "25",
+    affiliation = "Mechanical and Aerospace Engineering, University of California, Davis, One Shields Avenue, Davis, CA 95616-5294, USA",
+    webpdf = "references-folder/Moore2011.pdf",
+    file = "Moore2011.pdf:Moore2011.pdf:PDF",
+    year = "2011",
+    issue = "2",
+    pages = "225--244"
+}
+
+@phdthesis{
+    Moore2012,
+    author = "Moore, Jason K.",
+    school = "University of California, Davis",
+    title = "Human Control of a Bicycle",
+    timestamp = "2012.10.01",
+    address = "Davis, CA",
+    month = "August",
+    year = "2012"
+}
+
+@inproceedings{
+    Schwab2010a,
+    author = "Schwab, A. L. and Kooijman, J. D. G.",
+    bibpr = "private-bibtex-keys#Schwab2010a",
+    title = "Controllability of a bicycle",
+    timestamp = "2011.12.12",
+    booktitle = "5th Asian Conference on Multibody Dynamics 2010",
+    address = "Kyoto, Japan",
+    bib = "bibtex-keys#Schwab2010a",
+    month = "August",
+    webpdf = "references-folder/Schwab2010a.pdf",
+    file = "Schwab2010a.pdf:Schwab2010a.pdf:PDF",
+    year = "2010",
+    review = "Arend adds leaning degrees of freedom to his arm models and then asesses them for controlability with respect to speed."
+}
+
+@article{
+    Yeadon1990,
+    author = "Yeadon, M. R.",
+    bibpr = "private-bibtex-keys#Yeadon1990",
+    doi = "DOI: 10.1016/0021-9290(90)90369-E",
+    title = "The simulation of aerial movement--I. The determination of orientation angles from film data",
+    url = "http://www.sciencedirect.com/science/article/B6T82-4C0CT7F-7C/2/eec3f6f17db4bb2c66ae5b6711e91b5a",
+    journal = "Journal of Biomechanics",
+    issn = "0021-9290",
+    bib = "bibtex-keys#Yeadon1990",
+    number = "1",
+    abstract = "Quantitative mechanical analyses of human movement require the time histories of the angles which specify body configuration and orientation. When these angles are obtained from a filmed performance they may be used to evaluate the accuracy of a simulation model. This paper presents a method of determining orientation angles and their rates of change from film data. The stages used comprise the synchronization of data obtained from two camera views, the determination of three-dimensional coordinates of joint centres, the calculation of an angle from a sequence of sine and cosine values and the curve fitting of angles using quintic splines. For each state, other possible approaches are discussed. Original procedures are presented for obtaining individual error estimates of both the film data and the calculated angles to permit the automatic fitting of quintic splines for interpolation and differentiation and for deriving the time history of an angle as a continuous function from a sequence of sine and cosine values. The method is applied to a forward somersault with twists and the average error estimate of 17 orientation angles is obtained as 2.1 degrees.",
+    volume = "23",
+    year = "1990",
+    pages = "59 - 66"
+}
+
+@article{
+    Meijaard2007,
+    author = "Meijaard, J. P. and Papadopoulos, Jim M. and Ruina, Andy and Schwab, A. L.",
+    bibpr = "private-bibtex-keys#Meijaard2007",
+    doi = "10.1098/rspa.2007.1857",
+    title = "Linearized dynamics equations for the balance and steer of a bicycle: {A} benchmark and review",
+    url = "\url{http://rspa.royalsocietypublishing.org/content/463/2084/1955.abstract}",
+    timestamp = "2008.10.27",
+    journal = "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+    tags = "bicycle,Whipple,linear",
+    bib = "bibtex-keys#Meijaard2007",
+    number = "2084",
+    abstract = "We present canonical linearized equations of motion for the Whipple bicycle model consisting of four rigid laterally symmetric ideally hinged parts: two wheels, a frame and a front assembly. The wheels are also axisymmetric and make ideal knife-edge rolling point contact with the ground level. The mass distribution and geometry are otherwise arbitrary. This conservative non-holonomic system has a seven-dimensional accessible configuration space and three velocity degrees of freedom parametrized by rates of frame lean, steer angle and rear wheel rotation. We construct the terms in the governing equations methodically for easy implementation. The equations are suitable for e.g. the study of bicycle self-stability. We derived these equations by hand in two ways and also checked them against two nonlinear dynamics simulations. In the century-old literature, several sets of equations fully agree with those here and several do not. Two benchmarks provide test cases for checking alternative formulations of the equations of motion or alternative numerical solutions. Further, the results here can also serve as a check for general purpose dynamic programs. For the benchmark bicycles, we accurately calculate the eigenvalues (the roots of the characteristic equation) and the speeds at which bicycle lean and steer are self-stable, confirming the century-old result that this conservative system can have asymptotic stability.",
+    month = "August",
+    volume = "463",
+    webpdf = "references-folder/Meijaard2007.pdf",
+    file = "Meijaard2007.pdf:Meijaard2007.pdf:PDF",
+    year = "2007",
+    owner = "moorepants",
+    pages = "1955--1982",
+    review = "They quote Kooijman2007 which is acutally Kooijman2008."
+}
+
+@article{
+    Kooijman2008,
+    author = "Kooijman, J. D. G. and Schwab, A. L. and Meijaard, J. P.",
+    bibpr = "private-bibtex-keys#Kooijman2008",
+    doi = "10.1007/s11044-007-9050-x",
+    title = "Experimental validation of a model of an uncontrolled bicycle",
+    timestamp = "2008.12.05",
+    journal = "Multibody System Dynamics",
+    bib = "bibtex-keys#Kooijman2008",
+    abstract = "In this paper, an experimental validation of some modelling aspects of an uncontrolled bicycle is presented. In numerical models, many physical aspects of the real bicycle are considered negligible, such as the flexibility of the frame and wheels, play in the bearings, and precise tire characteristics. The admissibility of these assumptions has been checked by comparing experimental results with numerical simulation results. The numerical simulations were performed on a three-degree-of-freedom benchmarked bicycle model. For the validation we considered the linearized equations of motion for small perturbations of the upright steady forward motion. The most dubious assumption that was validated in this model was the replacement of the tires by knife-edge wheels rolling without slipping (non-holonomic constraints). The experimental system consisted of an instrumented bicycle without rider. Sensors were present for measuring the roll rate, yaw rate, steering angle, and rear wheel rotation. Measurements were recorded for the case in which the bicycle coasted freely on a level surface. From these measured data, eigenvalues were extracted by means of curve fitting. These eigenvalues were then compared with the results from the linearized equations of motion of the model. As a result, the model appeared to be fairly accurate for the low-speed low-frequency behaviour.",
+    month = "May",
+    volume = "19",
+    owner = "moorepants",
+    webpdf = "references-folder/Kooijman2008.pdf",
+    file = "Kooijman2008.pdf:Kooijman2008.pdf:PDF",
+    year = "2008",
+    keywords = "Bicycle dynamics, Experiments, Instrumentation, Multibody dynamics, Non-holonomic constraints",
+    pages = "115-132",
+    review = "JKM - He reports different parameter values for the front frame than in his thesis."
+}
+
+@inproceedings{
+    Kooijman2009,
+    author = "Kooijman, J. D. G. and Schwab, A. L.",
+    bibpr = "private-bibtex-keys#Kooijman2009",
+    title = "Experimental Validation of the Lateral Dynamics of a Bicycle on a Treadmill",
+    timestamp = "2009.09.24",
+    booktitle = "Proceedings of the ASME 2009 International Design Engineering Technical Conferences \& Computers and Information in Engineering Conference, IDETC/CIE 2009",
+    bib = "bibtex-keys#Kooijman2009",
+    number = "DETC2009-86965",
+    webpdf = "references-folder/Kooijman2009.pdf",
+    file = "Kooijman2009.pdf:Kooijman2009.pdf:PDF",
+    year = "2009",
+    owner = "moorepants",
+    review = "The experiment from Kooijman2006 and Kooijman2008 was repeated on a treadmill. This allow for the speed of the bicycle to be controlled for better, giving better fits to of the predicted weave eigenvalue for 88 runs. They claim the reasons they can't fit the capsize eigenvalue is because it damps out rapidly below the weave critical speed, thus not easy to measure and that above the weave critical speed that the capsize eigenvalue is so slow that it is hard to measure and the weave motion dominates. This is not quite right though as the eigen value magnitudes are the same at least one speed in within the stable speed range. Their final conclusion is that the eigenvalues and critical speeds are well predicted between a certain speed range and that treadmill riding is the same as riding on flat ground. This should be clarified with respect to riderless bicycles. The steer angle on the plot is rather steady, maybe because the scaling is wrong."
+}
+
