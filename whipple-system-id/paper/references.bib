@@ -13,6 +13,19 @@
     owner = "moorepants"
 }
 
+@book{
+    Timoshenko1948,
+    author = "Timoshenko, S. and Young, D. H",
+    bibpr = "private-bibtex-keys#Timoshenko1948",
+    publisher = "McGraw-Hill",
+    title = "Advanced dynamics",
+    timestamp = "2009.09.23",
+    address = "New York",
+    bib = "bibtex-keys#Timoshenko1948",
+    year = "1948",
+    owner = "moorepants"
+}
+
 @article{
     Sharp1971,
     author = "Sharp, Robin S.",
@@ -60,17 +73,20 @@
     review = {He says Aoki1979 did experiments, measured steer torque and did some basic system id. He uses the manually controlled input signal for system identification of the underlying vehicle model. He notes that special perturbations are not needed. He develops a motorcycle model using Lagrange's method and cites similartiy to Sharp's work. He does this symbolically with Maple. His model is 10th order. He measured some tire properties, but describes very little about it. He shows comparisons to several other numerical motorcycle models and then talk about model reduction. He can reduce the models to 6 ro 7th order when it is stable and get similar response up to 12hz. He instrumented an off-road motorcycle to measure: - Forward speed with a magnetic pickup on the wheel - Steering torque by mounting a light weight extra handlebar set coaxilaly with the steer axis which was connected to the handlebars via a tangential load cell (probably similar to Cheng2003) - Yaw and roll rates with rate gyros - Lateral acceleration with mems accelerometers (didn't use do to noise from engine) - Steering angle with potentiometer. His experiments were primarily on asphalt but a few were done on a flat dirt track too. He basically just road the motorcycle and applied "random" perturbations to the extra handlebars for a steer torque input to the motorcycle. Speeds were from 2 m/s to 19 m/s. He shows the power spectral density of the steer torque signal for the asphaly runs which start to taper off around 10 hz or so. The weave frequency has ten times the amplitude as the wobble frequency. He says steering torque was correlated to yaw rate at a 0.1-0.2 second delay and points to the fact that the rider had to keep the motorcycl from running off of the single lane track. He says that since there is output to input feedback he couldn't use non-parametric models, models with output error and models fit with subspace methods. He cites Ljung's book for explanation. This is new to me. He uses black box ARX models for his fits for SIMO. He mentions that assesing goodness of fit with residuals was confounded by unsuitable time scaling and model instability at low speeds. There is something about the frequency of the data being high enough for the system id to pick up the both weave and wobble modes. Figure four shows identified weave mode poles for the experiments in comparison to the ones predicted by his motorcycle model. He show confidence intervals around the identified poles, but the model results doesn't seem to match the id results. He does claim that this figure shows the prediction of instability below 5 m/s. There are differences in the dirt experiment and the asphaly experiments. He tried various combinations of outputs in the id process, but found roll rate to be critical for identifying weave. Figure five shows some eigenvector phasor plots for the weave mode at three different speeds. The choice of visualization is pretty poor, but it looks like there is only decent agreement in the yaw phasor. He says they agree well but gives no numbers as to how well. Figure six shows the wobble eigenvalue comparions, which look pretty bad, but he says the it was robust?? I don't see how. He shows steer torque to yaw rate ratios as a function of speed for steady turns and compares it to other models. Yet the other models are not the same motorcycle parameters. Figure 8 shows Bode plots for various speeds and compares his experimental results with his model. The agreement doesn't look as bad in this view. He fit lower order models (6 and 7th) to the experimental data even though his first principles models were of higher order. He measured some of the physical properties of his motorcycle but it wasn't very thorough, leaving some parameters as estimates.}
 }
 
-@book{
-    Timoshenko1948,
-    author = "Timoshenko, S. and Young, D. H",
-    bibpr = "private-bibtex-keys#Timoshenko1948",
-    publisher = "McGraw-Hill",
-    title = "Advanced dynamics",
-    timestamp = "2009.09.23",
-    address = "New York",
-    bib = "bibtex-keys#Timoshenko1948",
-    year = "1948",
-    owner = "moorepants"
+@inproceedings{
+    Schwab2010,
+    author = "Schwab, A. L. and Kooijman, J. D. G.",
+    bibpr = "private-bibtex-keys#Schwab2010",
+    title = "Lateral dynamics of a bicycle with passive rider model",
+    timestamp = "2011.12.12",
+    booktitle = "The 1st Joint International Conference on Multibody System Dynamics",
+    address = "Lappeenranta, Finland",
+    bib = "bibtex-keys#Schwab2010",
+    month = "May",
+    webpdf = "references-folder/Schwab2010.pdf",
+    file = "Schwab2010.pdf:Schwab2010.pdf:PDF",
+    year = "2010",
+    review = "This is the work that Arend presented at the Delft conference in Oct 2010, but didn't write a paper on it. He creates two rider models that do not add additional degrees of freedom to the system. The mountain bike style model doesn't alter the open loop dynamics too much, but the upright arm model does. This model is reflects the kind of degrees of freedom we allows in our lateral perturbation tests with the rider in a body cast. Arend's model is only valid in the linear case. For some reason he designed it to have a locking configuration in the nonlinear formulation."
 }
 
 @manual{
@@ -136,20 +152,25 @@
     year = "2012"
 }
 
-@inproceedings{
-    Schwab2010a,
-    author = "Schwab, A. L. and Kooijman, J. D. G.",
-    bibpr = "private-bibtex-keys#Schwab2010a",
-    title = "Controllability of a bicycle",
-    timestamp = "2011.12.12",
-    booktitle = "5th Asian Conference on Multibody Dynamics 2010",
-    address = "Kyoto, Japan",
-    bib = "bibtex-keys#Schwab2010a",
-    month = "August",
-    webpdf = "references-folder/Schwab2010a.pdf",
-    file = "Schwab2010a.pdf:Schwab2010a.pdf:PDF",
-    year = "2010",
-    review = "Arend adds leaning degrees of freedom to his arm models and then asesses them for controlability with respect to speed."
+@article{
+    Kooijman2008,
+    author = "Kooijman, J. D. G. and Schwab, A. L. and Meijaard, J. P.",
+    bibpr = "private-bibtex-keys#Kooijman2008",
+    doi = "10.1007/s11044-007-9050-x",
+    title = "Experimental validation of a model of an uncontrolled bicycle",
+    timestamp = "2008.12.05",
+    journal = "Multibody System Dynamics",
+    bib = "bibtex-keys#Kooijman2008",
+    abstract = "In this paper, an experimental validation of some modelling aspects of an uncontrolled bicycle is presented. In numerical models, many physical aspects of the real bicycle are considered negligible, such as the flexibility of the frame and wheels, play in the bearings, and precise tire characteristics. The admissibility of these assumptions has been checked by comparing experimental results with numerical simulation results. The numerical simulations were performed on a three-degree-of-freedom benchmarked bicycle model. For the validation we considered the linearized equations of motion for small perturbations of the upright steady forward motion. The most dubious assumption that was validated in this model was the replacement of the tires by knife-edge wheels rolling without slipping (non-holonomic constraints). The experimental system consisted of an instrumented bicycle without rider. Sensors were present for measuring the roll rate, yaw rate, steering angle, and rear wheel rotation. Measurements were recorded for the case in which the bicycle coasted freely on a level surface. From these measured data, eigenvalues were extracted by means of curve fitting. These eigenvalues were then compared with the results from the linearized equations of motion of the model. As a result, the model appeared to be fairly accurate for the low-speed low-frequency behaviour.",
+    month = "May",
+    volume = "19",
+    owner = "moorepants",
+    webpdf = "references-folder/Kooijman2008.pdf",
+    file = "Kooijman2008.pdf:Kooijman2008.pdf:PDF",
+    year = "2008",
+    keywords = "Bicycle dynamics, Experiments, Instrumentation, Multibody dynamics, Non-holonomic constraints",
+    pages = "115-132",
+    review = "JKM - He reports different parameter values for the front frame than in his thesis."
 }
 
 @article{
@@ -193,24 +214,33 @@
 }
 
 @article{
-    Kooijman2008,
-    author = "Kooijman, J. D. G. and Schwab, A. L. and Meijaard, J. P.",
-    bibpr = "private-bibtex-keys#Kooijman2008",
-    doi = "10.1007/s11044-007-9050-x",
-    title = "Experimental validation of a model of an uncontrolled bicycle",
-    timestamp = "2008.12.05",
-    journal = "Multibody System Dynamics",
-    bib = "bibtex-keys#Kooijman2008",
-    abstract = "In this paper, an experimental validation of some modelling aspects of an uncontrolled bicycle is presented. In numerical models, many physical aspects of the real bicycle are considered negligible, such as the flexibility of the frame and wheels, play in the bearings, and precise tire characteristics. The admissibility of these assumptions has been checked by comparing experimental results with numerical simulation results. The numerical simulations were performed on a three-degree-of-freedom benchmarked bicycle model. For the validation we considered the linearized equations of motion for small perturbations of the upright steady forward motion. The most dubious assumption that was validated in this model was the replacement of the tires by knife-edge wheels rolling without slipping (non-holonomic constraints). The experimental system consisted of an instrumented bicycle without rider. Sensors were present for measuring the roll rate, yaw rate, steering angle, and rear wheel rotation. Measurements were recorded for the case in which the bicycle coasted freely on a level surface. From these measured data, eigenvalues were extracted by means of curve fitting. These eigenvalues were then compared with the results from the linearized equations of motion of the model. As a result, the model appeared to be fairly accurate for the low-speed low-frequency behaviour.",
-    month = "May",
-    volume = "19",
+    Whipple1899,
+    author = "Whipple, Francis J. W.",
+    bibpr = "private-bibtex-keys#Whipple1899",
+    title = "The stability of the motion of a bicycle",
+    timestamp = "2009.01.31",
+    journal = "Quarterly Journal of Pure and Applied Mathematics",
+    bib = "bibtex-keys#Whipple1899",
+    volume = "30",
+    webpdf = "references-folder/Whipple1899.pdf",
+    file = "Whipple1899.pdf:Whipple1899.pdf:PDF",
+    year = "1899",
     owner = "moorepants",
-    webpdf = "references-folder/Kooijman2008.pdf",
-    file = "Kooijman2008.pdf:Kooijman2008.pdf:PDF",
-    year = "2008",
-    keywords = "Bicycle dynamics, Experiments, Instrumentation, Multibody dynamics, Non-holonomic constraints",
-    pages = "115-132",
-    review = "JKM - He reports different parameter values for the front frame than in his thesis."
+    pages = "312--348"
+}
+
+@article{
+    Cain2012,
+    author = "Cain, Stephen M. and Perkins, Noel C.",
+    doi = "10.1080/00423114.2011.650181",
+    title = "Comparison of experimental data to a model for bicycle steady-state turning",
+    url = "http://www.tandfonline.com/doi/abs/10.1080/00423114.2011.650181",
+    journal = "Vehicle System Dynamics",
+    number = "8",
+    volume = "50",
+    eprint = "http://www.tandfonline.com/doi/pdf/10.1080/00423114.2011.650181",
+    year = "2012",
+    pages = "1341-1364"
 }
 
 @inproceedings{

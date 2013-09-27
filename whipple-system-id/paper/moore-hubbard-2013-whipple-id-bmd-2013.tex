@@ -3,6 +3,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{a4wide}
+% booktabs is here because the pandas generated latex tables use \toprule,
+% \midrule, etc
 \usepackage{booktabs}
 
 \title{Identification of the open loop dynamics of a bicycle-rider system under
@@ -17,34 +19,34 @@ manual control}
 \section{Introduction}
 
 Today's dynamical experiments are capable of delivering a staggering amount of
-both kinematic and kinetic data from complex dynamical systems. Such large
+both kinematic and kinetic data from complex dynamical systems. Such a large
 amount of data lends itself to data driven modeling approaches that can
-potentially provide more predictive models than the traditional building blocks
-of dynamical models using first principles. These data driven models can also
-give insight into the deficiencies of first principles models. Here we explore
-the bicycle-rider system and discuss both traditional models and data driven
-models.
+potentially provide more predictive models than first principles models which
+make use of the traditional building blocks of dynamical models. These data
+driven models can also give insight into the deficiencies of first principles
+models. Here we explore the bicycle-rider system with data driven modelling.
 
 The bicycle/motorcycle-rider system has been described with a variety of
 models, both simple \cite{Timoshenko1948} and complex \cite{Sharp1971}. Many
 studies of bicycles rely on the benchmarked Whipple model \cite{Meijaard2007},
 with or without the addition of tire models, for analytical studies of the
-system and simulation comparisons. The Whipple bicycle model is regarded as a
-highly predictive, yet ``simple'', model of the bicycle-rider system and is
-constructed from first principles, yet very little experimental data proves
-that the Whipple model is in fact robust at predicting the open loop dynamics
-of the bicycle-rider system. The benchmarked Whipple bicycle model
-\cite{Meijaard2007} provides a minimalistic standard base model in a manageable
-analytic framework capable of describing the essential dynamics such as speed
-dependent stability, steer and roll coupling, and non-minimum phase behavior.
+system and simulation comparisons. The Whipple bicycle model \cite{Whipple1899}
+is regarded as a highly predictive, yet ``simple'', model of the bicycle-rider
+system and is constructed from first principles, yet very little experimental
+data proves that the Whipple model is in fact robust at predicting the open
+loop dynamics of the bicycle-rider system. The benchmarked Whipple bicycle
+model \cite{Meijaard2007} provides a minimalistic standard base model in a
+manageable analytic framework capable of describing the essential dynamics such
+as speed dependent stability, steer and roll coupling, and non-minimum phase
+behavior.
 
 We are only aware of two significant experimental attempts at validating the
 Whipple model with data generated from bicycle experiments. The most cited,
 \cite{Kooijman2008,Kooijman2009}, shows that the Whipple model is predictive of
 a \emph{riderless} bicycle in a gymnasium and on a treadmill for speeds in its
-predicted stable speed range, 4-6 m/s. \cite{Cain2011} shows that the Whipple
-model reduced to a linear steady turn can predict the kinematics, but is not so
-good at predicting the rider's input torque.
+predicted stable speed range, 4-6 m/s. The second, \cite{Cain2012}, shows that
+the Whipple model reduced to a linear steady turn can predict the kinematics,
+but is not so good at predicting the rider's applied steering torque.
 
 It is also worth noting that \cite{Eaton1973} and \cite{James2002,James2005}
 have identified the open loop dynamics of the motorcycle-rider system. Eaton
@@ -52,10 +54,7 @@ used frequency domain identification techniques to identify the dynamics, which
 are know to be problematic for closed loop identification \cite{Ljung1999}.
 James showed that identified ARX models with lower order than typical first
 principles models can predict the measured motion, but does not find very good
-agreement with his first principles models.
-
-% TODO : Figure out if Eaton id'd under manual control or not, he may have
-% done both
+agreement with his high order first principles models.
 
 In an attempt to validate the Whipple model, we have collected a large set of
 time history data from an instrumented bicycle ridden under manual control. The
@@ -65,27 +64,13 @@ bicycle for a variety of maneuvers and speeds. These experiments generated
 approximately 1.7 million time samples from each of about 30 sensors sampled at
 200 hertz (representing about 2.4 hours of real time).
 
-Our overarching goal was to identify the manual control system employed the
-rider, but the schemes we used for control identification relied on an accurate
-plant model \cite{Moore2012}. So, we ended up using a solution similar to
-\cite{Eaton1973} and identified the plant, i.e. the open loop bicycle and rider
-dynamics, first followed by an identification of the control system. We
-considered the plant to include the passive, open loop, model of the bicycle
-combined with the rider's biomechanics and the controller to be some makeup of
-the human brain which takes sensory inputs, has time delays, and sends outputs
-for muscular control.
-
-Our preliminary attempts at identifying the controller with the Whipple model
-as the system plant showed that the plant always under-predicted the steer
-torque needed for a given measured trajectory \cite{Moore2012}. This ultimately
-resulted in erroneous estimations of the controller parameters.
-
 As pointed out by many, in particular the motorcycle researchers, there is very
 good reason to question some of assumptions in the Whipple model. The main
 questionable assumption being knife-edge no side-slip wheels, especially when
 under a rider's weight. And secondly, the rider's biomechanics have much more
 influence and coupling to the bicycle than the motorcycle, which must be
-accounted for.
+accounted for. Our identified models attempt to account for these and more
+descrepancies.
 
 \section{Instrumented Bicycle}
 
@@ -110,18 +95,20 @@ follows:
 \end{itemize}
 
 With these criteria in mind we constructed a bicycle with an electric
-propulsion system and rigid rider harness and an assortment of sensors. The
-rear frame three dimensional angular rates and a three dimensional point
-acceleration were measured with a VectorNav VN-100 inertial measurement unit,
-the rear frame roll angle was measured with a rotary potentiometer mounted to a
-small lightweight trailer, the steer angle was measured with a rotary
-potentiometer, the axial torque in the steer tube by a Futek 150 in-lb (±17 Nm)
-TFF350 torque sensor, the lateral perturbation force by a load cell 100 lb
-force load cell (Interface SSM-100), the angular rate about the steer axis of
-the front frame by a rate gyro Single axis rate gyro (Silicon Sensing
-CRS03-04S), and the rear wheel angular rate by a DC generator.
+propulsion system and rigid rider harness and an assortment of sensors, Figure
+\ref{fig:instrumented-bicycle}. The rear frame three dimensional angular rates
+and a three dimensional point acceleration were measured with a VectorNav
+VN-100 inertial measurement unit, the rear frame roll angle was measured with a
+rotary potentiometer mounted to a small lightweight trailer, the steer angle
+was measured with a rotary potentiometer, the axial torque in the steer tube by
+a Futek 150 in-lb (±17 Nm) TFF350 torque sensor, the lateral perturbation force
+by a load cell 100 lb force load cell (Interface SSM-100), the angular rate
+about the steer axis of the front frame by a rate gyro Single axis rate gyro
+(Silicon Sensing CRS03-04S), and the rear wheel angular rate by a DC generator.
+See \cite{Moore2012} for full details of the equipment.
 
 \begin{figure}
+  \label{fig:instrumented-bicycle}
   \includegraphics[width=5in]{figures/instrumented-bicycle.pdf}
   \caption{The instrumented bicycle with rider L seated in the harness.}
 \end{figure}
@@ -140,7 +127,7 @@ Both tasks were performed with and without the application of a manually
 applied lateral perturbation forces just below the seat. The forces were
 applied randomly in direction and time during the trials. Each maneuver was
 performed on both a 1 meter wide treadmill and an open gymnasium floor. See
-\cite{Moore2012} for the full details.
+\cite{Moore2012} for detailed descriptions of the trials.
 
 \section{Data}
 \label{sec:data}
@@ -154,19 +141,20 @@ and the rider were computed with standard methods. Two open source software
 packages, \verb|yeadon| \cite{Dembia2011} and \verb|BicycleParameters|
 \cite{Moore2011} manage and process the data physical parameter data.
 
-% TODO : add where to get the data
-
-% TODO: Add a table of the whipple model parameters for the three riders
-
 Before each day of testing, base data was collected for the system's sensors
 for calibration purposes. Then for each trial a set of meta data and raw time
 series were collected from the bicycle's onboard DAQ system. This data was
 stored in a HDF5 database for easy querying and retrieval in the data analysis
 step. The raw data was then processed to obtain the desired time histories
-defined by the Whipple model coordinates:
+defined by the Whipple model coordinates, described in Table
+\ref{tab:measurements}.
 
 \begin{table}
+  \centering
+  \caption{The fundamental measurements from the instrumented bicycle.}
+  \label{tab:measurements}
   \begin{tabular}{lll}
+    \hline
     Variable                                            & Description                                    & Units \\
     \hline
     $v$                                                 & wheel center speed magnitude                   & m/s \\
@@ -180,14 +168,15 @@ The signals were measured and processed as described in \cite{Moore2012}. The
 roll and steer accelerations were estimated by numerically differentiating the
 roll and steer rate signals. Before identification computations we subtracted
 the means over time of the signals that were generally symmetric about zero,
-i.e. all but lateral force.  Then all of the signals were filtered with a
-second order low pass Butterworth filter at 15 Hz cutoff frequency.
-
-% TODO: example plot of the signals
+i.e. all but lateral force and speed. Then all of the signals were filtered
+with a second order low pass Butterworth filter at 15 Hz cutoff frequency.
 
 The experimental data was collected on seven different days and amounted to
 about 600 individual trials with three different riders. We used 374 of the
 runs for the following analysis.
+
+% TODO: example plot of the signals
+% TODO : add where to get the data
 
 \section{Identification}
 \label{sec:identification}
@@ -205,7 +194,7 @@ candidate model which adds the inertial effects of the rider's arms to the
 Whipple model, also described in \cite{Moore2012}. This model was designed to
 more accurately account for the fact that the riders were free to move their
 arms with the front frame of the bicycle. This model is similar in fashion to
-the upright rider in \cite{Schwab2010a}, but with slightly different joint
+the upright rider in \cite{Schwab2010}, but with slightly different joint
 definitions. Constraints are chosen so that no additional degrees of freedom
 are added, keeping the system both tractable and comparable to the benchmarked
 Whipple model.
@@ -214,15 +203,6 @@ For the identification procedure we make the assumptions that the model is (1)
 linear, (2) is fourth order, and (3) we can measure the states and inputs
 directly while the system is under closed loop control by the rider. We then
 employ the \emph{direct identification} approach to identify the plant.
-
-During all of the experiments there are at least two measured external
-(exogenous) inputs: the steer torque and the lateral force. Both inputs are
-generated manually, the first from the rider and the second from the person
-applying the pulsive perturbation. From the set of measured outputs we selected
-the roll and steer angles and rates. The problem can then be formulated as
-follows: given the inputs and outputs of the system and some system structure,
-what model parameters give the best prediction of the output given the measured
-input? This a classic system identification problem.
 
 \subsection{Model structure}
 
@@ -246,10 +226,6 @@ lateral force, $F$, to the roll and steer torque equations. This equation
 assumes that the speed, $v$, is constant with respect to time as the model was
 linearized about a constant speed equilibrium, but we treat $v$ as a time
 varying parameter because the measured longitudinal acceleration is negligible.
-The augmented form extends the equations in \cite{Meijaar2007} to properly
-account for the lateral perturbation force, $F$, which was the actual input we
-delivered during the experiments. The force was applied just below the seat so
-most of the contribution from $F$ is in the roll equation.
 
 \subsection{Identification}
 
@@ -269,8 +245,8 @@ The roll and steer equations each can be put into a simple linear form:
 where $\Theta$ is a vector of the unknown constant matrix entries and the
 design matrix, $\mathbf{\Gamma}$, and the prediction vector, $Y$, are made up
 of the inputs and outputs measured during a run. $\Theta$ can be all or a
-subset of the entries in the canonical matrices. $\hat{\Theta}$ can be
-estimated using the well known linear least squares solution.
+subset of the entries in the canonical matrices and can be estimated using the
+well known linear least squares solution, Equation \ref{eq:theta-estimate}.
 
 \begin{equation}
   \hat{\Theta} = [\mathbf{\Gamma}^T \mathbf{\Gamma}]^{-1} \mathbf{\Gamma}^T Y
@@ -283,11 +259,11 @@ portion of a run, or a set of runs.
 Also, all of the parameters in the canonical matrices need not be estimated.
 The analytical formulation of the Whipple model bicycle model
 \cite{Meijaard2007} gives a good idea of which entries in the matrices we may
-be more certain about from our physical parameters measurements. We fixed the
-parameters if it was a function of trail, front assembly moments and products
-of inertia, or equal to zero. This is because the true trail is difficult to
-measure, the inertia of the front frame plays a large roll in the steer
-dynamics.
+be more certain about from our physical parameters measurements. We fixed any
+parameters which were not a function of trail, front assembly moments and
+products of inertia, or equal to zero. This is because the true trail is
+difficult to measure, the inertia of the front frame plays a large roll in the
+steer dynamics.
 
 For the roll equation this leaves $M_{\phi\delta}$, $C_{1\phi\delta}$,
 and $K_{0\phi\delta}$ as free parameters, and for the steer equation
@@ -417,7 +393,7 @@ relieve the instability issues. We chose the former method for these
 computations.
 
 For method (1) the \emph{variance accounted for} (VAF) by the model for both
-the roll torque and the steer torque equations are:
+the roll torque and the steer torque equations are
 
 \begin{equation}
   \label{eq:vaf}
@@ -426,7 +402,7 @@ the roll torque and the steer torque equations are:
                             {\vert \vert Y_{\phi,\delta} - \bar{Y}_{\phi,\delta} \vert \vert}
 \end{equation}
 
-where $c$ is either $\phi$ or $\delta$ and $\bar{Y}$ is the mean of $Y$.
+where $\bar{Y}$ is the mean of $Y$.
 
 We compute the two VAF values for each of the subsets of data from the 12
 scenario combinations using 13 models: the 12 identified models and the Whipple
@@ -451,24 +427,23 @@ indication of the best model for predicting that set of runs.
   \input{tables/steer_r_squared.tex}
 \end{table}
 
+Tables \ref{tab:roll-r-squared} and \ref{tab:steer-r-squared} lead to these
+observations:
+
 \begin{itemize}
   \item
-    The arm model is poor at predicting the steer torque.
+    The models predict the steer torque better than the roll torque.
   \item
-    The models derived from rider C's runs are poorer at predicting the inputs.
+    The Whipple model is generally poor at predicting the roll torque equation.
   \item
-    The Whipple model is not too bad at predicting steer torque, but on
-    average about 10\% worse than the best models.
-  \item
-    The models identified from the pavilion runs are generally the best (with
-    exception of C's). The ones generated from L and J's runs are typically the
-    best at predicting both steer torque and roll torque, with L's giving
-    better roll torque predictions.
-  \item
-    The roll torque is poorly predicted by all models when it is supposed
-    to be zero. This raises implications in the validity of the roll
-    equation and the potential need for tire slip models.
+    The Whipple model is good at predicting the steer torque.
 \end{itemize}
+
+% TODO : Make sure this Whipple steer torque VAF is correct, as these are very
+% different results than I was previously getting.
+
+% TODO : The L-P model was the best in my previous calcs, and now it is one of
+% the worst.
 
 For method (2), we simulate all 14 models with the inputs measured from the 374
 runs and compute the VAF explained by the model for each of the four outputs.
@@ -508,59 +483,56 @@ poorest.
   \end{tabular}
 \end{table}
 
+The following are observed from Table \ref{tab:MedianVAFOutputs}:
+
 \begin{itemize}
   \item
     For all outputs other than roll angle, the arm model is better than
     the Whipple model.
   \item
-    The models from C's data fare much better than the input comparisons and
-    are better than some of J's.
-  \item
-    The model identified from the data with rider J on the Pavilion floor is
-    very poor in roll angle prediction as opposed to being a good choice from
-    the input comparison results.
-  \item
     All of the identified models are better predictors than the first
     principles models.
+  \item
+    Model J-P has the best average predicitive ability for all of the runs.
 \end{itemize}
 
-\subsection{Most predicitive model}
-% TODO : show results of the L-P model here instead.
-
-This section details the characterisitcs for the identified model which best
+\subsection{Most predictive model}
+This section details the characteristics for the identified model which best
 predicts \emph{all} of the data, the L-P model.
 
 The eigenvalues as a function of speed of the identified model can be compared
-to those of the Whipple and arm models. Figure \ref{fig:AARloc} shows the root
-locus of the three models as a function of speed. The oscillatory weave mode
-exists in all three models, stable at all speeds in the arm model but unstable
-at lower speeds in the other two models. The identified model's oscillatory
-weave mode is unstable over most of the shown speed range. Above 3 m/s or so,
-the Whipple model's oscillatory weave mode diverges from the identified model
-to different asymptotes. The arm model weave mode diverges somewhere in
-between. Note that the arm model has an unstable real mode for all speeds.
-
-Figure \ref{fig:AAEig} gives a different view of the root locus allowing one to
-more easily compare the real and imagrinary parts of the eigenvalues
-indenpendently. The imaginary parts of the weave mode have similar curvature
-with respect to speed for all the models, with the identified model having
-about 1 rad/s larger frequency of oscillation for all speeds. The identified
-model does have a stable speed range where the Whipple model under predicts the
-weave critical speed by almost 2 m/s. The identified caster mode is much faster
-than the one predicted by the Whipple model which is somewhat counterintuitive
-because tire scrub torques would probably tend to slow the caster mode.
-Although, the pneumatic trail and the rider's arm inertia could play a larger
-role that expected. Furthermore, the caster mode may not be well identified
-because the experiments were not design to specifically excite it.
+to those of the Whipple and arm models. Figure \ref{fig:L-P-rlocus} shows the
+root locus of the three models as a function of speed. The oscillatory weave
+mode exists in all three models, stable at all speeds in the arm model but
+unstable at lower speeds in the other two models. The identified model's
+oscillatory weave mode is unstable over most of the shown speed range. Above 3
+m/s or so, the Whipple model's oscillatory weave mode diverges from the
+identified model to different asymptotes. The arm model weave mode diverges
+somewhere in between but shares similar pole locations with the Whipple model
+at higher speeds. Note that the arm model has an unstable real mode for all
+speeds.
 
 \begin{figure}
+  \label{fig:L-P-rlocus}
   \includegraphics[width=5in]{figures/L-P-rlocus.pdf}
   \caption{Root locus of the identified model (circle), the Whipple model
     (diamond), and the arm model (triangle) with respect to speed in m/s.
     }
 \end{figure}
 
+Figure \ref{fig:L-P-eig} gives a different view of the root locus allowing one
+to more easily compare the real and imaginary parts of the eigenvalues
+independently. The imaginary parts of the weave mode have similar curvature
+with respect to speed for all the models about 2m/s or so. The identified model
+has a stable speed range where the Whipple model under predicts the its weave
+critical speed by almost 3 m/s. The identified caster mode is much faster than
+the one predicted by the Whipple model which is somewhat counterintuitive
+because tire scrub torques would probably tend to slow the caster mode.
+Although, the pneumatic trail and the rider's arm inertia could play a larger
+role that expected.
+
 \begin{figure}
+  \label{fig:L-P-eig}
   \includegraphics[width=5in]{figures/L-P-eig.pdf}
   \caption{Real and imaginary parts of the eigenvalues as a function of speed
     for model (I)dentified from all runs, the (W)hipple model and the (A)rm
@@ -569,27 +541,37 @@ because the experiments were not design to specifically excite it.
 
 The frequency band from 1 rad/s to 12 rad/s is of most concern as it bounds a
 reasonable range that the human may be able to operate within. The steer torque
-to roll angle transfer function, Figure
-11.15\textless{}figAATdelPhi\textgreater{} may be the most important to model
-accurately as it is the primary method of controlling the bicycle's direction,
-i.e. commanding roll allows one to command yaw. At 2 m/s the Whipple model
-magnitude matches at lower frequencies (\textless{} 4 rad/s) better and the arm
-model better at higher frequencies (\textgreater{} 4 rad/s). A 4 m/s and above
-the magnitude of identified varies little with speed, which contrasts the
-stronger speed dependence of the first principles models. The low frequency
-behavior of the identified model is not well predicted by the Whipple and arm
-models at the three highest speeds but about about 3 rad/s the arm model shows
-better magnitude matches than the Whipple model.
+to roll angle transfer function, Figure \ref{fig:L-P-Tdel-Phi} may be the most
+important to model accurately as it is the primary method of controlling the
+bicycle's direction, i.e. commanding roll allows one to command yaw. At 2 m/s
+the magnitude is similar for all three models. At 4 m/s the identified model
+has a larger gain than the first principles models. In fact, the identified
+model seems to vary little with speed, which contrasts the stronger speed
+dependence of the first principles models. The low frequency behavior of the
+identified model is not well predicted by the Whipple and arm models at the
+three highest speeds but about about 3 rad/s the arm model shows better
+magnitude matches than the Whipple model.
 
 \begin{figure}
+  \label{fig:L-P-Tdel-Phi}
   \includegraphics[width=5in]{figures/L-P-Tdel-Phi.pdf}
   \caption{Frequency response of the three models, (I)dentified, (W)hipple, and
     (A)rm, at four speeds (2, 4, 6, and 9 m/s). The color indicates the model
     and the line type indicates the speed}
 \end{figure}
 
-% TODO : The H values are the same, somethings fishy.
+Table \ref{tab:L-P-mck} gives the values of the identified coefficients to the
+roll and steer equations for the L-P model.
+
+% TODO : Might be a good idea to put an NA in place of the parameters which
+% were fixed.
+% TODO : Add the arm model some how? Not sure how to compute K0 and K2 quickly,
+% needed symbolics in the past.
 \begin{table}
+  \label{tab:L-P-mck}
+  \caption{The identified $\mathbf{M}$, $\mathbf{C}_1$, $\mathbf{K}_0$,
+  $\mathbf{K}_2$, and $H$ matrices of the L-P model compared to the Whipple
+  Model.}
   \input{tables/parameter-compare.tex}
 \end{table}
 
@@ -617,8 +599,6 @@ improve the predictive ability.
 
 This paper is based on work supported by the National Science Foundation under
 Grant No 0928339. Karl {\AA}str{\"o}m gave me the ideas for the canonical form.
-
-%\printbibliography
 
 \bibliographystyle{plain}
 \bibliography{references}
