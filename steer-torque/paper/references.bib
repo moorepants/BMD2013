@@ -1,0 +1,339 @@
+@book{
+    Kane1985,
+    author = "Kane, Thomas R. and Levinson, David A.",
+    bibpr = "private-bibtex-keys#Kane1985",
+    publisher = "McGraw Hill",
+    isbn = "0070378460",
+    title = "Dynamics: Theory and Applications",
+    timestamp = "2009.01.31",
+    abstract = "This textbook is intended to provide a basis for instruction in dynamics. Its purpose is not only to equip students with the skills they need to deal effectively with present-day dynamics problems, but also to bring them into position to interact smoothly with those trained more conventionally.",
+    address = "New York, NY",
+    bib = "bibtex-keys#Kane1985",
+    year = "1985",
+    owner = "moorepants"
+}
+
+@mastersthesis{
+    Evertse2010,
+    author = "Evertse, M. V. C.",
+    bibpr = "private-bibtex-keys#Evertse2010",
+    school = "Delft University of Technology",
+    title = "Rider analysis using a fully instrumented motorcycle",
+    timestamp = "2012.02.06",
+    review = "Lane change 40 Nm max torque",
+    bib = "bibtex-keys#Evertse2010",
+    webpdf = "references-folder/Evertse2010.pdf",
+    file = "Evertse2010.pdf:Evertse2010.pdf:PDF",
+    year = "2010"
+}
+
+@phdthesis{
+    Eaton1973,
+    author = "Eaton, David J.",
+    bibpr = "private-bibtex-keys#Eaton1973",
+    school = "University of Michigan",
+    title = "Man-Machine Dynamics in the Stabilization of Single-Track Vehicles",
+    timestamp = "2009.10.30",
+    review = {He does a nice review of the current work. He chooses Sharp's model as the most definitive motorcycle model and works with it. He shows the classic compensatory manual control system. He then shows the crossover model citing that a suprising amount of experimental data supports the model. He cites Weir as good manual control work and talks about how van Lunteren and Stassen's simulator may not be very realistic. He says that the van Lunteren and Stassen work was based on the Whipple model which hadn't be verified against experiment and points out the steer angle and lean angle inputs not being torques. He cites a bicycle simulator by Hattori in Japan, which I haven't heard of. He does two experiment sets: transient response of the uncontrolled motorcycle and roll stablization of the controlled motorcycle Figure 1.1 shows that for speeds below 30 mph the tire slip models do not vary much from a model without tireslip. He shows Sharp's simple tire relaxation forumla. He points out that stability may not always be desireable for the rider. "For motorcycles, steering-torque control is more likely than position control, due to the greatly increase instability of the capsize mode whne the steering degree of freedom is omitted." He and Weir independentely substantiated Sharp's model. Eaton's roots were identical to Sharps. He uses five bodies: engine, rear wheel, rear frame and rider, front frame and front wheel. he linearizes about the upright (except for coulomb headtube friction). Point contact wheels but he includes tire forces and moments due to slip and inclination. Figure's 2.1-2.3 show nice comparisons of the root loci with respect to speed for different tire models. He concludes that 1) path-curvature effects primarily influence the wobble mode, 2) tire moments have an importnat influence on the cpaise mode and 3) the weave mode is influenced by the choice of a tire model only when speeds are below 20 mph. Insturmented motorcycle: The rider's upper body was rigidified with a brace. He did hands-off experiments with the brace!! He used a third wheel to measure roll angle. Yaw rate was measured with gyro. Roll angle and steer angle were measured with potentiometers. They used a chased car with the measurement equipment, including strip charts. Uncontrolled experiments: He excited steering by the rider applying an impulsive tap to the handlebars. He excited roll by hanging weights on the motorcycle and then dropping one of the weights to apply a gravity based roll torque. He found that the weights didn't change the resultin gveritcal loads on the tires and coudl be neglected. He used the rate gyro to measure roll rate in the hand controlled experiments. He found it difficult to independently excite the motorcycle modes of motion with high speed wobble being the easiest to excite and capsize and weave being difficult. He did a combo excitation too: drop the weight and apply steer torque impulse to correct the fall. He compares simulation results for the combo excitation claiming to clearly see the wobble mode (except in roll angle), not seeing weave (due to high damping) and clearly seeing capsize at the two top speed runs. Figures 3.2-3.5 show ok agreement, with the higher 42 mph run showing most agreement. He did many tests, with little variablity. Wobble predicting decreased with speed. He sees constant damping and freq of the wobble mode with respect to speed. Other uncontrolled experiments: 1. The test vehicle seemed to be unstable at all speeds. 2. No low freq weave coudl be excited. He observed natural steer into the fall but it wasn't fast enough for enough correction. 3. Instability became less severe as speed increased. He found no evidence that any of his tire models were any better than his #1 model (lateral slip and inclination forces and aligning moments from slip angles). He goes through several hypotheses about why the the model doesn't match his experiments well, focusing on more complicated tire models and their effects at lower speeds. he concludes that he needs a better tire model at low speeds. Chapter 4: man-machine system He focues on the roll stablization inner loop. Feedback roll angle and control based on roll angle error. He eliminates body lean control as an option to simplify things. He does note that low speed and difficult manuevers may require body lean. He calculates the transfer functions from steer torque to roll for the open loop motorcycle at 15, 30 and 45 mph based on his measured parameters. Figure 4.2 shows the bode plots of each. The 30 and 45 Bode plots are almost the same and the 15 is very different. (15 mph is stable). The rider can control frequencies less than 10 rad/s. The 15 mph is dominated by weave and capsize, while the higher speeds are dominated by capsize alone. 15 is aproximated by 3rd order and the 30, 45 are approximated by a first order transfer function. This leads to a simple form of the human operator for the 30, 45 mph speeds: a simple gain and time delay. He focues on 30 mph for remaining analysis. He measured steer torque with a torque bar and the rider could only use one hand. He set up his strain gages and bar design to be primarily senstive to the applied steer torque. The roll angle sensor was not always reliable. He filtered all signals with a first order filter with break freqency of 5 rad/s. He identifies the controlled element with two methods: cross-spectral and impulse response methods. The impulse response method is finite impulse response using linear regression. he notes that the remnant is an issue and makes use of the Wingrove Edwards method to reduce the error in estimating the rider. There is a time delay where the autocorrelation function of the remnant is minimized. This time delay can be leveraged to remove much of the error in identifying the human controller. * you can use a Pade approximation to time delay to linearize the model in identification * Chapter 6: Roll stablization experiments These are basically the same as Eaton1973a, which I've alread reviewed. He sees 3 to 5 time larger steer angles at 15 mph than 30+ mph, but steer torques increase with speed. Roll angles and rates were nearly speed independent. He found a dominant frequency between 1.5 and 5.0 rad/s. He says that the motorcycle equations of motion are good predictors now, but the conclusions from Chapter 3 seemed like they were more mediocre. He shows much better matches of the controlled element (the motorcycle) during these experiments (he's looking at smalle bandwidth). his fit is worse for the 15 mph runs, mainly for 1-2 rad/s. He found that his roll angle measurement was better to work with than the roll rate (this was a limited of his id procedure). It looks like he decides to fix the time delay even though it was more variable: 0.14-0.21. He found the average for most days to be around 0.3, so he forced it to be 3.0 for the day and rider that didn't fit that. He had to fix the delat because any combination of the delay and lead equalization terms woudl give food fits (i.e. a flat spot in the linear regression??). He shows good matches to the crossover model for all speeds. Pg 134: A gain and time delay describe the rider block for higher speeds! "If the rider wishes to change the roll angle, he applies a steering torque to the handlebars of opposite sign to the direction of desired change." -- countersteering Conclusions: 1. Sharp's model is good for weave and capsize prediction except at low speeds. 2. The model doesn't describe wobble below 35 mph. A better tire model may be needed. 3. No real stable speed range was found. 4. His various tire models didn't improve fit results. 5. Tire overturning moments and aligning torques cancel each other. 6. Viscous steering dampers are prefered to Coulomb because the latter destablizes roll. 1. The rider remnant excitation provides enough to identify the controlled element (no other external forces are needed) 2. The time shift method can be used to identify the rider control block. 3. The rider can be modeled as a simple gain and time delay for high speed runs. Th time delay was consistently 0.3 seconds. 4. The rider can be described as a gain on rate control with lead equalization for 15 mph runs. 5. The crossover model was valid for this data. 6. The rider remnant is large and white. 7. Phase margins: 30-50 degrees, gain margins: 4-11 db for the rider transfer function. A dominant frequency was between 1.5 to 5.0 rad/s. 8. Body lean control was not necessary to control the motorcycle in normal riding. It may be more of a style thing if folks use it. Appendices A tire model. He measures the inertia with the rider on the bike in the brace. Roll inertia was measured by setting the bike on knife edge and osciallating it under springs. Yaw inertia was measured by suspending the bike from thr front and rear on strings and osciallating. The product of inertia was found the same a yaw but with the motorcycle tipped up. A torional pendulum was used for the wheels and fork. Engine inertia and mass was from manufacturer. He estimates the coloumb friction in the steering head with a break-away torque method (i.e. static friction), but says it was negligible. For some of the roll stabilization trials at 15 and 30 mph, he finds 30 in-lb (3.4 Nm) to be the maximum steer torque. He shows the tire mounted in a tire tester. He measured all the tire forces and moments.},
+    bib = "bibtex-keys#Eaton1973",
+    webpdf = "references-folder/Eaton1973.pdf",
+    file = "Eaton1973.pdf:Eaton1973.pdf:PDF",
+    year = "1973",
+    owner = "moorepants"
+}
+
+@article{
+    Sharp2008a,
+    author = "Sharp, Robin S.",
+    bibpr = "private-bibtex-keys#Sharp2008a",
+    doi = "10.1115/1.2983014",
+    title = "On the Stability and Control of the Bicycle",
+    timestamp = "2008.10.28",
+    journal = "Applied Mechanics Reviews",
+    bib = "bibtex-keys#Sharp2008a",
+    number = "6",
+    abstract = "After some brief history, a mathematical model of a bicycle that has become a benchmark is described. The symbolic equations of motion of the bicycle are given in two forms and the equations are interpreted, with special reference to stability. The mechanics of autostabilization are discussed in detail. The relationship between design and behavior is shown to be heavily speed-dependent and complex. Using optimal linear preview control theory, rider control of the bicycle is studied. It is shown that steering control by an optimal rider, especially at low speeds, is powerful in comparison with a bicycleÂs selfsteering. This observation leads to the expectation that riders will be insensitive to variations in design, as has been observed in practice. Optimal preview speed control is also demonstrated. Extensions to the basic treatment of bicycle dynamics in the benchmark case are considered so that the modeling includes more realistic representations of tires, frames, and riders. The implications for stability predictions are discussed and it is shown that the moderate-speed behavior is altered little by the elaborations. Rider control theory is applied to the most realistic of the models considered and the results indicate a strong similarity between the benchmark case and the complex one, where they are directly comparable. In the complex case, steering control by rider-lean-torque is feasible and the results indicate that, when this is combined with steer-torque control, it is completely secondary. When only rider-lean-torque control is possible, extended preview is necessary, high-gain control is required, and the controls are relatively complex. Much that is known about the stability and control of bicycles is collected and explained, together with new material relating to modeling accuracy, bicycle design, and rider control.",
+    month = "November",
+    volume = "61",
+    webpdf = "references-folder/Sharp2008a.pdf",
+    file = "Sharp2008a.pdf:Sharp2008a.pdf:PDF",
+    year = "2008",
+    owner = "moorepants",
+    pages = "24",
+    review = "JKM - Robin Sharp used the benchmark bicycle model and an LQR controller with preview to make a bicycle track a 4 meter lane change at 6 m/s. During this manuever, the steer toque ranged from about -1 to 1 Nm. He also showed a very fine steer torque variation in the range of 0 to 0.0025 Nm about 10 meters before the start of the lane change. Interesting to note that the steer rate gain is relatively very small compared to the steer angle, roll angle and roll rate gains, for pretty much all speeds. Seems to be true for tight, medium and loose control. He writes the characteristic equation of the Whipple model as an analytic quartic polynomial. Where he's reduced the number of parameters with a gyrostat formulation and even talks about reduced parameter space using Buckingham's pi theorem. Why doesn't he calculate the eigenvalues at zero speed? He points out that there is a proper distinction between steer angle and steer torque when talking about countersteering. In Limebeer2006, he talks about the two steer torque interpretations: the first being the initially opposite steer torque application and the secon is a high speed phenomna were you have to reverse the initial torque to maintain a steady turn. I'm not sure what happens with the steer angle in these two cases. He says that rider control of a fixed steering bicycle is not theorectically impossible. Bicycle design has little influence over controllability. He claims this because at slow speeds the control action of the rider is much stronger that the auto control provided by the bicycle. Fig 16 shows steer angle as the small magnitude. Here he shows a tiny counter steer torque in the lane change. He shows that acceleration/deceleration and tire crown radius after the open loop poles a lot. Sometimes removing the autostable region. He adds a tire model with tire width, side slip and relaxation. The tire width doesn't seem to change things much but the side slip affects the higher speed weave mode. Rider compliance with stiffness and damping on a leaning rider affect the higher speed weave mode, but don't affect the low speed weave mode much. Gains for steer torque control are much the same regardless if there is rider lean control involved too. The rider lean torque gains are relatively small when both controls are allowed. High gains are needed for low speed rider lean torque only control. The gain magintudes are basically ordered as follows with the first having the highest magnitudes for the loose control: roll angle and roll rate rider lean angle and lean rate, frame twist angle steer angle steer rate and frame twist rate Figures 27-30 might be labled wrong as they should related to different q1 values and control authority. Rider lean torque control requires three times the preview for equal control weighting. His cost function is based on minimizing the error in the path for a finite amount of preview times and minimizing the control power."
+}
+
+@article{
+    Fu1965,
+    author = "Fu, Hiroyasu",
+    bibpr = "private-bibtex-keys#Fu1965",
+    title = "Fundamental Characteristics of Single-Track Vehicles in Steady Turning",
+    timestamp = "2009.10.30",
+    journal = "JSME Bulletin",
+    bib = "bibtex-keys#Fu1965",
+    number = "34",
+    review = {Measures roll angle with an arm and measures steering torque but doesn't show info on it here except in the review section. The "formal" reviews are included at the end of the paper with Kageyama and Kondo asking questions. The open review is pretty cool. I haven't seen that before.},
+    volume = "9",
+    owner = "moorepants",
+    webpdf = "references-folder/Fu1965.pdf",
+    file = "Fu1965.pdf:Fu1965.pdf:PDF",
+    year = "1965",
+    keywords = "roll angle,steer torque,tire slip,motorcycle",
+    pages = "284--293"
+}
+
+@inproceedings{
+    Iuchi2006,
+    author = "Iuchi, K. and Murakami, T.",
+    bibpr = "private-bibtex-keys#Iuchi2006",
+    doi = "10.1109/IECON.2006.347498",
+    title = "An Approach to fusion control of stabilization control and human input in Electric Bicycle",
+    timestamp = "2012.01.01",
+    abstract = "As well know, a bicycle is a high efficiency vehicle and is suitable for aging society in the future. In the practical use, however, the bicycle is not always stable and the motion stabilization is required for a widespread application. This paper focuses on the instability of the bicycle. There are few researches which realize the control system supporting driver's operation because human input is regarded as disturbance and make system unstable. This paper realizes the posture control of the electric bicycle which is able to accept human input. Estimating human input from motor reaction torque, control system is constructed without force sensor",
+    address = "Paris, France",
+    bib = "bibtex-keys#Iuchi2006",
+    pages = "3211--3216",
+    webpdf = "references-folder/Iuchi2006.pdf",
+    file = "Iuchi2006.pdf:Iuchi2006.pdf:PDF",
+    year = "2006",
+    booktitle = "32nd Annual Conference on IEEE Industrial Electronics",
+    review = "They design a controller that can work in tandem with a rider's control input. They don't measure steer torque though, but estimate it from the motor reaction torque. They explain that other controllers would treat the rider's input torque as a disturbance and try to eliminate it, so care has to be taken to allow the rider steer torque. They calculate the human torque based on the motor torque taking into accoutn the handlebar and motor inertia. They also mention backlash problems and that the human estimate takes those into account with a dead zone. The show some experimental results which are hard to interpret, but I think it shows a rider controlling the bicycle with a heavy weight in the front basket. Then it shows the same thing, but with the fusion control system turned on."
+}
+
+@book{
+    Meriam1975,
+    author = "Meriam, J.L.",
+    publisher = "Wiley",
+    isbn = "9780471596073",
+    title = "Dynamics",
+    lccn = "74030017",
+    url = "http://books.google.com/books?id=NIcoAQAAMAAJ",
+    year = "1975"
+}
+
+@article{
+    Kageyama1959,
+    author = "Kageyama, Katumi and Fu, Hiroyasu",
+    bibpr = "private-bibtex-keys#Kageyama1959",
+    note = "596009",
+    title = "Experiments on Control Characteristics of a Motor-cycle in Steady Turning, Especially on the Effects of Lean in and Lean out",
+    timestamp = "2012.02.01",
+    journal = "Jour. SAE Japan",
+    bib = "bibtex-keys#Kageyama1959",
+    number = "10",
+    volume = "13",
+    year = "1959",
+    pages = "41--45"
+}
+
+@mastersthesis{
+    Lorenzo1997,
+    author = "de Lorenzo, David S.",
+    bibpr = "private-bibtex-keys#Lorenzo1997",
+    school = "Univeristy of California, Davis",
+    title = "Quantification of Structural Loading During Off-road Cycling",
+    timestamp = "2010.04.13",
+    review = "JKM - David de Lorenzo instrumeted a bike to measure pedal forces, handlebar forces, hub forces to measure the in-plane structural loads. He took the bike to the trails and had 7 riders do a downhill section. The hand reactions were measured with a handlerbar sensitive to x (pointing forward and parallel to the ground) and z (pointing upwards, perpendicular to the ground) axis forces on both the left and right sides of the handlebar. Net torque about any vector in the fork plane of symmetry can be calculated from these. Figure 3d shows a plot of steering torque with maximums around 7 Nm. The stem extension torque (representing the torque from pushin down and up on the handlebars) reaches 15 Nm. The calibration information leads me to believe that the crosstalk from the all of the forces and moments on the handlebars gives a very low accuracy for the reported torques, probably in the +/- 1 to 3 Nm range.",
+    bib = "bibtex-keys#Lorenzo1997",
+    webpdf = "references-folder/Lorenzo1997.pdf",
+    file = "Lorenzo1997.pdf:Lorenzo1997.pdf:PDF",
+    year = "1997",
+    owner = "moorepants"
+}
+
+@article{
+    Capitani2006,
+    author = "Capitani, R. and Masi, G. and Meneghin, A. and Rosti, D.",
+    bibpr = "private-bibtex-keys#Capitani2006",
+    doi = "10.1080/00423110600883603",
+    title = "Handling analysis of a two-wheeled vehicle using {MSC.ADAMS}/motorcycle",
+    timestamp = "2010.03.22",
+    journal = "Vehicle System Dynamics: International Journal of Vehicle Mechanics and Mobility",
+    bib = "bibtex-keys#Capitani2006",
+    abstract = {In this article, the results of a virtual analysis of a two-wheeled vehicle are described. A virtual prototype of a Piaggio Liberty 150 4T was built to evaluate the handling behavior during some codified maneuvers. The activity was done with the cooperation of Piaggio & C. SpA and MSC Software. The multibody model was built using MSC.Adams/Motorcycle. It reproduces the original vehicle (geometry, inertia, and spring/damper coefficients) and is fully parametrized. The actions between ground and tires are calculated with the "Magic Formula". The multibody model, controlled applying a steering torque to the handlebar, was tested during some maneuvers (turn, ISO lane change, "Figure 8"), and the results were compared with the experimental data acquired with an instrumented vehicle during the same maneuvers. Signal comparison gave a good agreement except for the differences due to the input forces: the multibody model is controlled only with the steering torque, but body movements and feet and hand pressures are applied to the instrumented vehicle.},
+    review = "They measure steer torque on a scooter and do some manuevers like changes and turns. For the lane change his model predicts counter steer angle, but he doesn't see it in the experimental data. His steer angle comparison shows orders of magnitudes difference in steering angle, the model seems really poor. Why didn't they plot the exp and model results on the same graph! It is hard to compare otherwise. He claims there is no counter because of the rider use his body to turn. In the lane change he reports -1.5 to 4 kg-m (-14.7 to 39.2 n-m) in steering torque. He shows experimental steering torques for the large 90 degree turn to be 0.9 kg-m to 1.25 kg-m (8.83 nm to 12.3 nm). The is no detail on how steer torque was measured. His model predicts a 245 n-m steer torque for the lane change ---> equals bad model. He calls his lane change and ISO lane change, but I don't see any reference to a ISO standard. He claims good agreement with his model and the experimental results in the conclusions. What a joke!! There is little to no agreement. All the comparision are not even in the same magnitude range and the trends are hardly there either. Crap. How did this make it through peer review for a journal!!",
+    volume = "44",
+    webpdf = "references-folder/Capitani2006.pdf",
+    file = "Capitani2006.pdf:Capitani2006.pdf:PDF",
+    year = "2006",
+    owner = "moorepants",
+    pages = "698--707"
+}
+
+@inproceedings{
+    Bortoluzzi2000,
+    author = "Bortoluzzi, D. and Doria, A. and Lot, R.",
+    bibpr = "private-bibtex-keys#Bortoluzzi2000",
+    title = "Experimental investigation and simulation of motorcycle turning performance",
+    timestamp = "2012.01.11",
+    booktitle = "3rd International Motorcycle Conference",
+    bib = "bibtex-keys#Bortoluzzi2000",
+    webpdf = "references-folder/Bortoluzzi2000.pdf",
+    file = "Bortoluzzi2000.pdf:Bortoluzzi2000.pdf:PDF",
+    year = "2000",
+    keywords = "steer torque",
+    review = "They identify the fact that you may have to use a positive or a negative steering torque to maintain a turn. Similar description of the steer torque measurement system as in Biral2003."
+}
+
+@article{
+    Kondo1955,
+    author = "Kondo, M.",
+    bibpr = "private-bibtex-keys#Kondo1955",
+    title = "Experimental Study on the Stability and Control of Single-Track Vehicles",
+    timestamp = "2009.10.30",
+    journal = "JSME",
+    bib = "bibtex-keys#Kondo1955",
+    number = "442",
+    review = "There is some kind of test stand for a motorcycle that looks like it has a dummy rider on it. The front wheel is on a rotating drum and the rear wheel seems to be fixed. A lab test on stability. He did some analysis on the front end geometry (head angle, trail, fork offset and wheel diameter). He also seems to have an instrumented motorcycle. The experimental time history of a Figure 8 manuever shows steer torque and steer angle (Fig 11). Manuevers: steady turn, figure 8, and navigating a curve (or turn). He shows some plots of data from various figure 8's.",
+    volume = "58",
+    webpdf = "references-folder/Kondo1955.pdf",
+    file = "Kondo1955.pdf:Kondo1955.pdf:PDF",
+    year = "1955",
+    owner = "moorepants",
+    pages = "827--833"
+}
+
+@techreport{
+    Cheng2003,
+    author = {Cheng, Kok Y. and Bothman, David and {\AA}str{\"o}m, Karl J.},
+    bibpr = "private-bibtex-keys#Cheng2003",
+    title = "Bicycle Torque Sensor Experiment",
+    timestamp = "2010.03.02",
+    abstract = "This experiment examines the relationship between the steering torque and the turning angle of a bicycle. Initially, a torque wrench experiment was conducted to determine the range of applied torque required to steer a bicycle. With this information, a handle bar assembly involving a load cell and a converter circuit weredesigned and fabricated. A calibration test was conducted on the load cell followed by a verification test to validate the handle bar assembly and the associated calibration data. Prior to conducting the experiment, two test courses were designed to test two types of bicycle turns: straight turns and circular turns. The results of the experiment concluded that a rider must apply large amounts of torque to the handle bars in order to complete a turn that requires a high turning angle. Sources for experimental errors and future improvements to this investigation are suggested.",
+    bib = "bibtex-keys#Cheng2003",
+    review = "JKM - This is a report about a design project at UCSB to develop and implement a steer torque measurement device. He gives a pretty bad anedoctal introduction to bicycle dynamics. They did some basic experiments by attaching a torque wrench to a bicycle and made left at right turns at speeds from 0 to 13 m/s (0 to 30mph). The torques were under 5Nm except for the 13 m/s trial which read about 20 Nm. They designed a pretty nice compac torque measurement setup by mounting the handlebars on bearings and using a linear force transducer to connect the handlbars to the steer tube which reduced the effects of other moments and forces acting on the steer tube. The use of bearings and rodends may be questionable as there is bearing friction and slop. Furthermore, downward forces on the handlebars could possibly still be transmitted to the load cell. The design does allow one to choose the lever arm for the load cell, thus giving some choice to amplify the force signal. They set it up to measure from 0 to 84 Nm with a Model SM Series S-type load cell from Interface with a 670 Newton range. They used a transducer amplifier also for signal conditioning. There are several sections on calibration, with some description of the use of pulleys and cables to apply a torque to the handlebars. They measured the torque during two different manuever types: a sharp turn at various angles and steady turns on various diameter circles both at 10mph (4.5 meters/second). The rider maintained constant speed through visual feedback of a speedometer. He talks of very noisy measurements and filters the noise by some type of moving average. He does not identify an countersteering. He claims the rider turns the handle bars right to initiate a right turn. There seems to be no counter-torque in the data for turns. For the sharp turns the highest reported torque is about 10 Nm, for the steady turning he reports the highest average torque as 1 Nm.",
+    webpdf = "references-folder/Cheng2003.pdf",
+    file = "Cheng2003.pdf:Cheng2003.pdf:PDF",
+    year = "2003",
+    owner = "moorepants",
+    institution = "University of California, Santa Barbara"
+}
+
+@techreport{
+    Weir1979a,
+    author = "Weir, David H. and Zellner, John W. and Teper, Gar",
+    bibpr = "private-bibtex-keys#Weir1979a",
+    title = "Motorcycle Handling",
+    timestamp = "2009.11.30",
+    abstract = "Analytical and experimental studies of the handling response and performance of motorcycles are reported. Five instrumented example vehicles were used. Steady turn, single lane change, cornering and braking, and cornering and accelearting tests were accomplished. Test procedures and measures are presented, together with subjective evaluations. Oscillatory behavior involving weave and wobble motions was investigated. The effects of adding load, changing operating conditions, and modifying vehicle configuration are shown. Braking tests were made with a motorcycle fitted with a prototype antilock brake system, and the results showed markedly superior performance on wet (low SN) surfaces. Linear and nonlinear digital computer simulations of motorcycle response and performance are described and demonstrated.",
+    address = "Washington, D.C.",
+    bib = "bibtex-keys#Weir1979a",
+    number = "Volume II",
+    month = "May",
+    year = "1979",
+    owner = "moorepants",
+    type = "Technical Report",
+    institution = "U.S. Department of Transportation National Highway Traffic Safety Administration and Systems Technology, Inc.",
+    review = {This is part two of a research study about the precrash safety of motorcycles. The used 5 types of motorcycles and expert to novice riders. The expert rider did all the experiments and showed good repeatability. He used five different motorcycles (two touring, two street and one off-road/street) and one fitted with antilock brakes for a braking study. They used riders with a wide range of ability, although most of the experiments were done with an expert rider to reduce variability. The expert rider was trained at giving subjective handling ratings. pg 11 Wobble mode frequency is fairly independent of speed. The damping is not and the damping is also a strong function of front frame geometry and properties. The frequency is well beyond the ability for the rider to control. pg 11 "The capsize is fundamental to rider control, ..," pg 13 Good handling: - Capsize mode should have a very small inverse time constant for good low frequency properties and mid freq path damping. - Ideally the capsize should be open loop stable for minimal rider work load. - The weave and wobble modes should be well damped and have high freq relative to rider control freq. - Should be no adverse effects which reduce bandwidth and damping for heading control. - The effective controlled element for steer torque and rider lean control should be such that rider control actions of nominal amplitude provide the desired crossover freq. pg 44 The small control actions needed to balance the capsize mode beyond the critical speed do not appreciably distort the measure vehicle response as compared to open loop tests when the motorcycle is stable. pg 44 Below transition speed: steady state steer torque is opposite the direction of the turn. Maybe one of the earlier notes of this fact. Page 45-48 Compares emprical steer torque to roll angle magnitudes in steady turning to the ones predicted by their model for pretty good visual matches although he notes they are better for some bikes than others. The Honda 1200 analtycal results show no critical speed under 70 mph, but the data shows it for 40 mph. He says it was outside the scope of the study to adjust the analytical parameters of the models to better predict the measured data. He compares the ratios of steady state torque to various kinematic measurements (roll, steer, yaw) to predictions by the model. (also compares ratios of kinematic measurements too). He attributes the variance in the data to the noise in the steer torque and the very low magnitudes of steer torque. There are plots showing the differences in these values when adding a fairing, rear load and passenger. The number of data points are low for these and it is hard to see much difference. "Considerable past analytical and experimental evidence indicates that rider conrol of roll angle via steer torque is the primary inner loop for motorcycles. He developed subjective evaluations for handling. Measured roll angle with a free gyro. The rider was required to uncage and cage the roll angle gyro at the beginning and end of each run to minimize drift. Yaw rate with rate gyro. Steer torque with of the shelf transducer mounted in special design. Steer angle with rotary potentiometer. Forward velocity with DC tach. Rider lean angle and rider pitch angle with rotary pot. Lateral position with movie camera. Lateral accerleration with accelerometer. Steady turning experiments: lots of plots steer torque to something ratios for forward speeds and with added loads (passenger) and farings. Handling difficulty generally increased with speed. Also measure path deviation to get and idea of how good the task objective was maintained. Does a lange change with no hands. The rider is supposed to just use his body. He notes that after the manuever the motorcycle rolls back and forth under the rider because the rider lean angle is equal and opposite the motorcycle roll angle. He says the rider lean alone is rather ineffective at making the lane change while steer torque is precise and efficeint. He says (pg 170) that novice riders let the motorcycle roll underneath them more than the experienced riders. Weir et al. designed an instrumented motorcycle with a torque sensor. The range was +/- 70 Nm with 1\% accuracy and >10 Hz dynamic range. The crosstalk due to the other moments on the steer were removed with by utilizing two thrust bearings. It included stops to prevent sensor overload protection and weighed 14 Newtons. They comment that the handlebars are significantly rigid for their purposes. It was a modular design set up for multiple motorcycles. They comment on the range being too large for small amplitude inputs used in steady turning and straight running and that more sensitivity would be needed to measure these accurately. Weir used this to measure steer torques for two motorcycles at various speeds (>10 m/s) for steady turning and lane change maneuvers. The steady turning produced torques in the range of -10 to 30 Nm and the lane change produced -20 to 55 Nm. Experiments: steady turning, single lane change, cornering and braking, cornering and accelerating}
+}
+
+@article{
+    James2002,
+    author = "James, Stephen R.",
+    bibpr = "private-bibtex-keys#James2002",
+    doi = "10.1076/vesd.38.1.1.3520",
+    title = "Lateral dynamics of an offroad motorcycle by system identification",
+    timestamp = "2009.11.03",
+    journal = "Vehicle System Dynamics",
+    bib = "bibtex-keys#James2002",
+    number = "1",
+    month = "July",
+    volume = "38",
+    webpdf = "references-folder/James2002.pdf",
+    file = "James2002.pdf:James2002.pdf:PDF",
+    year = "2002",
+    owner = "moorepants",
+    pages = "1--22",
+    review = {He says Aoki1979 did experiments, measured steer torque and did some basic system id. He uses the manually controlled input signal for system identification of the underlying vehicle model. He notes that special perturbations are not needed. He develops a motorcycle model using Lagrange's method and cites similartiy to Sharp's work. He does this symbolically with Maple. His model is 10th order. He measured some tire properties, but describes very little about it. He shows comparisons to several other numerical motorcycle models and then talk about model reduction. He can reduce the models to 6 ro 7th order when it is stable and get similar response up to 12hz. He instrumented an off-road motorcycle to measure: - Forward speed with a magnetic pickup on the wheel - Steering torque by mounting a light weight extra handlebar set coaxilaly with the steer axis which was connected to the handlebars via a tangential load cell (probably similar to Cheng2003) - Yaw and roll rates with rate gyros - Lateral acceleration with mems accelerometers (didn't use do to noise from engine) - Steering angle with potentiometer. His experiments were primarily on asphalt but a few were done on a flat dirt track too. He basically just road the motorcycle and applied "random" perturbations to the extra handlebars for a steer torque input to the motorcycle. Speeds were from 2 m/s to 19 m/s. He shows the power spectral density of the steer torque signal for the asphaly runs which start to taper off around 10 hz or so. The weave frequency has ten times the amplitude as the wobble frequency. He says steering torque was correlated to yaw rate at a 0.1-0.2 second delay and points to the fact that the rider had to keep the motorcycl from running off of the single lane track. He says that since there is output to input feedback he couldn't use non-parametric models, models with output error and models fit with subspace methods. He cites Ljung's book for explanation. This is new to me. He uses black box ARX models for his fits for SIMO. He mentions that assesing goodness of fit with residuals was confounded by unsuitable time scaling and model instability at low speeds. There is something about the frequency of the data being high enough for the system id to pick up the both weave and wobble modes. Figure four shows identified weave mode poles for the experiments in comparison to the ones predicted by his motorcycle model. He show confidence intervals around the identified poles, but the model results doesn't seem to match the id results. He does claim that this figure shows the prediction of instability below 5 m/s. There are differences in the dirt experiment and the asphaly experiments. He tried various combinations of outputs in the id process, but found roll rate to be critical for identifying weave. Figure five shows some eigenvector phasor plots for the weave mode at three different speeds. The choice of visualization is pretty poor, but it looks like there is only decent agreement in the yaw phasor. He says they agree well but gives no numbers as to how well. Figure six shows the wobble eigenvalue comparions, which look pretty bad, but he says the it was robust?? I don't see how. He shows steer torque to yaw rate ratios as a function of speed for steady turns and compares it to other models. Yet the other models are not the same motorcycle parameters. Figure 8 shows Bode plots for various speeds and compares his experimental results with his model. The agreement doesn't look as bad in this view. He fit lower order models (6 and 7th) to the experimental data even though his first principles models were of higher order. He measured some of the physical properties of his motorcycle but it wasn't very thorough, leaving some parameters as estimates.}
+}
+
+@inproceedings{
+    Teerhuis2010,
+    author = "Teerhuis, A. P. and Jansen, S. T. H.",
+    bibpr = "private-bibtex-keys#Teerhuis2010",
+    title = "Motorcycle State Estimation for Lateral Dynamics",
+    timestamp = "2012.01.24",
+    booktitle = "Bicycle and Motorcycle Dynamics 2010, Symposium on the Dynamics and Control of Single Track Vehicles",
+    bib = "bibtex-keys#Teerhuis2010",
+    review = {They instrument a motorcycle and measure the wheel speeds, steering angle, steering torque with separate sensors. They use two inertial measurment units on the main frame to measure the orientations, rates, and accelerations. The first inertial measurement unit is the OXTS RT3100 which is an attitude heading reference system that uses the rate gyro, accelerometer and GPS along with a generic Kalman filter to provide estimates of the states/outputs. They consider this one the "reference" system and assume that it gives accurate estimates. The second is a simpler inertial measurment unit with only rates and acceleration output. They use the roll rate, yaw rate, and lateral and longitudnal accelerations along with their custom Kalman filter to estimate the states of the system. They measure the motorcycle inertial properties somehow, but don't tell how or give the numerical values. They measure the tire properties with some kind of truck that pulls a tire behind it but give no details or numerical values. He uses MADYMO software to estimate the inertial parameters of the rider. They design a complex mutlibody model using Matlab/Simmechanics. This model includes the magic formula tire model. It has 6 rigid bodies. The rider is assumed to be fixed to the main frame and rigid. He integrates his complex motorcycle model with a measured steer torque input as feedforward (open loop sim). He has "light" PID feedback controllers on steer torque and velocity to follow measured roll angle and measured speed, respectively. I'm not sure how his simulations don't blow up with the feedforward approach. Maybe the steer torque feedback keeps it in check, although he mentions that his steer torque feedback does little to nothing. He then compares the outputs of the model simulation with the measured data from the RT3100 and other sensors and shows very good agreement for two maneuvers: steady turn and slalom. They then develop a simplified motorcycle model with a modified Lagrange method to be used in their extended Kalman filter design. The description of the modeling on developing the model is poor and hard to understand. The aim of this is to design a simple filter based on minimal measurements that can accurately predict the states. They compare the results of their filter with the RT3100 output. Steady state turn shows less than 15 Nm steer torques. Slalom shows max 20 Nm.},
+    webpdf = "references-folder/Teerhuis2010.pdf",
+    file = "Teerhuis2010.pdf:Teerhuis2010.pdf:PDF",
+    year = "2010",
+    abstract = "The motorcycle lean (or roll) angle development is one of the main characteristics of motorcycle lateral dynamics. Control of motorcycle motions requires an accurate assessment of this quantity and for safety applications also the risk of sliding needs to be considered. Direct measurement of the roll angle and tyre slip is not available; therefore a method of model-based estimation is developed to estimate the state of a motorcycle. This paper investigates the feasibility of such a Motorcycle State Estimator (MCSE). A simpliﬁed analytic dynamic model of a motorcycle is developed by comparison to an extended multi-body model of the motorcycle, designed in Matlab/SimMechanics. The analytic model is used inside an Extended Kalman Filter (EKF). Experimental results of an instrumented Yamaha FJR1300 motorcycle show that the MCSE is a feasible concept for obtaining signals related to the lateral dynamics of the motorcycle."
+}
+
+@phdthesis{
+    Moore2012,
+    author = "Moore, Jason K.",
+    school = "University of California, Davis",
+    title = "Human Control of a Bicycle",
+    timestamp = "2012.10.01",
+    address = "Davis, CA",
+    month = "August",
+    year = "2012"
+}
+
+@article{
+    Sharp2007,
+    author = "Sharp, Robin S.",
+    bibpr = "private-bibtex-keys#Sharp2007",
+    title = "Motorcycle Steering Control by Road Preview",
+    timestamp = "2009.02.07",
+    journal = "Journal of Dynamic Systems, Measurement, and Control",
+    bib = "bibtex-keys#Sharp2007",
+    number = "4",
+    review = "JKM - The objective of this work was to derive and control scheme that somewhat represents what a motorcycle rider does which is both simple and effective. SImplicity for computation's sake and effectiveness concerning how well the controller does what it is told to do. He uses steer torque and rider lean torque to control their pretty complicated multi-DoF motorcyle model by means of a LQR regulator with the addition of preview. He primarily looks into the preview aspect of the controller and determines optimal preview distances for various weigthings in the LQR. - his LQR is set up to minimize a weighted sum of tracking errors, rider lean angle and control power - the inputs are rider lean torque and steer torque - the control model is based of of muti-point preview car control models - without preview the controllers seem to require unrealistically high bandwidth - he cites Frezza on pg 374 as making an effective motorcycle controller - the commercial product BikeSim includes a gain scheduled PID controller with single point preview - the standard LQR formulation is used along with a body fixed coordinate system that works well with path tracking (even complex paths) and small angle linearization - the preview is setup to view as if you are the motorcyle - the MATLAB DLSIM function is used with a discrete model - he uses a Magic Forumula for the tire models based on Pacjecka that must be adopted to motorcycle tires - the controller includes a PI controller to maintain constant speed - claims to symboliccaly linearize a nonlinear model - the control weightings are for steer torque and lean torque. the state weightings are for absolute lean angle, relative lean angle, and the tracking error - zero preview gains show that no preview is needed for optimal control - he says he uses the appropriate linear trim state based on nonlin simulations for the linear model and uses these sims to make decisions about LQR weightings - he doesn't show an about the LQR gains, but says that roll angle and frame twist angle gains are the highest - he setups up models with tight and loose control with steer torque alone and steer torque plus rider lean torque. - he plots the preview gains versus preview distance for various speeds and control weightings - he shows that the necessary preview distance increases significantly with speed and that more preview is needed than with an automobile - the max preview gains shows which preview distance provides the most useful info...these change depending on tight or loose control - he claims that we control the motorcycle at the weave freq at high speeds...but we haven't necessarily seen this with bicycles - even when rider lean torque is added and even weighted more, the model doesn't change the steer torque behavior. i would intuitively think that if you had rider lean torque available to use, then you would reduce the control by steer, but this doesn't seem to be the case - he shows in Figs 7,8 that require preview distance only changes at high speeds for tight controls, not loose controls - the final section simulates a lane change and S-turn manuevers for various control weightings - he finds that trackin performance is not imporved by adding lean torque control and even when wieghting it higher - there are some nice input and state plots for the manuevers that can be compared qualitatively to measurements - he says that body lean torque as control is ineffective pg 379 - the S-turn manuever really pushed the tight controller and cause 50 deg roll angles, but Sharp claims the linear tire models were still valid in this non-linear region - his tight contoller show steer torques up to 60 N-m, lean torques up to 100 N-m, roll angles up to 20 degs, and steer angles up to 10 degs - he gets identical path tracking with only steer torque input compared to steer and lean - says rider's no-steering movements contribute only in a passive manner - i wonder how he define's control power? he minimizes over this Robin Sharp uses a multi-degree of freedom motorcycle model and an LQR controller with preview to control a motorcycle moving at 30 m/s through a 4 meter lane change and a 250 meter S-turn. For the lane change he gets torques ranging from about -20 Nm to 55 Nm for a more aggressive control and -4 to 6 Nm for less aggressive control. The S-turn gives torques from -40 Nm to 70 Nm with a sharp peak in torque in the middle of the S-turn.",
+    volume = "129",
+    webpdf = "references-folder/Sharp2007.pdf",
+    file = "Sharp2007.pdf:Sharp2007.pdf:PDF",
+    year = "2007",
+    owner = "moorepants",
+    pages = "373-382"
+}
+
+@inproceedings{
+    Wilson-Jones1951,
+    author = "Wilson-Jones, R. A.",
+    bibpr = "private-bibtex-keys#Wilson-Jones1951",
+    title = "Steering and Stability of Single-Track Vehicles",
+    timestamp = "2009.11.03",
+    booktitle = "Proceedings of the Institute of Mechanical Engineers (Auto Div)",
+    bib = "bibtex-keys#Wilson-Jones1951",
+    review = "Supposedly measured handlebar torques. Has a really cool analog style of measuring steer torque.",
+    note = "Part 4",
+    webpdf = "references-folder/Wilson-Jones1951.pdf",
+    file = "Wilson-Jones1951.pdf:Wilson-Jones1951.pdf:PDF",
+    year = "1951",
+    owner = "moorepants",
+    pages = "191--199"
+}
+
+@article{
+    Cain2012,
+    author = "Cain, Stephen M. and Perkins, Noel C.",
+    doi = "10.1080/00423114.2011.650181",
+    title = "Comparison of experimental data to a model for bicycle steady-state turning",
+    url = "http://www.tandfonline.com/doi/abs/10.1080/00423114.2011.650181",
+    journal = "Vehicle System Dynamics",
+    number = "8",
+    volume = "50",
+    eprint = "http://www.tandfonline.com/doi/pdf/10.1080/00423114.2011.650181",
+    year = "2012",
+    pages = "1341-1364"
+}
+
+@mastersthesis{
+    Ouden2011,
+    author = "van den Ouden, J. H.",
+    bibpr = "private-bibtex-keys#Ouden2011",
+    school = "Delft University of Technology",
+    title = "Inventory of bicycle motion for the design of a bicycle simulator",
+    timestamp = "2011.09.27",
+    review = {Designed his torque sensor to have a range around -5 to 5 nm based on Cheng, Moore and some spring scale tests they did. He was aware of crosstalk: "The torque sensor should still measure the torque accurately within these bounds when a force of 40 N is exerted in the downward direction on the handle bar on one side." He made use of angular contact bearings to allow the handlebars to turn freely from the fork. He used dual cantilever type load cells mounted away from the steering axis to engage the handlebar to the fork. He built in overload protection similar to Biral2003 (stops). The range ended up being +/- 7.5 nm. He states that radial bearings are used later in the text. I'm not sure if it is radial or angular contact. He ended up having major crosstalk issues. He ended up removing the overload protection to solve some crosstalk issues. His torque measurement is nonlinear from -1 to 1 nm. He uses an xsense IMU. The pitch angles it produces are suspicious, but may be from riding on noraml streets with elevation changes. The roll angle output seems reasonable. He seems to calculate the steer torque using the whipple model and the kinematic measurements he made and then compares that result to the actual measured steering torque. They com out very similar. I didn't look at this hard, need to review it better.},
+    bib = "bibtex-keys#Ouden2011",
+    webpdf = "references-folder/Ouden2011.pdf",
+    file = "Ouden2011.pdf:Ouden2011.pdf:PDF",
+    year = "2011",
+    owner = "moorepants"
+}
+
