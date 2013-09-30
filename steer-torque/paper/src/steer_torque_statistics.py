@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""This script computes the residuals and associated statistics between the
+"""This script computes the errors and associated statistics between the
 measured steer tube torque and the compensated steer tube torque for a set
 of runs and generates some graphs."""
 
@@ -49,9 +49,9 @@ except IOError:
 
     # initialized the data structures
     time_series = {}
-    stats = {'Root Mean Square of the Residuals': [],
+    stats = {'Root Mean Square of the Error': [],
              'Coefficient of Determination': [],
-             'Maximum Residual': []}
+             'Maximum Error': []}
     max_num_samples = 0
 
     for run in runs:
@@ -59,7 +59,7 @@ except IOError:
         ts = {}
         ts['Steer Tube Torque'] = None
         ts['Compensated Steer Torque'] = None
-        ts['Residuals'] = None
+        ts['Error'] = None
 
         try:
             trial = bdp.Run(run, data_set, filterFreq=15.,
@@ -85,22 +85,22 @@ except IOError:
             measured_torque = \
                 trial.truncatedSignals['SteerTubeTorque'].convert_units('newton*meter')
             compensated_torque = trial.computedSignals['SteerTorque']
-            residuals = compensated_torque - measured_torque
-            rms = np.sqrt((residuals ** 2).mean())
+            error = compensated_torque - measured_torque
+            rms = np.sqrt((error ** 2).mean())
             r_squared = \
                 dtk.process.coefficient_of_determination(measured_torque,
                                                          compensated_torque)
 
             ts['Steer Tube Torque'] = measured_torque
             ts['Compensated Steer Torque'] = compensated_torque
-            ts['Residuals'] = residuals
+            ts['Error'] = error
 
             if len(measured_torque) > max_num_samples:
                 max_num_samples = len(measured_torque)
 
-            stats['Root Mean Square of the Residuals'].append(rms)
+            stats['Root Mean Square of the Error'].append(rms)
             stats['Coefficient of Determination'].append(r_squared)
-            stats['Maximum Residual'].append(abs(residuals).max())
+            stats['Maximum Error'].append(abs(error).max())
 
         time_series[run] = pandas.DataFrame(ts)
 
@@ -125,9 +125,9 @@ def remove_outliers(num_sigma, data_frame, column_name):
     return data_frame[mean_subtracted.abs() < num_sigma * std]
 
 # remove the 2 * sigma outliers
-stats = remove_outliers(2, stats, 'Root Mean Square of the Residuals')
+stats = remove_outliers(2, stats, 'Root Mean Square of the Error')
 stats = remove_outliers(2, stats, 'Coefficient of Determination')
-stats = remove_outliers(2, stats, 'Maximum Residual')
+stats = remove_outliers(2, stats, 'Maximum Error')
 stats['Coefficient of Determination'] *= 100.0
 
 # make a histogram of the results
@@ -135,7 +135,7 @@ axes = stats.hist(bins=20, layout=(1, 3),
                   figsize=(column_width_in_inches, 2.0),
                   xlabelsize=8,
                   ylabelsize=8)
-axes[0, 2].set_title('RMS of the Residuals')
+axes[0, 2].set_title('RMS of the Error')
 
 axes[0, 0].set_xlabel(r'\%')
 axes[0, 1].set_xlabel('Nm')
@@ -144,7 +144,7 @@ axes[0, 2].set_xlabel('Nm')
 plt.tight_layout()
 
 fig = plt.gcf()
-fig.savefig('../figures/residual-stats.pdf')
+fig.savefig('../figures/error-stats.pdf')
 
-# TODO : should i compute an RMS for the residuals for all data at once?
+# TODO : should i compute an RMS for the error for all data at once?
 # Should I compute rms based on the type of rider, manuever, and environment?

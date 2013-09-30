@@ -47,7 +47,7 @@ implementation of a bicycle steer torque measurement system which minimizes the
 aforementioned cross talk errors. We then show the computations needed to
 correctly compensate for inertial effects of the front frame and bearing
 friction to obtain a more accurate estimate of the rider applied steer torque.
-Finally, to show the necessity of this approach, we compare the residuals
+Finally, to show the necessity of this approach, we compare the error
 between the uncompensated and compensated steer torque measurements for a large
 set of bicycle experiments.
 
@@ -76,7 +76,7 @@ multiple motorcycles with a $\pm$ 70 Nm range and a 1\% accuracy with a 10 Hz
 bandwidth. They were careful to reduce crosstalk from other forces applied to
 the handlebars. They unfortunately oversized the sensor and the signal to noise
 ratio was low for steady turn and straight riding maneuvers, but they measured
-torques of -20 to 55 Nm in lane changes. \cite{Sugizaki} also measured steer
+torques of -20 to 55 Nm in lane changes. \cite{Sugizaki1988} also measured steer
 torque in high speed motorcycle lane change maneuvers and recorded torques
 between -20 and 20 Nm.
 
@@ -180,9 +180,17 @@ viscous friction, $T_{U_V}$.
 \begin{figure}
   \centering
   \includegraphics{figures/handlebar-free-body.pdf}
-  \caption{A free body diagram of the handlebar with all of the axial torques
-    shown. The rear frame, $B$, is at an arbitrary orientation with respect to
-    the Newtonian reference frame.}
+  \caption{A free body diagram of the handlebar, $G$, with all of the axial torques
+    shown. The rear frame, $B$, is oriented with respect to the Newtonian
+    reference frame $N$ in some arbitrary orientation. The handlebar rotates
+    about $\hat{b}_3$ with respect to the rear frame. Gravity $g$ is in the
+    $\hat{n}_3$ direction. The rider applies forces to the handlebars, of which
+    there is a component torque $T_\delta$ about the steer axis. This torque is
+    resisted by the upper bearing friction $T_U$, the measured torque at the
+    sensor $T_M$, the inertia of the handlebar, and the gravitaional force
+    acting on the handlebar center of mass $g_o$. The three distances, $d$,
+    $d_s1$, and $d_s3$ locate the handlebar cetner of mass with respect to the
+    center of the IMU.}
   \label{fig:handlebar-free-body}
 \end{figure}
 
@@ -225,7 +233,8 @@ center of mass of the handlebar, $g_o$.
   \bar{r}^{g_o/s} = d\hat{g}_1
 \end{equation}
 
-We also measure the body fixed acceleration of a point, $v$, on the bicycle frame.
+We also measure the body fixed acceleration of a point, $v$, on the bicycle
+frame which includes the acceleration due to gravity.
 
 \begin{equation}
   ^N\bar{a}^v = a_{v1}\hat{b}_1 + a_{v2}\hat{b}_2 + a_{v3}\hat{b}_3
@@ -349,7 +358,7 @@ parallel stiffness $k$ to the left handlebar such that the force from the
 springs acted on a lever arm, $l$, relative to the steer axis.
 
 This configuration allowed us to apply small perturbations to the handlebars
-and measure the dampened vibrations in the steer angle, steer rate, and steer
+and measure the damped vibrations in the steer angle, steer rate, and steer
 tube torque. The equations of motion governing the system then become
 
 \begin{equation}
@@ -381,12 +390,12 @@ estimates for the upper bearing friction in \ref{sec:bearing-friction} we
 compute the compensated steer torque for 359 trials from the data collected
 from the instrumented bicycle set presented in \cite{Moore1012}. Figure
 \ref{fig:steer-torque-components} gives an example trial. We then compute the
-root mean square of the residuals between the torque from the sensor and the
+root mean square of the error between the torque from the sensor and the
 compensated torque for each trial. We also compute the maximum of the absolute
-value of the residuals for each trial and the coefficient of determination
+value of the error for each trial and the coefficient of determination
 (i.e. $R^2$/VAF) between the compensated and uncompensated torques. Outliers
 outside of $\pm2 \sigma$ were excluded from the results. Figure
-\ref{fig:residual-stats} shows the distribution of these statistics.
+\ref{fig:error-stats} shows the distribution of these statistics.
 
 \begin{figure}
   \includegraphics{figures/steer-torque-components.pdf}
@@ -396,48 +405,53 @@ outside of $\pm2 \sigma$ were excluded from the results. Figure
 \end{figure}
 
 \begin{figure}
-  \label{fig:residual-stats}
+  \label{fig:error-stats}
   \centering
   \caption{Histograms of the three statistics with respect to each of the 359
     trials.}
-  \includegraphics{figures/residual-stats.pdf}
+  \includegraphics{figures/error-stats.pdf}
 \end{figure}
 
 The median values of the three statistics are given in \ref{tab:medians}.
 
 \begin{table}
-  \caption{The mean and maximum value of the residual statistics.}
+  \caption{The mean and maximum value of the error statistics.}
   \centering
   \begin{tabular}{lrr}
     \hline
     Statistic                    & Median   & Maximum \\
     \hline
     Coefficient of Determination & 0.728814 & 0.822647 \\
-    Maximum Residual             & 2.446387 & 6.588228 \\
-    RMS of the Residuals         & 0.466733 & 0.899118
+    Maximum Error                & 2.446387 & 6.588228 \\
+    RMS of the Errors            & 0.466733 & 0.899118
   \end{tabular}
   \label{tab:medians}
 \end{table}
 
 \section*{Discussion}
 
-For the bicycle and maneuvers preformed in the experiments herein we've shown
+For the bicycle and maneuvers preformed in the experiments herein we have shown
 that neglecting to compensate for inertial effects can a large influence on the
 accuracy of the measurements. In particular, on median 28\% of the actual
 torque applied by the rider is neglected. This may be less of a consequence for
 motorcycles because the nominal steer torques are on mean much larger, but this
-error will always be significant for measurements of low torque < 20 Nm or so
+error will always be significant for measurements of low torque $<$ 20 Nm or so
 in any vehicle. Steer torque sensor designs should account for the inertial
 effects of the handlebars and eliminate crosstalk to keep the accuracy high.
-From the review we have only found a couple designs that mitigate this issue
-before us. Maneuvers with high steer accelerations and high handlebar axial
-moments of inertia are especially susceptible.
+Ideally one would measure the forces at the hand/handlebar interface with very
+accurate six component load cells. The inertial compensation would ot be
+necessary. But if more traditional direct steer torque measurements are used,
+both cross talk and inertial compensation will be needed. We have only found a
+couple designs that mitigate this issue before us. Maneuvers with high steer
+accelerations and high handlebar axial moments of inertia are especially
+susceptible.
 
 \section*{Acknowledgements}
 
 This paper is based on work supported by the National Science Foundation under
 Grant No 0928339. Thanks to Peter de Lange for developing the bearing friction
-experimental protocol and analysis.
+experimental protocol and analysis and to Ton van den Bogert for comments and
+review.
 
 \bibliographystyle{plain}
 \bibliography{references}
