@@ -66,7 +66,9 @@ aEigenvalues, aEigenvectors = control.sort_modes(w, v)
 
 rlfig = cbi.plot_rlocus_parts(speeds, iEigenvalues, wEigenvalues,
                               aEigenvalues)
-rlfig.set_size_inches(4., 4. / goldenRatio)
+rlfig.axes[0].set_ylabel('')
+rlfig.set_size_inches(4.0, 4.0 / goldenRatio)
+plt.tight_layout()
 rlfig.savefig('../figures/L-P-eig.pdf')
 
 # Root locus with respect to speed.
@@ -86,7 +88,8 @@ wEig, null = control.eig_of_series(wAs)
 indices = np.int32(np.round(speeds * 10))
 aEig, null = control.eig_of_series(aAs[indices])
 rlcfig = cbi.plot_rlocus(speeds, iEig, wEig, aEig)
-rlcfig.set_size_inches(4., 4.)
+rlcfig.set_size_inches(3.0, 3.0)
+plt.tight_layout()
 rlcfig.savefig('../figures/L-P-rlocus.pdf')
 
 # Plot Bode plots of the four basic transfer functions for a few speeds.
@@ -131,8 +134,9 @@ def to_tabular(models):
 
     tabular = \
 r"""\begin{tabular}{lccccc}
+  \toprule
   Model & $\mathbf{M}$ & $\mathbf{C}_1$ & $\mathbf{K}_0$ & $\mathbf{K}_2$ & $H$ \\
-  \hline \\[0.0625in]
+  \midrule
 """
     for i, (k, v) in enumerate(models.items()):
         tabular += '  {} &\n'.format(k)
@@ -143,7 +147,7 @@ r"""\begin{tabular}{lccccc}
         if i != len(models.keys()) - 1:
             tabular += ' \\\\[0.125in]\n'
 
-    tabular += '\n\\end{tabular}'
+    tabular += '\\\\\n  \\bottomrule\n\\end{tabular}'
 
     return tabular
 
