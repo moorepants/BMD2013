@@ -147,7 +147,7 @@ adds the inertial effects of the rider's arms to the Whipple model, also
 described in \cite{Moore2012}. This model was designed to more accurately
 account for the fact that the riders were free to move their arms with the
 front frame of the bicycle. This model is similar to the upright rider in
-\cite{Schwab2010}, but with slightly different joint definitions. Constraints
+\cite{Schwab2012}, but with slightly different joint definitions. Constraints
 are chosen so that no additional degrees of freedom are added, keeping the
 system both tractable and comparable to the benchmarked Whipple model.
 
@@ -326,13 +326,6 @@ identified model given the measured steer torque and lateral force for each run
 and compute VAF with respect to the four predicted outputs and measured
 outputs.
 
-The second method works well when the open loop system is stable, but if it is
-unstable as in the case of this bicycle, it may be difficult to simulate.
-Searching for initial conditions that give rise to a stable model for the
-duration of the run or simulating by weighting the future error less may
-relieve the instability issues. We chose the former method for these
-computations.
-
 For method (1) the \emph{variance accounted for} (VAF) by the model for both
 the roll torque and the steer torque equations are
 
@@ -343,20 +336,23 @@ the roll torque and the steer torque equations are
                             {\vert \vert Y_{\phi,\delta} - \bar{Y}_{\phi,\delta} \vert \vert}
 \end{equation}
 
-where $\bar{Y}$ is the mean of $Y$.
+where $\bar{Y}_{\phi,\delta}$ is the mean of $Y_{\phi,\delta}$.
 
 subsets scenario  combinations  models   this is not clear
-We compute the two values of VAF for each of the subsets of data from the 12
-scenario combinations using 13 models: the 12 identified models and the Whipple
-model. The columns in Tables \ref{tab:roll-r-squared} and
+
+We compute the two values of VAF for each of the 12 subsets of data using
+$\hat{\theta}_{\phi,\delta}$ from 13 models: the 12 identified models and the
+Whipple model. The columns in Tables \ref{tab:roll-r-squared} and
 \ref{tab:steer-r-squared} correspond to the models and the rows correspond to
 the data subsets the VAF was computed with. The maximum VAF in a row gives an
-indication of the best model for predicting that set of runs.
+indication of the best model for predicting that set of runs. The labels
+specify the environment: (A)ll, (H)orse treadmill, and (P)avilion floor and
+then the rider: (A)ll, rider (L), rider (C), and rider (J).
 
 \begin{table}
   \centering
-  \caption{Roll equation VAF computed for each subset of data (rows)
-    and each model (columns).}
+  \caption{Roll equation VAF percentage for each subset of data (rows) and each
+    model (columns).}
   \tiny
   \input{tables/roll_r_squared.tex}
   \label{tab:roll-r-squared}
@@ -364,40 +360,37 @@ indication of the best model for predicting that set of runs.
 
 \begin{table}
   \centering
-  \caption{Steer equation VAFcomputed for each subset of data (rows)
-    and each model (columns).}
+  \caption{Steer equation VAF percentage for each subset of data (rows) and
+    each model (columns).}
   \label{tab:steer-r-squared}
   \tiny
   \input{tables/steer_r_squared.tex}
 \end{table}
 
 Tables \ref{tab:roll-r-squared} and \ref{tab:steer-r-squared} lead to these
-observations: the models predict steer torque better than roll torque, the
-Whipple model is generally poor at predicting roll torque, the Whipple model is
-good at predicting steer torque.
-
-% TODO : Make sure this Whipple steer torque VAF is correct, as these are very
-% different results than I was previously getting.
+observations: all of the models predict steer torque better than roll torque
+and the Whipple model is generally poor at predicting roll torque but is as
+good as or better than the identified models at predicting steer torque.
 
 % TODO : The L-P model was the best in my previous calcs, and now it is one of
 % the worst.
 
-For method (2), we simulate all 14 models with the inputs measured from the 374
-runs and compute the VAF explained by the model for each of the four outputs.
-Since the models are typically unstable at all of the speeds we tested, we
-searched for the set of initial conditions which minimizes the VAF for all
-outputs and ignored any runs in which suitable initial conditions couldn't be
-found. Table \ref{tab:MedianVAFOutputs} presents the median percent variance
-accounted for across all runs for the outputs of each model. Based on the mean
-VAF across the outputs for each model the best model seems to be L-P. Notice
-that the Whipple model is the poorest predictor and the arm model is the second
-poorest.
+For method (2), we simulate all 14 models (includes the arm model) with the
+inputs measured from the 374 runs and compute the VAF explained by the model
+for each of the four outputs. Since the models are typically unstable at all of
+the speeds we tested, we searched for the set of initial conditions which
+minimizes the VAF for all outputs and ignored any runs in which suitable
+initial conditions couldn't be found. Table \ref{tab:MedianVAFOutputs} presents
+the median percent variance accounted for across all runs for the outputs of
+each model. Based on the mean VAF across the outputs for each model the best
+model seems to be L-P. Notice that the Whipple model is the poorest predictor
+and the arm model is the second poorest.
 
 % TODO : It'd be nice to know the number of runs used in each median
 % computation.
 \begin{table}
   \centering
-  \caption{Median VAF, in percent,  of each output variable over 374 runs for
+  \caption{Median VAF, in percent, of each output variable over 374 runs for
   each model and their mean.}
   \footnotesize
   \begin{tabular}{lrrrrr}
@@ -426,12 +419,13 @@ poorest.
 The following are observed from Table \ref{tab:MedianVAFOutputs}: for all
 outputs other than roll angle, the arm model is better than the Whipple model;
 all of the identified models are better predictors than the first principles
-models; and model J-P has the best average predictive ability for all of the
+models; and model L-P has the best average predictive ability for all of the
 runs.
 
 \subsection*{Most predictive model}
+
 This section details the characteristics for the identified model which best
-predicts \emph{all} of the data, the L-P model.
+predicts \emph{all} of the simulation outputs, the L-P model.
 
 The eigenvalues as a function of speed of the identified model can be compared
 to those of the Whipple and arm models. Figure \ref{fig:L-P-rlocus} shows the
@@ -457,13 +451,12 @@ speeds.
 Figure \ref{fig:L-P-eig} gives a different view of the root locus allowing one
 to more easily compare the real and imaginary parts of the eigenvalues
 independently. The imaginary parts of the weave mode have similar curvature
-with respect to speed for all the models about 2m/s or so. The identified model
-has a stable speed range where the Whipple model under predicts its weave
+with respect to speed for all the models about 2 m/s or so. The identified
+model has a stable speed range where the Whipple model under predicts its weave
 critical speed by almost 3 m/s. The identified caster mode is much faster than
-that predicted by the Whipple model. This is somewhat counterintuitive
-because tire scrub torques would probably tend to slow the caster mode, although 
-the pneumatic trail and  arm inertia could play larger
-roles than expected.
+that predicted by the Whipple model. This is somewhat counterintuitive because
+tire scrub torques would probably tend to slow the caster mode, although the
+pneumatic trail and arm inertia could play larger roles than expected.
 
 \begin{figure}
   \centering
@@ -475,17 +468,17 @@ roles than expected.
 \end{figure}
 
 The frequency band from 1 rad/s to 12 rad/s is of most concern as it bounds a
-reasonable range that humans operate within. The steer torque
-to roll angle transfer function, Figure \ref{fig:L-P-Tdel-Phi} may be the most
-important to model accurately as it is the primary method of controlling the
-bicycle's direction, i.e. commanding roll allows one to command yaw. At 2 m/s
-the magnitude is similar for all three models. At 4 m/s the identified model
-has a larger gain than the first principles models. In fact, the identified
-model seems to vary little with speed, which contrasts the stronger speed
-dependence of the first principles models. The low frequency behavior of the
-identified model is not well predicted by the Whipple and arm models at the
-three highest speeds but about about 3 rad/s the arm model shows better
-magnitude matches than the Whipple model.
+reasonable range that humans operate within. The steer torque to roll angle
+transfer function, Figure \ref{fig:L-P-Tdel-Phi} may be the most important to
+model accurately as it is the primary method of controlling the bicycle's
+direction, i.e. commanding roll allows one to command yaw. At 2 m/s the
+magnitude is similar for all three models. At 4 m/s the identified model has a
+larger gain than the first principles models. In fact, the identified model
+seems to vary little with speed, which contrasts the stronger speed dependence
+of the first principles models. The low frequency behavior of the identified
+model is not well predicted by the Whipple and arm models at the three highest
+speeds but about about 3 rad/s the arm model shows better magnitude matches
+than the Whipple model.
 
 \begin{figure}
   \centering
@@ -507,7 +500,8 @@ roll and steer equations for the L-P model.
   \label{tab:L-P-mck}
   \centering
   \caption{The identified $\mathbf{M}$, $\mathbf{C}_1$, $\mathbf{K}_0$,
-    $\mathbf{K}_2$, and $H$ matrices of the L-P compared to the  Whipple model.}
+    $\mathbf{K}_2$, and $H$ matrices of the L-P model compared to the  Whipple
+    model.}
   \small
   \input{tables/parameter-compare.tex}
 \end{table}

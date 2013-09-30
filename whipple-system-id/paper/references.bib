@@ -43,22 +43,6 @@
     review = {He says Aoki1979 did experiments, measured steer torque and did some basic system id. He uses the manually controlled input signal for system identification of the underlying vehicle model. He notes that special perturbations are not needed. He develops a motorcycle model using Lagrange's method and cites similartiy to Sharp's work. He does this symbolically with Maple. His model is 10th order. He measured some tire properties, but describes very little about it. He shows comparisons to several other numerical motorcycle models and then talk about model reduction. He can reduce the models to 6 ro 7th order when it is stable and get similar response up to 12hz. He instrumented an off-road motorcycle to measure: - Forward speed with a magnetic pickup on the wheel - Steering torque by mounting a light weight extra handlebar set coaxilaly with the steer axis which was connected to the handlebars via a tangential load cell (probably similar to Cheng2003) - Yaw and roll rates with rate gyros - Lateral acceleration with mems accelerometers (didn't use do to noise from engine) - Steering angle with potentiometer. His experiments were primarily on asphalt but a few were done on a flat dirt track too. He basically just road the motorcycle and applied "random" perturbations to the extra handlebars for a steer torque input to the motorcycle. Speeds were from 2 m/s to 19 m/s. He shows the power spectral density of the steer torque signal for the asphaly runs which start to taper off around 10 hz or so. The weave frequency has ten times the amplitude as the wobble frequency. He says steering torque was correlated to yaw rate at a 0.1-0.2 second delay and points to the fact that the rider had to keep the motorcycl from running off of the single lane track. He says that since there is output to input feedback he couldn't use non-parametric models, models with output error and models fit with subspace methods. He cites Ljung's book for explanation. This is new to me. He uses black box ARX models for his fits for SIMO. He mentions that assesing goodness of fit with residuals was confounded by unsuitable time scaling and model instability at low speeds. There is something about the frequency of the data being high enough for the system id to pick up the both weave and wobble modes. Figure four shows identified weave mode poles for the experiments in comparison to the ones predicted by his motorcycle model. He show confidence intervals around the identified poles, but the model results doesn't seem to match the id results. He does claim that this figure shows the prediction of instability below 5 m/s. There are differences in the dirt experiment and the asphaly experiments. He tried various combinations of outputs in the id process, but found roll rate to be critical for identifying weave. Figure five shows some eigenvector phasor plots for the weave mode at three different speeds. The choice of visualization is pretty poor, but it looks like there is only decent agreement in the yaw phasor. He says they agree well but gives no numbers as to how well. Figure six shows the wobble eigenvalue comparions, which look pretty bad, but he says the it was robust?? I don't see how. He shows steer torque to yaw rate ratios as a function of speed for steady turns and compares it to other models. Yet the other models are not the same motorcycle parameters. Figure 8 shows Bode plots for various speeds and compares his experimental results with his model. The agreement doesn't look as bad in this view. He fit lower order models (6 and 7th) to the experimental data even though his first principles models were of higher order. He measured some of the physical properties of his motorcycle but it wasn't very thorough, leaving some parameters as estimates.}
 }
 
-@inproceedings{
-    Schwab2010,
-    author = "Schwab, A. L. and Kooijman, J. D. G.",
-    bibpr = "private-bibtex-keys#Schwab2010",
-    title = "Lateral dynamics of a bicycle with passive rider model",
-    timestamp = "2011.12.12",
-    booktitle = "The 1st Joint International Conference on Multibody System Dynamics",
-    address = "Lappeenranta, Finland",
-    bib = "bibtex-keys#Schwab2010",
-    month = "May",
-    webpdf = "references-folder/Schwab2010.pdf",
-    file = "Schwab2010.pdf:Schwab2010.pdf:PDF",
-    year = "2010",
-    review = "This is the work that Arend presented at the Delft conference in Oct 2010, but didn't write a paper on it. He creates two rider models that do not add additional degrees of freedom to the system. The mountain bike style model doesn't alter the open loop dynamics too much, but the upright arm model does. This model is reflects the kind of degrees of freedom we allows in our lateral perturbation tests with the rider in a body cast. Arend's model is only valid in the linear case. For some reason he designed it to have a locking configuration in the nonlinear formulation."
-}
-
 @article{
     James2005,
     author = "James, Stephen R",
@@ -102,6 +86,22 @@
     eprint = "http://www.tandfonline.com/doi/pdf/10.1080/00423114.2011.650181",
     year = "2012",
     pages = "1341-1364"
+}
+
+@article{
+    Schwab2012,
+    author = "Schwab, A. L. and Meijaard, J. P. and Kooijman, J. D.G.",
+    bibpr = "private-bibtex-keys#Schwab2012",
+    doi = "10.1080/00423114.2011.610898",
+    title = "Lateral dynamics of a bicycle with a passive rider model: stability and controllability",
+    url = "http://www.tandfonline.com/doi/abs/10.1080/00423114.2011.610898",
+    journal = "Vehicle System Dynamics",
+    bib = "bibtex-keys#Schwab2012",
+    webpdf = "references-folder/Schwab2012.pdf",
+    eprint = "http://www.tandfonline.com/doi/pdf/10.1080/00423114.2011.610898",
+    file = "Schwab2012.pdf:Schwab2012.pdf:PDF",
+    year = "2012",
+    abstract = "This paper addresses the influence of a passive rider on the lateral dynamics of a bicycle model and the controllability of the bicycle by steer or upper body sideway lean control. In the uncontrolled model proposed by Whipple in 1899, the rider is assumed to be rigidly connected to the rear frame of the bicycle and there are no hands on the handlebar. Contrarily, in normal bicycling the arms of a rider are connected to the handlebar and both steering and upper body rotations can be used for control. From observations, two distinct rider postures can be identified. In the first posture, the upper body leans forward with the arms stretched to the handlebar and the upper body twists while steering. In the second rider posture, the upper body is upright and stays fixed with respect to the rear frame and the arms, hinged at the shoulders and the elbows, exert the control force on the handlebar. Models can be made where neither posture adds any degrees of freedom to the original bicycle model. For both postures, the open loop, or uncontrolled, dynamics of the bicycle–rider system is investigated and compared with the dynamics of the rigid-rider model by examining the eigenvalues and eigenmotions in the forward speed range 0–10 m/s. The addition of the passive rider can dramatically change the eigenvalues and their structure. The controllability of the bicycles with passive rider models is investigated with either steer torque or upper body lean torque as a control input. Although some forward speeds exist for which the bicycle is uncontrollable, these are either considered stable modes or are at very low speeds. From a practical point of view, the bicycle is fully controllable either by steer torque or by upper body lean, where steer torque control seems much easier than upper body lean."
 }
 
 @article{

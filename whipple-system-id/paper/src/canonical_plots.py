@@ -24,7 +24,7 @@ params = {'axes.labelsize': 10,
           'xtick.labelsize': 8,
           'ytick.labelsize': 8,
           'text.usetex': True,
-          }
+          'font.family': 'serif'}
 plt.rcParams.update(params)
 
 # Load in precomputed results from identify.py.
@@ -100,7 +100,7 @@ null, wAs, wBs = bicycle.benchmark_state_space_vs_speed(wM, wC1, wK0, wK2,
                                                         speeds)
 figs = cbi.plot_bode(speeds, iAs, iBs, wAs, wBs, aAs, aBs)
 for fig in figs:
-    fig.set_size_inches(4., 4. / goldenRatio)
+    fig.set_size_inches(4.5, 3.5)
     leg = fig.phaseAx.legend(loc=4)
     plt.setp(leg.get_texts(), fontsize='5.0')
 
