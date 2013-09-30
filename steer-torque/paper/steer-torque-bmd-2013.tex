@@ -384,6 +384,7 @@ indeterminacy of the upper and lower bearing friction individually; see
 \cite{Moore2012} for details.
 
 \begin{figure}
+  \centering
   \includegraphics{figures/steer-torque-components.pdf}
   \caption{Steer torque measurements and the computed compensation for Trial \#
     700.}
@@ -393,10 +394,10 @@ indeterminacy of the upper and lower bearing friction individually; see
 \section*{Steer Torque Predictions}
 
 \begin{figure}
-  \label{fig:error-stats}
   \centering
   \includegraphics{figures/error-stats.pdf}
   \caption{Histograms of the three statistics for all 359 trials.}
+  \label{fig:error-stats}
 \end{figure}
 
 Using the equations described in section \ref{sec:steer-dynamics} and the
@@ -431,25 +432,28 @@ values of the three statistics are given in Table~\ref{tab:medians}.
 For the bicycle and maneuvers performed in the experiments herein we have shown
 that neglecting to compensate for inertial effects can have a large influence
 on the accuracy of the results. In particular, on median 28\% of the actual
-torque applied by the rider is neglected. This may be less important for
-motorcycles because the nominal steer torques are usually much larger, but this
-error will always be significant for measurements of low torque ($<$ 20 Nm or
-so) in any vehicle. Steer torque sensor designs should account for the inertial
-effects of the handlebars and eliminate crosstalk for high accuracy. Ideally,
-one would measure the forces at the hand/handlebar interface with very accurate
-six component load cells and inertial compensation would not be necessary. The
-closer the sensor is to the rider's hands the less important inertial
-compensation becomes. But if more traditional direct steer torque measurements
-are used, both inertial compensation and cross talk mitigation (mechanically or
-computationally) will be needed. We have found only a couple of designs that
-mitigate the inertial issue before us, namely \cite{Evertse2010} and
-\cite{Iuchi2006}, and many previous design were aware of cross talk, but no
-design shows complete elimination as we have. Maneuvers with high steer
-accelerations and high handlebar axial moments of inertia are especially
-susceptible, due to the dominance of the effects of angular acceleration on
-torque. This is clearly shown in Figure~\ref{fig:steer-torque-components}. Our
-design gave very accurate torque measurements, but there is still much room for
-improvement, especially in terms of complexity and cost.
+torque applied by the rider in our experiments would be neglected. This may be
+less important for motorcycles because the nominal steer torques are usually
+much larger, but this error will always be significant for measurements of low
+torque ($<$ 20 Nm or so) in any vehicle. Steer torque sensor designs should
+account for the inertial effects of the handlebars and eliminate crosstalk for
+high accuracy. Ideally, one would measure the forces at the hand/handlebar
+interface with very accurate six component load cells and inertial compensation
+would not be necessary. The closer the sensor is to the rider's hands the less
+important inertial compensation becomes. But if more traditional direct steer
+torque measurements are used, both inertial compensation and cross talk
+mitigation (mechanically or computationally) will be needed. We have found only
+a couple of designs that mitigate the inertial issue before us, namely
+\cite{Evertse2010} and \cite{Iuchi2006}, and many previous design were aware of
+crosstalk, but no design shows complete elimination as we have. Maneuvers with
+high steer accelerations and high handlebar axial moments of inertia are
+especially susceptible, due to the dominance of the effects of angular
+acceleration on torque. This is clearly shown in
+Figure~\ref{fig:steer-torque-components}. Our design gave very accurate torque
+measurements, but there is still much room for improvement, especially in terms
+of complexity and cost. Creating a simple, inexpensive, and accurate steer
+torque measurement system could play an important role in assistive control
+system design in production vehicles.
 
 \section*{Acknowledgements}
 
