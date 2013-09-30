@@ -1,4 +1,4 @@
-FILENAME_BASE = moore-hubbard-2013-whipple-id-bmd-2013
+FILENAME_BASE = whipple-id-bmd-2013
 BICYCLE_BIB_PATH = /home/moorepants/Research/bicycle-mechanics/Papers/bicycle.bib
 
 pdf:
