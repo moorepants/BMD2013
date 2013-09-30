@@ -111,8 +111,8 @@ for model_name, canonical_matrices in id_matrices.items():
                                      steer_b_dict, steer_parameters,
                                      canonical_matrices))
 
-roll_r_squared = pandas.DataFrame(roll_r_squared, index=data_set_names)
-steer_r_squared = pandas.DataFrame(steer_r_squared, index=data_set_names)
+roll_r_squared = pandas.DataFrame(roll_r_squared, index=data_set_names).sort()
+steer_r_squared = pandas.DataFrame(steer_r_squared, index=data_set_names).sort()
 
 tables_directory = '../tables'
 if not os.path.exists(tables_directory):
@@ -121,9 +121,9 @@ if not os.path.exists(tables_directory):
 roll_r_squared.to_csv(os.path.join(results_directory, 'roll_r_squared.csv'))
 roll_r_squared.to_latex(os.path.join(tables_directory,
                                      'roll_r_squared.tex'),
-                        float_format=lambda x: '{:.1%}'.format(x))
+                        float_format=lambda x: '{:1.1f}'.format(x * 100.0))
 
 steer_r_squared.to_csv(os.path.join(results_directory, 'steer_r_squared.csv'))
 steer_r_squared.to_latex(os.path.join(tables_directory,
                                       'steer_r_squared.tex'),
-                         float_format=lambda x: '{:.1%}'.format(x))
+                         float_format=lambda x: '{:1.1f}'.format(x * 100.0))
