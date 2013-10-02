@@ -2,8 +2,6 @@ FILENAME_BASE = whipple-id-abstract-bmd-2013
 
 pdf:
 	pdflatex $(FILENAME_BASE).tex
-	bibtex $(FILENAME_BASE).aux
-	pdflatex $(FILENAME_BASE).tex
 	pdflatex $(FILENAME_BASE).tex
 
 clean:
