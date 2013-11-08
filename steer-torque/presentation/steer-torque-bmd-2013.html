@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Methods for elimination of crosstalk and inertial effects in bicycle
+    and motorcycle steer torque estimation</title>
+  <meta name="description" content="">
+  <meta name="author" content="Jason K. Moore">
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" href="../../deck.js/core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" href="../../deck.js/extensions/goto/deck.goto.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/menu/deck.menu.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/status/deck.status.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/hash/deck.hash.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" href="../../deck.js/themes/style/swiss.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" href="../../deck.js/themes/transition/horizontal-slide.css">
+
+  <!-- Required Modernizr file -->
+  <script src="../../deck.js/modernizr.custom.js"></script>
+
+  <!-- MathJax -->
+  <script type="text/javascript"
+    src="/home/moorepants/src/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</head>
+<body class="deck-container">
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+
+<section class="slide">
+  <h2>Methods for elimination of crosstalk and inertial effects in bicycle and
+    motorcycle steer torque estimation</h2>
+  <p>Jason K. Moore and Mont Hubbard</p>
+  <p>University of California, Davis</p>
+  <p>November 13, 2013</p>
+</section>
+
+<section class="slide">
+  <h2>What is steer torque?</h3>
+</section>
+
+<section class="slide">
+  <h2>Steering and Stability of Single-Track Vehicles</h2>
+  <h3>Wilson-Jones, R. A.; 1951</h3>
+  <p>predicted cournter torque for entering a turn</p>
+  <p>Pointed out that torques were very light and difficult to measure</p>
+  <table class="side-by-side">
+    <tr>
+      <td>
+        <img src="img/wilson-jones-steer-torque-indicator-a.png" />
+      </td>
+      <td>
+        <img src="img/wilson-jones-steer-torque-indicator-b.png" />
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section class="slide">
+  <h2>Experimental Study on the Stability and Control of Single-Track Vehicles</h2>
+  <h3>Kondo, M.; 1955</h3>
+  <p>Probably first recorded measurement of steer torque</p>
+  <p>Steady turns, turns, and figure 8's</p>
+  <img src="img/kondo-1955.png" />
+</section>
+
+<section class="slide">
+  <h2>Man-Machine Dynamics in the Stabilization of Single-Track Vehicles</h2>
+  <h3>Eaton, D. J.; 1973</h3>
+  <img src="img/eaton-steer-torque.png" />
+</section>
+
+<section class="slide">
+  <h2>Motorcycle Handling</h2>
+  <h3>Weir, David H., Zellner, John W., and Teper, Gar; 1979</h3>
+  <img src="img/weir-torque-load-cell.png" />
+</section>
+
+<section class="slide">
+  <h2>Quantification of Structural Loading During Off-road Cycling</h2>
+  <h3>de Lorenzo, D. S.; 1997</h3>
+  <p>Potential first bicycle steer torque measurements</p>
+  <p>Larger torques about longitude compared to steer axis</p>
+  <img src="img/de-lorenzo-1997.png" />
+</section>
+
+<section class="slide">
+  <h2>Experimental investigation and simulation of motorcycle turning
+    performance</h2>
+  <h3>D. Bortoluzzi and A. Doria and R. Lot; 2000</h3>
+  <table>
+    <tr>
+      <td>
+        <img src="img/bortoluzzi-2000-a.png" />
+      </td>
+      <td>
+        <img src="img/bortoluzzi-2000-b.png" />
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section class="slide">
+  <h2>Bicycle Torque Sensor Experiment</h2>
+  <h3>Kok Y. Cheng, David Bothman, and Karl J. Åström; 2003</h3>
+  <img src="img/cheng-2003.png" />
+</section>
+
+<section class="slide">
+  <h2>Rider analysis using a fully instrumented motorcycle</h2>
+  <h3>Evertse, M. V. C; 2010</h3>
+  <p>Uses bi-axial force transducers at each grip.</p>
+  <img src="img/evertse-2010.png" />
+</section>
+
+<section class="slide">
+  <h2>Inventory of bicycle motion for the design of a bicycle simulator</h2>
+  <h3>van den Ouden, J. H.; 2011</h3>
+  <img src="img/van-ouden-2011.png" />
+</section>
+
+<section class="slide">
+  <h2>Measurement Design Types</h2>
+  <h3>Floating handlebars</h3>
+  <ul>
+    <li>Torque transducers along axis<li>
+    <li>Cantilever beams</li>
+    <li>Axial load cells perpendicular to axis</li>
+  <p>Grip force transducers</p>
+</section>
+
+<section class="slide">
+  <h2>Design Issues</h2>
+  <ul>
+    <li>Crosstalk<li>
+    <li>Calibration with only steer torque</li>
+    <li>Not sensitve enough</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2></h2>
+  <ul>
+    <li>Suspectible to loads other than steer torque: i.e. crosstalk</li>
+    <li>Calibration with only steer torque, not full loading</li>
+    <li>Not sensitive enough</li>
+    <li>Inertial compensation</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Redo Cheng's Steer Torque Wrench Experiments</h2>
+  <img src="img/torque-wrench-camera.jpg" />
+</section>
+
+<!-- End slides. -->
+
+
+<!-- Begin extension snippets. Add or remove as needed. -->
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+  <span class="deck-status-current"></span>
+  /
+  <span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+  <label for="goto-slide">Go to slide:</label>
+  <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+  <datalist id="goto-datalist"></datalist>
+  <input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- End extension snippets. -->
+
+
+<!-- Required JS files. -->
+<script src="../../deck.js/jquery-1.7.2.min.js"></script>
+<script src="../../deck.js/core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="../../deck.js/core/deck.core.js"></script>
+<script src="../../deck.js/extensions/hash/deck.hash.js"></script>
+<script src="../../deck.js/extensions/menu/deck.menu.js"></script>
+<script src="../../deck.js/extensions/goto/deck.goto.js"></script>
+<script src="../../deck.js/extensions/status/deck.status.js"></script>
+<script src="../../deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="../../deck.js/extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
