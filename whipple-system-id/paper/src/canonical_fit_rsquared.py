@@ -122,8 +122,14 @@ roll_r_squared.to_csv(os.path.join(results_directory, 'roll_r_squared.csv'))
 roll_r_squared.to_latex(os.path.join(tables_directory,
                                      'roll_r_squared.tex'),
                         float_format=lambda x: '{:1.1f}'.format(x * 100.0))
+roll_r_squared.to_html(os.path.join(tables_directory,
+                                     'roll_r_squared.html'),
+                        float_format=lambda x: '{:1.1f}'.format(x * 100.0))
 
 steer_r_squared.to_csv(os.path.join(results_directory, 'steer_r_squared.csv'))
 steer_r_squared.to_latex(os.path.join(tables_directory,
                                       'steer_r_squared.tex'),
+                         float_format=lambda x: '{:1.1f}'.format(x * 100.0))
+steer_r_squared.to_html(os.path.join(tables_directory,
+                                      'steer_r_squared.html'),
                          float_format=lambda x: '{:1.1f}'.format(x * 100.0))
