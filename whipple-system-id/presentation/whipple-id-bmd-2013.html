@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Identification of open loop dynamics of a manually controlled
+    bicycle-rider system</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" href="../../deck.js/core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" href="../../deck.js/extensions/goto/deck.goto.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/menu/deck.menu.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/status/deck.status.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/hash/deck.hash.css">
+  <link rel="stylesheet" href="../../deck.js/extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" href="../../deck.js/themes/style/swiss.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" href="../../deck.js/themes/transition/horizontal-slide.css">
+
+  <!-- Custom stylesheets. -->
+  <link rel="stylesheet" href="../../style.css">
+
+  <!-- Required Modernizr file -->
+  <script src="../../deck.js/modernizr.custom.js"></script>
+
+  <!-- MathJax -->
+  <script type="text/javascript"
+    src="/home/moorepants/src/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</head>
+<body class="deck-container">
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+
+<section class="slide">
+  <h2>Identification of the open loop dynamics of a manually controlled
+    bicycle-rider system</h2>
+  <p>Jason K. Moore and Mont Hubbard</p>
+  <p>University of California, Davis</p>
+  <p>November 11, 2013</p>
+</section>
+
+<section class="slide">
+  <h1>What is the plant?</h1>
+</section>
+
+<section class="slide">
+  <h2>No rider or rigid rider</h2>
+  <h3>Stable?</h3>
+  <p>Sometimes</p>
+  <h3>Primary Inputs</h3>
+  <p>Torque/forces between the vehicle rigid bodies and/or ground, e.g. steer
+  torque, ground reaction forces</p>
+  <p>External torques and forces, e.g. gust of wind</p>
+  <h3>Primary Outputs</h3>
+  <p>Functions of the vehicle states and inputs, e.g. steer angle</p>
+</section>
+
+<section class="slide">
+  <h2>Non-rigid rider</h2>
+  <h3>Stable?</h3>
+  <p>Probably never</p>
+  <h3>Primary Inputs</h3>
+  <p>Torque/forces between the vehicle and rider rigid bodies and/or ground,
+  e.g. Muscle forces (or joint torques), ground reaction forces</p>
+  <p>External torques and forces, e.g gust of wind</p>
+  <h3>Primary Outputs</h3>
+  <p>Functions of the vehicle and rider states and inputs, e.g. elbow flexion</p>
+</section>
+
+<section class="slide">
+  <h2>Do our models predict reality?</h2>
+</section>
+
+<!--
+  - How many studies do you all think have experimentally validated the open loop
+    dynamical models of motorcycles? Of bicycles?
+  - Motorcycles are typcially concerned with high speed
+  - Bicycles with low speeds
+-->
+
+<section class="slide">
+  <h2>Validation/Identification of open loop rigid/no rider systems</h2>
+</section>
+
+<!-- Chen and Doa 2010: simulation of noise data and grey box id -->
+
+<section class="slide">
+  <h2>CALSPAN</h2>
+  <p>Rice, Roland, Manning, Lunch, Kunkel, Milliken, Davis, Cassidy; 1970-176</p>
+  <img src="img/roland-1971.png" />
+</section>
+
+<!-- rocket on frame, rocket on handlebar, ghost ride the bike -->
+
+<section class="slide">
+  <h2>Man-Machine Dynamics in the Stabilization of Single-Track Vehicles</h2>
+  <p>Eaton, D. J.; 1973</p>
+  <img src="img/eaton-1973.png" />
+</section>
+
+<!-- rigidified the rider with brace: dropped weight from bike for constant
+"roll torque", whacked the handlebars and let it freely oscillate -->
+
+<section class="slide">
+  <h2>Experimental Validation of a Model for the Motion of an Uncontrolled
+    Bicycle</h2>
+  <p>Kooijman, J. D. G; 2007/8/9</p>
+  <table class="side-by-side">
+    <tr>
+      <td>
+        <img src="img/kooijman-2008.png" />
+      </td>
+      <td>
+        <img src="img/kooijman-2009.png" />
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- bicycle at stable speed range, unmeasured lateral pertrubation -->
+
+<section class="slide">
+  <h2>Limitations</h2>
+  <ul>
+    <li>Tests require open loop stability</li>
+    <li>Limited speed range</li>
+    <li>Instablilty leads to short data collection</li>
+    <li>Limited bandwith inputs</li>
+    <li>Only identify one mode at a time</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Validation/Identification vehicle + non-rigid rider</h2>
+</section>
+
+<section class="slide">
+  <h2>CALSPAN</h2>
+  <p>Rice, Roland, Manning, Lunch, Kunkel, Milliken, Davis, Cassidy; 1970-76</p>
+  <img src="img/roland-1972.png" />
+</section>
+
+<!-- video comparisons, steady turn with rider, slalom -->
+
+<section class="slide">
+  <h2>Lateral dynamics of an offroad motorcycle by system identification</h2>
+  <p>James, S. R..; 2002</p>
+  <img src="img/james-2002.png" />
+</section>
+
+<!-- rider wiggled handlebars, fit ARX models to data -->
+
+<section class="slide">
+  <h2>Experimental Study of Motorcycle Transfer Functions for Evaluating
+    Handling</h2>
+  <p>Biral, F., Bortoluzzi, D., Cossalter, V., and Lio, M.; 2003</p>
+  <img src="img/biral-2003.png" />
+</section>
+
+<section class="slide">
+  <h2>Comparison of experimental data to a model for bicycle steady-state
+    turning</h2>
+  <p>Cain, S. M. and Perkins, N. C.; 2012</p>
+  <img src="img/cain-2012.png" />
+</section>
+
+<!--  Doria 2012: excite handlebars leave hand on grips -->
+
+<section class="slide">
+  <h2>Limitations</h2>
+  <ul>
+    <li>Plant includes passive rider dynamics</li>
+    <li>Plant may include neuromuscular dynamics</li>
+    <li>Manual excitation: human operating bandwith</li>
+    <li>Closed loop identification</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>There are very few validations of bicycle/motorcycle models!</h2>
+  <p>Some are questionable, some have decent results.</p>
+  <p>Bicycle validation is very weak.</p>
+  <p>Comprehenisve data at many speeds and input frequencies is missing.</p>
+</section>
+
+<section class="slide">
+  <h2>What is our plant?</h3>
+  <img src="img/plant.png" />
+</section>
+
+<!--
+  Our job is measure these inputs and outputs accurately and then develop a
+  mathematical model which describes the relationship between the inputs and
+  outputs.
+
+  Direct method of identification. Measure input to the plant and the output
+  of the plant. Run basic system id: black box, grey box, nonlinear, etc
+
+  Ideal inputs: white noise, sum of sines, frequency sweep
+-->
+
+<section class="slide">
+  <h2>Models</h2>
+  <table>
+    <tr>
+      <td>
+        <h3>From first principles</h3>
+        <p>Whipple model</p>
+        <p>Whipple model + arm inertial effects</p>
+        <p>Both linearized about the nominal configuration<p>
+        <h3>Identified</h3>
+        <p>4th order grey box model based on the Whipple model</p>
+      </td>
+      <td>
+        <img width="400" src="img/arm-model-diagram.png" />
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section class="slide">
+  <h2>Instrumented bicycle</h2>
+  <img src="img/instrumented-bicycle.png" />
+</section>
+
+<!--
+  - Rider is rigid except for arms and head
+  - Very accurately measure steer torque: give value
+  - Measure kinematics: steer/roll angles/rates
+-->
+
+<section class="slide">
+  <h2>Experiments</h2>
+  <video width="640" height="480" controls="controls">
+    <source
+      src="/home/moorepants/Research/bicycle-mechanics/Videos/PhDExperiments/PhDExperiments.ogg"
+      type="video/ogg"
+    />
+  </video>
+</section>
+
+<section class="slide">
+  <h2>Data</h2>
+  <table class="side-by-side">
+    <tr>
+      <td><img src="img/time-history-treadmill.png" /></td>
+      <td><img src="img/time-history-pavilion.png" /></td>
+    </tr>
+  </table>
+  <p>~1.7 million time samples from each of about 30 sensors sampled at 200
+  hertz (about 2.4 hours of real time)</p>
+</section>
+
+<section class="slide">
+  <h2>Grey Box Model Structure</h2>
+  <p>Canonical linear form of the Whipple bicycle model:</p>
+  <p>
+    $$
+      \mathbf{M} \ddot{q}(t) + v \mathbf{C}_1 \dot{q}(t) + [g \mathbf{K}_0 + v^2
+      \mathbf{K}_2] q(t) = T(t) + H F(t)
+    $$
+  </p>
+  <p>
+    Coordinates:
+    $$q(t) = [\phi(t) \quad \delta(t)]^T$$
+    Torques:
+    $$T(t) = [0 \quad T_\delta(t)]^T$$
+    Lateral Force:
+    $$F(t)$$
+  </p>
+</section>
+
+<section class="slide">
+  <h2>Known and Unknown</h2>
+  <p>
+    Measured time varying values:
+    $$q(t), \dot{q}(t), v(t), T(t), F(t)$$
+    Estimated (numerical differentiation and filtering):
+    $$\ddot{q}(t)$$
+    Measured constants:
+    <table>
+      <tr>
+        <td>
+          $$
+          \mathbf{M} =
+          \begin{bmatrix}
+            \underline{M_{\phi\phi}} & M_{\phi\delta} \\
+            M_{\delta\phi} & M_{\delta\delta}
+          \end{bmatrix}
+          $$
+        </td>
+        <td>
+          $$
+          \mathbf{C}_1 =
+          \begin{bmatrix}
+            0 & C_{1\phi\delta} \\
+            C_{1\delta\phi} & C_{1\delta\delta} \\
+          \end{bmatrix}
+          $$
+        </td>
+        <td>
+          $$
+          \mathbf{K}_0 =
+          \begin{bmatrix}
+            \underline{K_{0\phi\phi}} & K_{0\phi\delta} \\
+            K_{0\delta\phi} & K_{0\delta\delta}
+          \end{bmatrix}
+          $$
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $$
+          \mathbf{K}_2 =
+          \begin{bmatrix}
+            0 & K_{2\phi\delta} \\
+            0 & K_{2\delta\delta}
+          \end{bmatrix}
+          $$
+        </td>
+        <td>
+          $$
+          H =
+          \begin{bmatrix}
+            \underline{H_{\phi F}} \\
+            H_{\delta F}
+          \end{bmatrix}
+          $$
+        </td>
+        <td>
+          $$\underline{g}$$
+        </td>
+      </tr>
+    </table>
+  </p>
+</section>
+
+<section class="slide">
+  <h2>Linear Least Squares</h2>
+  <h3>Two equations</h3>
+  <p>
+    $$
+      \mathbf{\Gamma}_{\phi} \Theta_{\phi} = Y_{\phi}, \quad
+      \mathbf{\Gamma}_{\delta} \Theta_{\delta} = Y_{\delta}
+    $$
+  </p>
+  <h3>Solution</h3>
+  <p>
+    $$
+      \hat{\Theta}_{\phi,\delta} = [\mathbf{\Gamma}_{\phi,\delta}^T
+      \mathbf{\Gamma}_{\phi,\delta}]^{-1} \mathbf{\Gamma}_{\phi,\delta}^T
+      Y_{\phi,\delta}
+    $$
+  </p>
+  <h3>Variance Accounted For</h3>
+  <p>
+  $$
+  \textrm{VAF}_{\phi,\delta} = 1 - \frac{\vert \vert
+    \mathbf{\Gamma}_{\phi,\delta}\hat{\Theta}_{\phi,\delta} - Y_{\phi,\delta} \vert \vert}
+                            {\vert \vert Y_{\phi,\delta} - \bar{Y}_{\phi,\delta} \vert \vert}
+  $$
+  </p>
+</section>
+
+<section class="slide">
+  <h2>Linear Least Squares</h2>
+  <p>
+    $$
+    \small{
+      \begin{align}
+        &\begin{bmatrix}
+           \ddot{\delta}(1) &
+           v(1) \dot{\delta}(1) &
+           g \delta(1) \\
+           \vdots & \vdots & \vdots\\
+           \ddot{\delta}(N) &
+           v(N) \dot{\delta}(N) &
+           g \delta(N) \\
+        \end{bmatrix}
+        \begin{bmatrix}
+          M_{\phi\delta} \\
+          C_{1\phi\delta} \\
+          K_{0\phi\delta}
+        \end{bmatrix}\\
+        &=
+        \begin{bmatrix}
+          H_{\phi F} F(1)
+          - M_{\phi\phi} \ddot{\phi}(1)
+          - C_{1\phi\phi} v(1) \dot{\phi}(1)
+          - K_{0\phi\phi} g \phi(1)
+          - K_{2\phi\phi} v(1)^2 \phi(1)
+          - K_{2\phi\delta} v(1)^2 \delta(1) \\
+        \vdots\\
+          H_{\phi F} F(N)
+          - M_{\phi\phi} \ddot{\phi}(N)
+          - C_{1\phi\phi} v(N) \dot{\phi}(N)
+          - K_{0\phi\phi} g \phi(N)
+          - K_{2\phi\phi} v(N)^2 \phi(N)
+          - K_{2\phi\delta} v(N)^2 \delta(N) \\
+        \end{bmatrix} \nonumber
+      \end{align}
+    }
+    $$
+  </p>
+</section>
+
+<section class="slide">
+  <h2>LSS Variance Accounted For</h2>
+  <table>
+    <tr>
+      <img src="img/roll-vaf.png" />
+    </tr>
+    <tr>
+      <img src="img/steer-vaf.png" />
+    </tr>
+  </table>
+</section>
+
+<section class="slide">
+  <h2>Treadmill Simulation</h2>
+  <img src="img/00262.png" />
+</section>
+
+<section class="slide">
+  <h2>Flat Ground Simulation</h2>
+  <img src="img/00521.png" />
+</section>
+
+<section class="slide">
+  <h2>Simulation Variance Accounted For</h2>
+  <img src="img/sim-vaf.png" />
+</section>
+
+<section class="slide">
+  <h2>Linear Model Comparison</h2>
+  <img src="img/lp-root-locus.png" />
+</section>
+
+<section class="slide">
+  <h2>Linear Model Comparison</h2>
+  <img src="img/lp-eig.png" />
+</section>
+
+<section class="slide">
+  <h2>Linear Model Comparison</h2>
+  <img src="img/lp-bode.png" />
+</section>
+
+<section class="slide">
+  <h2>Conclusions</h2>
+  <h3>Good stuff</h3>
+  <ul>
+    <li>A fourth order model can predict the measured motion.</li>
+    <li>A single model predicts well for all riders and both environments</li>
+    <li>The Whipple model captures the change in motion, but not the torque to
+      output gain</li>
+    <li>A simple gain could improve the Whipple model, could be represented by
+      a static scrub torque</li>
+    <li>The addition of arm inertia improves outputs, except in the roll
+      angle</li>
+  </ul>
+  <h3>Questionable Stuff</h3>
+  <ul>
+    <li>Data driven, not clear connections to first principles, e.g. trail
+    prediction</li>
+    <li>The VAF from the linear fit doesn't give same results as simulation
+    VAF</li>
+    <li>All models predict significant roll torques even if there were no
+    applied lateral forces.</li>
+</section>
+
+<!-- End slides. -->
+
+
+<!-- Begin extension snippets. Add or remove as needed. -->
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+  <span class="deck-status-current"></span>
+  /
+  <span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+  <label for="goto-slide">Go to slide:</label>
+  <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+  <datalist id="goto-datalist"></datalist>
+  <input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- End extension snippets. -->
+
+
+<!-- Required JS files. -->
+<script src="../../deck.js/jquery-1.7.2.min.js"></script>
+<script src="../../deck.js/core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="../../deck.js/core/deck.core.js"></script>
+<script src="../../deck.js/extensions/hash/deck.hash.js"></script>
+<script src="../../deck.js/extensions/menu/deck.menu.js"></script>
+<script src="../../deck.js/extensions/goto/deck.goto.js"></script>
+<script src="../../deck.js/extensions/status/deck.status.js"></script>
+<script src="../../deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="../../deck.js/extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
