@@ -47,7 +47,7 @@ except IOError:
     data_set = bdp.DataSet(pathToDatabase=PATH_TO_INSTRUMENTED_BICYCLE_DATA)
     runs = data_set.select_runs(riders, maneuvers, environments)
 
-    # initialized the data structures
+    # initialize the data structures
     time_series = {}
     stats = {'Root Mean Square of the Error': [],
              'Coefficient of Determination': [],
@@ -145,6 +145,7 @@ plt.tight_layout()
 
 fig = plt.gcf()
 fig.savefig('../figures/error-stats.pdf')
+fig.savefig('../figures/error-stats.png', dpi=300)
 
 # TODO : should i compute an RMS for the error for all data at once?
 # Should I compute rms based on the type of rider, manuever, and environment?

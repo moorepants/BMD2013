@@ -50,3 +50,4 @@ plt.rcParams.update(params)
 fig = trial.compute_steer_torque(plot=True)
 
 fig.savefig('../figures/steer-torque-components.pdf')
+fig.savefig('../figures/steer-torque-components.png', dpi=300)
