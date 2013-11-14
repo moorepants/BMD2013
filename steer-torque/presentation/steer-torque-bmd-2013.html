@@ -30,6 +30,9 @@
   <!-- Required Modernizr file -->
   <script src="../../deck.js/modernizr.custom.js"></script>
 
+  <!-- Custom stylesheet -->
+  <link rel="stylesheet" href="../../style.css">
+
   <!-- MathJax -->
   <script type="text/javascript"
     src="/home/moorepants/src/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -55,7 +58,7 @@
 <section class="slide">
   <h2>Steering and Stability of Single-Track Vehicles</h2>
   <h3>Wilson-Jones, R. A.; 1951</h3>
-  <p>predicted cournter torque for entering a turn</p>
+  <p>Predicted counter torque for entering a turn</p>
   <p>Pointed out that torques were very light and difficult to measure</p>
   <table class="side-by-side">
     <tr>
@@ -72,8 +75,8 @@
 <section class="slide">
   <h2>Experimental Study on the Stability and Control of Single-Track Vehicles</h2>
   <h3>Kondo, M.; 1955</h3>
-  <p>Probably first recorded measurement of steer torque</p>
-  <p>Steady turns, turns, and figure 8's</p>
+  <p>Probably first recorded measurement of steer torque. Steady turns, turns,
+  and figure 8's.</p>
   <img src="img/kondo-1955.png" />
 </section>
 
@@ -100,17 +103,23 @@
 <section class="slide">
   <h2>Experimental investigation and simulation of motorcycle turning
     performance</h2>
-  <h3>D. Bortoluzzi and A. Doria and R. Lot; 2000</h3>
+  <h3>D. Bortoluzzi, A. Doria and R. Lot; 2000</h3>
   <table>
     <tr>
       <td>
-        <img src="img/bortoluzzi-2000-a.png" />
+        <img src="img/bortoluzzi-2003-a.png" />
       </td>
       <td>
-        <img src="img/bortoluzzi-2000-b.png" />
+        <img src="img/bortoluzzi-2003-b.png" />
       </td>
     </tr>
   </table>
+</section>
+
+<section class="slide">
+  <h2>6 DoF Force/Torque Sensor</h2>
+  <h3>Kageyama, et. al</h3>
+  <img src="img/kageyama-torque-sensor.jpg" />
 </section>
 
 <section class="slide">
@@ -136,34 +145,227 @@
   <h2>Measurement Design Types</h2>
   <h3>Floating handlebars</h3>
   <ul>
-    <li>Torque transducers along axis<li>
+    <li>Torque transducers along axis</li>
     <li>Cantilever beams</li>
     <li>Axial load cells perpendicular to axis</li>
-  <p>Grip force transducers</p>
+  </ul>
+  <h3>Fixed handlebars</h3>
+  <ul>
+    <li>Grip force transducers</li>
+    <li>6 DoF sensor below handelbars</li>
+  </ul>
 </section>
 
 <section class="slide">
   <h2>Design Issues</h2>
   <ul>
-    <li>Crosstalk<li>
-    <li>Calibration with only steer torque</li>
-    <li>Not sensitve enough</li>
-  </ul>
-</section>
-
-<section class="slide">
-  <h2></h2>
-  <ul>
     <li>Suspectible to loads other than steer torque: i.e. crosstalk</li>
+    <li>Calibration with only a single axial torque</li>
+    <li>Not sensitve enough</li>
     <li>Calibration with only steer torque, not full loading</li>
-    <li>Not sensitive enough</li>
-    <li>Inertial compensation</li>
+    <li>Inertial compensation if mass/inertia between riders hands and
+    transducer</li>
   </ul>
 </section>
 
 <section class="slide">
   <h2>Redo Cheng's Steer Torque Wrench Experiments</h2>
   <img src="img/torque-wrench-camera.jpg" />
+</section>
+
+<section class="slide">
+  <h2>Experiments</h2>
+  <video width="640" height="480" controls="controls">
+    <source
+      src="vid/run55.ogg"
+      type="video/ogg"
+    />
+  </video>
+</section>
+
+<section class="slide">
+  <h2>Torque Wrench Results</h2>
+  <img src="img/twrench-torque-histogram.png" />
+</section>
+
+<section class="slide">
+  <h2>New design</h2>
+  <p>Not sexy, but completely eliminates cross talk. Pure steer torque.</p>
+  <p>\(\pm17\) Nm range</p>
+  <table class="side-by-side">
+    <tr>
+      <td>
+        <img src="img/steer-torque-design.png" />
+      </td>
+      <td>
+        <img src="img/steer-design-photo.jpg" />
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section class="slide">
+  <h2>Steer Dynamics</h2>
+  <img src="img/handlebar-free-body.png" />
+  <p>
+  $$
+    \sum \bar{T}^{G/s} = {}^N\dot{\bar{H}}^{G/g_o} +
+      \bar{r}^{g_o/s} \times m_G\,{}^N\bar{a}^{g_o}
+  $$
+  </p>
+</section>
+
+<section class="slide">
+  <h2>Steer Dynamics</h2>
+  <h3>Angular Momentum</h3>
+  <p>$$^N\bar{H}^{G/g_o} = I^{G/g_o} \cdot {}^N\bar{\omega}^G$$</p>
+  <h3>Measured rear frame angular velocity</h3>
+  <p>
+    $$^N\bar{\omega}^B = w_{b1}\hat{b}_1 + w_{b2}\hat{b}_2 +
+    w_{b3}\hat{b}_3$$
+  </p>
+  <h3>Measured body fixed front frame angular velocity</h3>
+  <p>
+    $$
+      ^N\bar{\omega}^G = (w_{b1}c_\delta + w_{b2}s_\delta)\hat{g}_1 +
+      (-w_{b1}s_\delta + w_{b2}c_\delta)\hat{g}_2 +
+      w_{h3}\hat{g}_3
+    $$
+  </p>
+  <h3>Measure linear acceleration of rear frame</h3>
+  <p>
+    $$^N\bar{a}^v = a_{v1}\hat{b}_1 + a_{v2}\hat{b}_2 + a_{v3}\hat{b}_3$$
+  </p>
+</section>
+
+<section class="slide">
+  <h2>Rider Applied Steer Torque</h2>
+  <p>
+  $$
+  \begin{align}
+    T_{\delta} =
+      & I_{G_{22}} \left[ \left( -w_{b1} s_\delta + w_{b2} c_\delta \right)
+        c_\delta + w_{b2} s_\delta \right] + I_{G_{33}} \dot{w}_{g3} + \nonumber \\
+      & I_{G_{31}} \left[ (-w_{g3} + w_{b3} ) w_{b1} s_\delta +
+        (-w_{b3} + w_{g3}) w_{b2} c_\delta +
+        s_\delta \dot{w}_{b2} + c_\delta \dot{w}_{b1} \right] + \nonumber \\
+      & \left[ I_{G_{11}} (w_{b1} c_\delta + w_{b2}s_\delta) +
+        I_{G_{31}} w_{g3} \right] \left[-w_{b1} s_\delta +
+        w_{b2} c_\delta \right] + \nonumber \\
+      & d m_G \left[ d (-w_{b1} s_\delta + w_{b2} c_\delta)
+        (w_{b1} c_\delta + w_{b2} s_\delta) + d \dot{w}_{g3} \right] - \nonumber \\
+      & d m_G \left[-d_{s1} w_{b2}^{2} + d_{s3} \dot{w}_{b2} -
+        (d_{s1} w_{b3} - d_{s3} w_{b1}) w_{b3} + a_{v1} \right] s_\delta + \nonumber \\
+      & d m_G \left[d_{s1} w_{b1} w_{b2} + d_{s1} \dot{w}_{b3} +
+        d_{s3} w_{b2} w_{b3} - d_{s3} \dot{w}_{b1} + a_{v2} \right]
+        c_\delta + \nonumber \\
+      & T_U + T_M
+  \end{align}
+  $$
+  </p>
+</section>
+
+<section class="slide">
+  <h2>Estimation of bearing friction</h2>
+  <img src="img/static-test.jpg" />
+</section>
+
+<section class="slide">
+  <h2>Estimation of bearing friction</h2>
+  <video width="640" height="480" controls="controls">
+    <source
+      src="vid/static-test.ogg"
+      type="video/ogg"
+    />
+  </video>
+</section>
+
+<section class="slide">
+  <h2>Estimation of bearing friction</h2>
+  <p>$$T_B = T_{Bc} + T_{Bv}$$</p>
+  <h3>Coulomb</h3>
+  <p>
+    $$
+      T_{Bc} = t_B \operatorname{sgn}(\dot\delta) =
+      \begin{cases}
+        t_B  & \textrm{if $\dot{\delta}>0$}\\
+        0    & \textrm{if $\dot{\delta}=0$}\\
+        -t_B & \textrm{if $\dot{\delta}<0$}
+      \end{cases}
+    $$
+  </p>
+  <h3>Viscous</h3>
+  <p>
+    $$T_{Bv} = c_B \dot{\delta}$$
+  </p>
+  <h3>EoM</h3>
+  <p>
+  $$
+    I_{HF} \ddot{\delta} + c_B \dot{\delta} + t_B
+    \operatorname{sgn}(\dot{\delta}) + 2 k l^2 \delta = 0
+  $$
+  </p>
+  <h3>Estimated values</h3>
+  <p>
+    $$c_B = 0.34 \pm 0.04 \textrm{N} \cdot \textrm{m} \cdot s^2$$
+    $$t_B = 0.15 \pm 0.05 \textrm{N} \cdot \textrm{m}$$
+  </p>
+</section>
+
+<section class="slide">
+  <h2>Estimation of handlebar inertia</h2>
+  <img src="img/handlebar-inertia-estimation.jpg" />
+  <p>
+    $$I_{HF} = 0.1297+/-0.0005 \textrm{kg}\cdot \textrm{m}^2$$
+ </p>
+</section>
+
+<section class="slide">
+  <h2>Compensation</h2>
+  <img src="img/steer-torque-components.png" />
+</section>
+
+<section class="slide">
+  <h2>Torque Compenstation</h2>
+  <p>359 runs</p>
+  <img src="img/error-stats.png" />
+  <table class="border">
+    <tr>
+      <th class="border">Statistic</td>
+      <th class="border">Median</th class="border">
+      <th class="border">Maximum</td>
+    </tr>
+    <tr>
+      <td class="border">Coefficient of Determination</td class="border">
+      <td class="border">0.73</td class="border">
+      <td class="border">0.82</td class="border">
+    </tr>
+    <tr>
+      <td class="border">Maximum Error</td class="border">
+      <td class="border">2.45</td class="border">
+      <td class="border">6.59</td class="border">
+    </tr>
+    <tr>
+      <td class="border">RMS of the Errors</td class="border">
+      <td class="border">0.47</td class="border">
+      <td class="border">0.90</td class="border">
+    </tr>
+  </table>
+</section>
+
+<section class="slide">
+  <h2>Conclusions</h2>
+  <ul>
+    <li>Elimination or compensation of the cross talk is essential for accurate
+      torque measurements.</li>
+    <li>With the standard sensors used for kinematics, the measurements needed
+      for inertial compensation is available.</li>
+    <li>Inertial compensation is important if there is significant inertia
+      about the steer axis above your sensor and/or your steer rotation
+      acceleration is high.</li>
+    <li>Steering column bearing friction can be estimated with Coulomb and
+      viscous friction.</li>
+  </ul>
 </section>
 
 <!-- End slides. -->
