@@ -32,9 +32,10 @@
   <script src="../../deck.js/modernizr.custom.js"></script>
 
   <!-- MathJax -->
-  <script type="text/javascript"
-    src="/home/moorepants/src/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
+  <!-- https://github.com/mathjax/MathJax/wiki/LFAQ----less-frequently-asked-questions#how-can-i-configure-a-local-fallback-for-the-cdn -->
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null }});<\/script>
+  <script src="/home/moorepants/src/MathJax/MathJax.js?config=TeX-AMS_HTML-full"><\/ script>')</script>
 
 </head>
 <body class="deck-container">
@@ -47,6 +48,9 @@
   <p>Jason K. Moore and Mont Hubbard</p>
   <p>University of California, Davis</p>
   <p>November 11, 2013</p>
+  <footer style="position:absolute;bottom:0;font-size:75%;">
+    <a href="http://www.bmd2013.org">BMD 2013</a>, Narashino, Chiba, Japan
+  </footer>
 </section>
 
 <section class="slide">
@@ -84,7 +88,7 @@
 <!--
   - How many studies do you all think have experimentally validated the open loop
     dynamical models of motorcycles? Of bicycles?
-  - Motorcycles are typcially concerned with high speed
+  - Motorcycles are typically concerned with high speed
   - Bicycles with low speeds
 -->
 
@@ -127,15 +131,15 @@
   </table>
 </section>
 
-<!-- bicycle at stable speed range, unmeasured lateral pertrubation -->
+<!-- bicycle at stable speed range, unmeasured lateral perturbation -->
 
 <section class="slide">
   <h2>Limitations</h2>
   <ul>
     <li>Tests require open loop stability</li>
     <li>Limited speed range</li>
-    <li>Instablilty leads to short data collection</li>
-    <li>Limited bandwith inputs</li>
+    <li>Instability leads to short data collection</li>
+    <li>Limited bandwidth inputs</li>
     <li>Only identify one mode at a time</li>
   </ul>
 </section>
@@ -181,7 +185,7 @@
   <ul>
     <li>Plant includes passive rider dynamics</li>
     <li>Plant may include neuromuscular dynamics</li>
-    <li>Manual excitation: human operating bandwith</li>
+    <li>Manual excitation: human operating bandwidth</li>
     <li>Closed loop identification</li>
   </ul>
 </section>
@@ -190,7 +194,7 @@
   <h2>There are very few validations of bicycle/motorcycle models!</h2>
   <p>Some are questionable, some have decent results.</p>
   <p>Bicycle validation is very weak.</p>
-  <p>Comprehenisve data at many speeds and input frequencies is missing.</p>
+  <p>Comprehensive data at many speeds and input frequencies is missing.</p>
 </section>
 
 <section class="slide">
@@ -241,12 +245,19 @@
 
 <section class="slide">
   <h2>Experiments</h2>
-  <video width="640" height="480" controls="controls">
-    <source
-      src="/home/moorepants/Research/bicycle-mechanics/Videos/PhDExperiments/PhDExperiments.ogg"
-      type="video/ogg"
-    />
-  </video>
+  <!-- <video width="640" height="480" controls="controls"> -->
+    <!-- <source -->
+      <!-- src="/home/moorepants/Research/bicycle-mechanics/Videos/PhDExperiments/PhDExperiments.ogg" -->
+      <!-- type="video/ogg" -->
+    <!-- /> -->
+  <!-- </video> -->
+  <iframe
+    width="640"
+    height="480"
+    src="http://www.youtube.com/embed/CxuZZZAiXvU"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
 </section>
 
 <section class="slide">
