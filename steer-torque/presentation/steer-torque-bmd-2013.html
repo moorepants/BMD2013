@@ -34,9 +34,10 @@
   <link rel="stylesheet" href="../../style.css">
 
   <!-- MathJax -->
-  <script type="text/javascript"
-    src="/home/moorepants/src/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
+  <!-- https://github.com/mathjax/MathJax/wiki/LFAQ----less-frequently-asked-questions#how-can-i-configure-a-local-fallback-for-the-cdn -->
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null }});<\/script>
+  <script src="/home/moorepants/src/MathJax/MathJax.js?config=TeX-AMS_HTML-full"><\/ script>')</script>
 
 </head>
 <body class="deck-container">
@@ -49,6 +50,9 @@
   <p>Jason K. Moore and Mont Hubbard</p>
   <p>University of California, Davis</p>
   <p>November 13, 2013</p>
+  <footer style="position:absolute;bottom:0;font-size:75%;">
+    <a href="http://www.bmd2013.org">BMD 2013</a>, Narashino, Chiba, Japan
+  </footer>
 </section>
 
 <section class="slide">
@@ -152,16 +156,16 @@
   <h3>Fixed handlebars</h3>
   <ul>
     <li>Grip force transducers</li>
-    <li>6 DoF sensor below handelbars</li>
+    <li>6 DoF sensor below handle bars</li>
   </ul>
 </section>
 
 <section class="slide">
   <h2>Design Issues</h2>
   <ul>
-    <li>Suspectible to loads other than steer torque: i.e. crosstalk</li>
+    <li>Susceptible to loads other than steer torque: i.e. crosstalk</li>
     <li>Calibration with only a single axial torque</li>
-    <li>Not sensitve enough</li>
+    <li>Not sensitive enough</li>
     <li>Calibration with only steer torque, not full loading</li>
     <li>Inertial compensation if mass/inertia between riders hands and
     transducer</li>
@@ -175,12 +179,19 @@
 
 <section class="slide">
   <h2>Experiments</h2>
-  <video width="640" height="480" controls="controls">
-    <source
-      src="vid/run55.ogg"
-      type="video/ogg"
-    />
-  </video>
+  <!-- <video width="640" height="480" controls="controls"> -->
+    <!-- <source -->
+      <!-- src="vid/run55.ogg" -->
+      <!-- type="video/ogg" -->
+    <!-- /> -->
+  <!-- </video> -->
+  <iframe
+    width="640"
+    height="480"
+    src="http://www.youtube.com/embed/ub0o-nlx3Jk"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
 </section>
 
 <section class="slide">
@@ -272,12 +283,14 @@
 
 <section class="slide">
   <h2>Estimation of bearing friction</h2>
-  <video width="640" height="480" controls="controls">
-    <source
-      src="vid/static-test.ogg"
-      type="video/ogg"
-    />
-  </video>
+  <!-- <video width="640" height="480" controls="controls"> -->
+    <!-- <source -->
+      <!-- src="vid/static-test.ogg" -->
+      <!-- type="video/ogg" -->
+    <!-- /> -->
+  <!-- </video> -->
+  <iframe width="640" height="480" src="http://www.youtube.com/embed/ldGiivr8u58"
+    frameborder="0" allowfullscreen></iframe>
 </section>
 
 <section class="slide">
@@ -326,7 +339,7 @@
 </section>
 
 <section class="slide">
-  <h2>Torque Compenstation</h2>
+  <h2>Torque Compensation</h2>
   <p>359 runs</p>
   <img src="img/error-stats.png" />
   <table class="border">
@@ -365,6 +378,36 @@
       acceleration is high.</li>
     <li>Steering column bearing friction can be estimated with Coulomb and
       viscous friction.</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Notes</h2>
+  <ul>
+    <li>
+      <a
+        href="http://biosport.ucdavis.edu/research-projects/bicycle/instrumented-bicycle/steer-torque-measurement">
+        Early writeup
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://archive.org/details/BicycleSteerTorqueExperiment01">
+        Videos and data from torque wrench experiments
+      </a>
+    </li>
+    <li>
+      <a
+        href="http://moorepants.github.io/dissertation/davisbicycle.html#steer-torque">
+        Steer torque section in my dissertation
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://github.com/moorepants/BMD2013/tree/master/steer-torque">
+        Source for the abstract, paper, and presentation
+      </a>
+    </li>
   </ul>
 </section>
 
